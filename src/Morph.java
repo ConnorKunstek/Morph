@@ -5,8 +5,12 @@
 /**
  * proposed file/class hierarchy
  *
+ * MVC:
+ *   C      V     C      M      V
  * Morph->Frame->Grid->Point->Dot
- *                   ->GridLine ->Line
+ *                      M           V
+ *                   ->GridLine->Line
+ *                 V
  *             ->Image
  *
  * Morph creates Frame
