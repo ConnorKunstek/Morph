@@ -26,4 +26,12 @@
  */
 
 public class Morph {
+
+    public Morph(){
+        Frame fcontroller = new Frame();
+    }
+
+    public static void main(String[] args) {
+        Morph M = new Morph();
+    }
 }
