@@ -20,7 +20,6 @@ public class ImageView extends JPanel {
         this.height = img.getHeight();
         proccessImg = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_INT_RGB);
         this.setPreferredSize(new Dimension(img.getWidth(), img.getHeight()));
-        this.repaint();
         this.setVisible(true);
     }
 
