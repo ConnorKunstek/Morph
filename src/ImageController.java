@@ -5,18 +5,28 @@ import java.awt.*;
 import java.io.*;
 import javax.imageio.*;
 
-import static java.awt.Toolkit.getDefaultToolkit;
+/*
+ * @Function:       ()
+ * @Parameters:     Type:
+ * @Returns:        NA
+ * @Description:
+ */
 
 public class ImageController implements ActionListener {
 
     private BufferedImage curImg = null;
     public ImageController(){
-
         ImageModel model = new ImageModel(readImage("assets/boat.gif"));
         this.curImg = model.getBuffImg();
         ImageView view = new ImageView(curImg);
     }
 
+    /*
+     * @Function:       readImage()
+     * @Parameters:     Type:
+     * @Returns:        NA
+     * @Description:
+     */
     public BufferedImage readImage(String file) {
         BufferedImage img = null;
         try {
