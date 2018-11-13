@@ -11,7 +11,7 @@ import java.awt.*;
 
 public class GridView extends JPanel {
 
-    public GridView(Point[][] points, int dim){
+    public GridView(PointController[][] points, int dim){
         super();
 
         this.setLayout(new GridLayout(dim, dim, 10, 10));
