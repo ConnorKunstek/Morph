@@ -5,20 +5,28 @@ import java.awt.*;
 import java.io.*;
 import javax.imageio.*;
 
-import static java.awt.Toolkit.getDefaultToolkit;
+/*
+ * @Function:       ()
+ * @Parameters:     Type:
+ * @Returns:        NA
+ * @Description:
+ */
 
 public class ImageController implements ActionListener {
 
-    private ImageModel model;
-
-    private ImageView view;
-
+    private BufferedImage curImg = null;
     public ImageController(){
-
-        model = new ImageModel(readImage("assets/yacht.jpg"));
-        view = new ImageView(model.getBuffImg());
+        ImageModel model = new ImageModel(readImage("assets/boat.gif"));
+        this.curImg = model.getBuffImg();
+        ImageView view = new ImageView(curImg);
     }
 
+    /*
+     * @Function:       readImage()
+     * @Parameters:     Type:
+     * @Returns:        NA
+     * @Description:
+     */
     public BufferedImage readImage(String file) {
         BufferedImage img = null;
         try {
@@ -33,10 +41,6 @@ public class ImageController implements ActionListener {
 
         BufferedImage bim = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_INT_RGB);
         return bim;
-    }
-
-    public ImageView getView(){
-        return view;
     }
 
     public void actionPerformed(ActionEvent e){}
