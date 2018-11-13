@@ -14,11 +14,14 @@ import javax.imageio.*;
 
 public class ImageController implements ActionListener {
 
+    ImageModel model;
+
+    ImageView view;
+
     private BufferedImage curImg = null;
     public ImageController(){
-        ImageModel model = new ImageModel(readImage("assets/boat.gif"));
-        this.curImg = model.getBuffImg();
-        ImageView view = new ImageView(curImg);
+        model = new ImageModel(readImage("assets/boat.gif"));
+        view = new ImageView(model.getBuffImg());
     }
 
     /*
@@ -41,6 +44,10 @@ public class ImageController implements ActionListener {
 
         BufferedImage bim = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_INT_RGB);
         return bim;
+    }
+
+    public ImageView getView(){
+        return this.view;
     }
 
     public void actionPerformed(ActionEvent e){}

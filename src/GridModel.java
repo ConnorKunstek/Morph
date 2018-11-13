@@ -9,11 +9,11 @@
 
 public class GridModel {
 
-    public Point[][] getPoints() {
+    public PointController[][] getPoints() {
         return points;
     }
 
-    private Point[][] points;
+    private PointController[][] points;
 
     public int getDim() {
         return dim;
@@ -29,16 +29,16 @@ public class GridModel {
 
         setDim(dim);
 
-        points = new Point[dim][dim];
+        points = new PointController[dim][dim];
 
         for(int row = 0; row < dim; row++){
             for(int col = 0; col < dim; col++){
-                points[row][col] = new Point(row, col, dim);
+                points[row][col] = new PointController(row, col, dim);
             }
         }
     }
 
-    public Point getPoint(int row, int col){
+    public PointController getPoint(int row, int col){
         return points[row][col];
     }
 

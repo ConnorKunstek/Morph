@@ -1,7 +1,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Point implements ActionListener {
+public class PointController implements ActionListener {
 
     public PointModel getModel() {
         return model;
@@ -15,18 +15,18 @@ public class Point implements ActionListener {
 
     PointView view;
 
-    public Point(int row, int col, int dim){
+    public PointController(int row, int col, int dim){
         model = new PointModel(row, col, dim);
         view = new PointView();
     }
 
-    public void setTop(Point point){
+    public void setTop(PointController point){
         getModel().setTop(point);
     }
-    public void setLeft(Point point){
+    public void setLeft(PointController point){
         getModel().setLeft(point);
     }
-    public void setDiag(Point point){
+    public void setDiag(PointController point){
         getModel().setDiag(point);
     }
 

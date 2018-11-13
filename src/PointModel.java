@@ -29,35 +29,35 @@ public class PointModel {
 
     private int col;
 
-    public Point getTop() {
+    public PointController getTop() {
         return top;
     }
 
-    public void setTop(Point top) {
+    public void setTop(PointController top) {
         this.top = top;
     }
 
-    private Point top;
+    private PointController top;
 
-    public Point getLeft() {
+    public PointController getLeft() {
         return left;
     }
 
-    public void setLeft(Point left) {
+    public void setLeft(PointController left) {
         this.left = left;
     }
 
-    private Point left;
+    private PointController left;
 
-    public Point getDiag() {
+    public PointController getDiag() {
         return diag;
     }
 
-    public void setDiag(Point diag) {
+    public void setDiag(PointController diag) {
         this.diag = diag;
     }
 
-    private Point diag;
+    private PointController diag;
 
     public Boolean getBound() {
         return bound;

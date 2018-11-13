@@ -26,4 +26,6 @@ public class FrameModel{
         gridController = new GridController(gridDimension);
         imageController = new ImageController();
     }
+
+
 }
