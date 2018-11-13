@@ -32,11 +32,11 @@
 public class Morph {
 
     public Morph(){
-        Frame frame = new Frame(10);
+        FrameController frame = new FrameController(10);
     }
 
     public Morph(String num){
-        Frame frame = new Frame(Integer.parseInt(num));
+        FrameController frame = new FrameController(Integer.parseInt(num));
     }
 
     public static void main(String[] args) {

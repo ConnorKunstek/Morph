@@ -13,6 +13,8 @@ public class FrameView extends JFrame {
         c.add(grid);
         c.add(image);
 
+        this.setSize(1000, 1000);
+        this.setVisible(true);
     }
 
     public FrameView(GridView grid){
@@ -22,6 +24,18 @@ public class FrameView extends JFrame {
         Container c = getContentPane();
 
         c.add(grid);
+
+        this.setSize(1000, 1000);
+        this.setVisible(true);
+    }
+
+    public FrameView(ImageView image){
+
+        super("Morph");
+
+        Container c = getContentPane();
+
+        c.add(image);
 
         this.setSize(1000, 1000);
         this.setVisible(true);

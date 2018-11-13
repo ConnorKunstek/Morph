@@ -9,12 +9,14 @@ import static java.awt.Toolkit.getDefaultToolkit;
 
 public class ImageController implements ActionListener {
 
-    private BufferedImage curImg = null;
+    private ImageModel model;
+
+    private ImageView view;
+
     public ImageController(){
 
-        ImageModel model = new ImageModel(readImage("assets/boat.gif"));
-        this.curImg = model.getBuffImg();
-        ImageView view = new ImageView(curImg);
+        model = new ImageModel(readImage("assets/yacht.jpg"));
+        view = new ImageView(model.getBuffImg());
     }
 
     public BufferedImage readImage(String file) {
@@ -31,6 +33,10 @@ public class ImageController implements ActionListener {
 
         BufferedImage bim = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_INT_RGB);
         return bim;
+    }
+
+    public ImageView getView(){
+        return view;
     }
 
     public void actionPerformed(ActionEvent e){}

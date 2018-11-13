@@ -10,12 +10,13 @@ import java.awt.event.ActionListener;
  *
  */
 
-public class Frame implements ActionListener {
+public class FrameController implements ActionListener {
 
-    public Frame(int gridDimmesion){
+    public FrameController(int gridDimmesion){
         FrameModel model = new FrameModel(gridDimmesion);
         //FrameView view = new FrameView(model.getGrid().getView(), model.getImage().getView());
-        FrameView view = new FrameView(model.getGrid().getView());
+        //FrameView view = new FrameView(model.getGrid().getView());
+        FrameView view = new FrameView(model.getImage().getView());
     }
 
     public void actionPerformed(ActionEvent e){}

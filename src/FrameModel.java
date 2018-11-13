@@ -10,20 +10,20 @@
 
 public class FrameModel{
 
-    public Grid getGrid() {
-        return grid;
+    public GridController getGridController() {
+        return gridController;
     }
 
-    private Grid grid;
+    private GridController gridController;
 
-    public Image getImage() {
-        return image;
+    public ImageController getImageController() {
+        return imageController;
     }
 
-    private Image image;
+    private ImageController imageController;
 
-    public FrameModel(int gridDimmesion){
-        grid = new Grid(gridDimmesion);
-        image = new Image();
+    public FrameModel(int gridDimension){
+        gridController = new GridController(gridDimension);
+        imageController = new ImageController();
     }
 }

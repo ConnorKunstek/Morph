@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
  *
  */
 
-public class Grid implements ActionListener {
+public class GridController implements ActionListener {
 
 
     public GridView getView() {
@@ -25,7 +25,7 @@ public class Grid implements ActionListener {
 
     GridModel model;
 
-    public Grid(int dim){
+    public GridController(int dim){
         model = new GridModel(dim);
 
         for(int row = 0; row < dim; row++){
