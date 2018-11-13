@@ -20,7 +20,7 @@ public class ImageController implements ActionListener {
 
     private BufferedImage curImg = null;
     public ImageController(){
-        model = new ImageModel(readImage("assets/boat.gif"));
+        model = new ImageModel(readImage("./assets/yacht.jpg"));
         view = new ImageView(model.getBuffImg());
     }
 
@@ -33,21 +33,26 @@ public class ImageController implements ActionListener {
     public BufferedImage readImage(String file) {
         BufferedImage img = null;
         try {
+            System.out.println("File tried");
             img = ImageIO.read(new File(file));
-        } catch (IOException e) {}
+        } catch (IOException e) {
+          System.out.println("Error: tried");
+        }
         MediaTracker tracker = new MediaTracker (new Component () {});
         tracker.addImage(img, 0);
         try {
             tracker.waitForID (0);
         }
         catch(InterruptedException e) {}
-
-        BufferedImage bim = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_INT_RGB);
-        return bim;
+        return img;
     }
 
     public ImageView getView(){
         return this.view;
+    }
+
+    public void showImage(){
+      view.showImg();
     }
 
     public void actionPerformed(ActionEvent e){}

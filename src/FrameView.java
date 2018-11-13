@@ -33,7 +33,7 @@ public class FrameView extends JFrame {
 
         super("Morph");
 
-        Container c = getContentPane();
+        Container c = this.getContentPane();
 
         c.add(image);
 

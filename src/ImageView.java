@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 
 public class ImageView extends JPanel {
     private int width, height;
-    private BufferedImage view;
+    public BufferedImage view;
     private BufferedImage proccessImg;
     public ImageView(){
         super();
@@ -18,9 +18,8 @@ public class ImageView extends JPanel {
         this.view = img;
         this.width = img.getWidth();
         this.height = img.getHeight();
-        proccessImg = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_INT_RGB);
+        proccessImg = new BufferedImage(img.getWidth(), img.getHeight(), img.getType());
         this.setPreferredSize(new Dimension(img.getWidth(), img.getHeight()));
-        this.setVisible(true);
     }
 
     public void setNewImage(BufferedImage img){
@@ -28,13 +27,21 @@ public class ImageView extends JPanel {
         this.view = img;
         this.width = img.getWidth();
         this.height = img.getHeight();
-        this.proccessImg = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_INT_RGB);
+        this.proccessImg = new BufferedImage(img.getWidth(), img.getHeight(), img.getType());
         this.setPreferredSize(new Dimension(img.getWidth(), img.getHeight()));
         this.repaint();
     }
 
+    public void showImg(){
+      this.repaint();
+    }
+
     public void paintComponent(Graphics g) {
         Graphics2D canvas = (Graphics2D) g;
-        canvas.drawImage(view, 0, 0, this);
+        boolean x = false;
+        while(!x){
+          x = canvas.drawImage(view, 0, 0, this);
+        }
+
     }
 }
