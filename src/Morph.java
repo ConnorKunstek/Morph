@@ -6,32 +6,45 @@
  * proposed file/class hierarchy
  *
  * MVC:
- *   C      V     C      M      V
- * Morph->Frame->Grid->Point->Dot
- *                      M           V
- *                   ->GridLine->Line
- *                 V
- *             ->Image
- *
- * Morph creates Frame
- * Frame extends JFrame, holds image and grid
- * Image loads/saves image
- * Grid creates Points and GridLines
- * Point holds logic for each individual point (ei control point or not, neighbors)
- * Dot extends JComponent, holds image of dot for each point
- * GridLine holds logic for each line between each point
- * Line extends JComponent, creates actual line image
- *
+ *   C      C       V
+ * Morph->Frame->FrameView
+ *                  M          C       V
+ *             ->FrameModel->Image->ImageView
+ *                                      M
+ *                                ->ImageModel
+ *                             C      V
+ *                         ->Grid->GridView
+ *                                      M       C       V
+ *                               ->GridModel->Point->PointView
+ *                                                      M
+ *                                                 ->PointModel
+ */
+
+/**
+ * @Function: ()
+ * @Parameters: Type:
+ * @Returns: N/A
+ * @Description:
  *
  */
+
 
 public class Morph {
 
     public Morph(){
-        Frame fcontroller = new Frame();
+        Frame frame = new Frame(10);
+    }
+
+    public Morph(String num){
+        Frame frame = new Frame(Integer.parseInt(num));
     }
 
     public static void main(String[] args) {
-        Morph M = new Morph();
+
+        if(args.length != 0) {
+            Morph M = new Morph(args[0]);
+        }else{
+            Morph m = new Morph();
+        }
     }
 }

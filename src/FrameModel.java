@@ -1,14 +1,29 @@
+
+/**
+ * @Function: ()
+ * @Parameters: Type:
+ * @Returns: N/A
+ * @Description:
+ *
+ */
+
+
 public class FrameModel{
 
     public Grid getGrid() {
         return grid;
     }
 
-    public void setGrid(Grid grid) {
-        this.grid = grid;
+    private Grid grid;
+
+    public Image getImage() {
+        return image;
     }
 
-    Grid grid;
+    private Image image;
 
-    public FrameModel(){}
+    public FrameModel(int gridDimmesion){
+        grid = new Grid(gridDimmesion);
+        image = new Image();
+    }
 }
