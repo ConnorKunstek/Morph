@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f2fa9aa6-8fbd-4c7f-b6b1-bc19fb38ffcd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/LineController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LineModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LineView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FrameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FrameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GridView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GridView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PointController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PointController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PointModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PointModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PointView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PointView.java" afterDir="false" />
-    </list>
+    <list default="true" id="f2fa9aa6-8fbd-4c7f-b6b1-bc19fb38ffcd" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -295,7 +285,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542091658453" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542091663682" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
@@ -345,11 +335,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13030000" />
+    <option name="totallyTimeSpent" value="13663000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-2" width="1920" height="1202" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Image Layers" order="0" />
       <window_info id="Designer" order="1" />
