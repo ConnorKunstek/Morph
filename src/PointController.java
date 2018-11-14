@@ -18,8 +18,8 @@ public class PointController extends Point implements ActionListener {
 
     public PointController(int row, int col, int dim){
         super();
-        model = new PointModel(row, col, dim);
-        view = new PointView(row * 100, col * 100);
+        model = new PointModel(row, col, dim, 100);
+        view = new PointView(row * 100, col * 100, model.getRightBound(), model.getBottomBound());
     }
 
     public void setTop(PointController point){
