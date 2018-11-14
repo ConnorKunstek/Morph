@@ -19,8 +19,18 @@ public class GridView extends JPanel {
         for(int row = 0; row < dim; row++){
             for(int col = 0; col < dim; col++){
                 this.add(points[row][col].getView());
+                if(!points[row][col].getModel().getTopBound()) {
+                    this.add(points[row][col].getModel().getTopLine().getView());
+                }
+                if(!points[row][col].getModel().getLeftBound()) {
+                    this.add(points[row][col].getModel().getLeftLine().getView());
+                }
+                if(!points[row][col].getModel().getRightBound() && !points[row][col].getModel().getTopBound()) {
+                    this.add(points[row][col].getModel().getDiagLine().getView());
+                }
             }
         }
+
         this.setSize(1000, 1000);
         this.setVisible(true);
     }

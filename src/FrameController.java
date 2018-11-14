@@ -15,8 +15,8 @@ public class FrameController implements ActionListener {
     public FrameController(int gridDimmesion){
         FrameModel model = new FrameModel(gridDimmesion);
         //FrameView view = new FrameView(model.getGrid().getView(), model.getImage().getView());
-        //FrameView view = new FrameView(model.getGrid().getView());
-        FrameView view = new FrameView(model.getImageController().getView());
+        FrameView view = new FrameView(model.getGridController().getView());
+        //FrameView view = new FrameView(model.getImageController().getView());
     }
 
     public void actionPerformed(ActionEvent e){}
