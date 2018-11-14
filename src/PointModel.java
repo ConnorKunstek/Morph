@@ -145,9 +145,34 @@ public class PointModel {
         diagLine = new LineController(point1, point2);
     }
 
-    public PointModel(int row, int col, int dim){
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    private int x;
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    private int y;
+
+
+    public PointModel(int row, int col, int dim, int space){
         setRow(row);
         setCol(col);
+
+        setX(col * space);
+        setY(row * space);
 
         setBound(false);
         setTopBound(false);
