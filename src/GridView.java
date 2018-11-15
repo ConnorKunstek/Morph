@@ -1,5 +1,7 @@
 import javax.swing.JPanel;
 import java.awt.*;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionAdapter;
 
 /**
  * @Function: ()
@@ -10,7 +12,7 @@ import java.awt.*;
  */
 
 public class GridView extends JPanel {
-
+    private PointController[][] lpoints;
     public GridView(PointController[][] points, int dim) {
         super();
 
@@ -21,8 +23,8 @@ public class GridView extends JPanel {
         c.fill = GridBagConstraints.HORIZONTAL;
         for(int row = 0; row < dim; row++){
             for(int col = 0; col < dim; col++){
-                c.weightx = 25;
-                c.weighty = 25;
+                c.weightx = 5;
+                c.weighty = 5;
                 c.gridx = row;
                 c.gridy = col;
                 c.ipadx = 25;
@@ -61,4 +63,17 @@ public class GridView extends JPanel {
         this.setSize(1000, 1000);
         this.setVisible(true);
     }
+
+
+    public void testMouse(){
+        System.out.println("GridView Function Called");
+    }
+
+//    public boolean isObject(){
+//        for(int r = 0; r < this.lpoints.length; r++){
+//            for(int c = 0; c < this.lpoints.length; c++){
+//
+//            }
+//        }
+//    }
 }

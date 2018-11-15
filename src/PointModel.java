@@ -1,5 +1,7 @@
 
 import java.awt.Point;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionAdapter;
 
 
 /**
@@ -20,21 +22,24 @@ public class PointModel {
     private Boolean bound;
     private Boolean topBound;
     private Boolean bottomBound;
+    private Boolean rightBound;
+    private int col;
 
 
     public int getRow() {
         return row;
     }
+
     public void setRow(int row) {
         this.row = row;
     }
     public int getCol() {
         return col;
     }
+
     public void setCol(int col) {
         this.col = col;
     }
-    private int col;
 
     public PointController getBottom() {
         return this.bottom;
@@ -79,8 +84,6 @@ public class PointModel {
     public void setRightBound(Boolean rightBound) {
         this.rightBound = rightBound;
     }
-
-    private Boolean rightBound;
 
     public Boolean getLeftBound() {
         return leftBound;
