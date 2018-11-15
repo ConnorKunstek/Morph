@@ -1,18 +1,26 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionAdapter;
 
 public class PointView extends JComponent {
-
+    private int x;
+    private int y;
+    private boolean isChosen;
+    private int id;
     private PointController thisPoint, diag, right, bottom;
     private Color color;
-    private int y, x;
 
-    public PointView(PointController thisPoint, PointController rightPoint, PointController bottomPoint, PointController diagPoint){
+
+
+    public PointView(PointController thisPoint, PointController rightPoint, PointController bottomPoint, PointController diagPoint, MouseMotionAdapter MMA, MouseListener ML){
         super();
         setThisPoint(thisPoint);
         setRight(rightPoint);
         setBottom(bottomPoint);
         setDiag(diagPoint);
+        this.addMouseMotionListener(MMA);
+        this.addMouseListener(ML);
         this.setPreferredSize(new Dimension(500, 500));
         this.setVisible(true);
     }
@@ -38,6 +46,7 @@ public class PointView extends JComponent {
     }
 
     public void setColor(Color color){this.color = color; repaint();}
+
     public Color getColor(){return this.color;}
 
     public int getX() {
@@ -69,22 +78,22 @@ public class PointView extends JComponent {
     }
 
     public PointController getBottom() {
-        return bottom;
-    }
-
-    public void setRight(PointController right) {
-        this.right = right;
+        return this.bottom;
     }
 
     public PointController getRight() {
         return right;
     }
 
-    public void setDiag(PointController diag) {
-        this.diag = diag;
+    public void setRight(PointController right) {
+        this.right = right;
     }
 
     public PointController getDiag() {
         return diag;
+    }
+
+    public void setDiag(PointController diag) {
+        this.diag = diag;
     }
 }

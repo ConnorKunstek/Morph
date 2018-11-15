@@ -15,12 +15,8 @@ public class GridController implements ActionListener {
 
     GridView view;
     GridModel model;
-    private MouseMotionAdapter ML = new MouseMotionAdapter() {
-        @Override
-        public void mouseDragged(MouseEvent e) {
-            super.mouseDragged(e);
-        }
-    };
+
+
 
     public GridView getView() {
         return view;
@@ -31,6 +27,7 @@ public class GridController implements ActionListener {
     }
 
     public GridController(int dim){
+//        model = new GridModel(dim, MMA, ML);
         model = new GridModel(dim);
 
 //        for(int row = 0; row < dim; row++){

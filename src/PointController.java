@@ -1,16 +1,40 @@
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import javax.swing.*;
+import java.awt.event.*;
 import java.awt.Point;
 
 public class PointController extends Point implements ActionListener {
 
-    private PointView view;
-    private PointModel model;
+
+    PointView view;
+    PointModel model;
+    private MouseMotionAdapter MMA = new MouseMotionAdapter() {
+        public void mouseDragged(MouseEvent e) {
+            System.out.println("Mouse Event Dragged:");
+            System.out.println(e.getPoint());
+        }
+    };
+
+    private MouseListener ML = new MouseAdapter() {
+        public void mouseReleased(MouseEvent e) {
+            System.out.println("Mouse Event Released:");
+            System.out.println(e.getSource());
+        }
+    };
+
+    public PointModel getModel() {
+        return model;
+    }
+
+    public PointView getView() {
+        return view;
+    }
+
 
     public PointController(int row, int col, int dim){
         super();
         model = new PointModel(row, col, dim, 50);
-        //view = new PointView(this, model.getRight(), model.getBottom(), model.getDiag());
+
+        //view = new PointView(row * 50, col * 50, model.getRightBound(), model.getBottomBound(), MMA, ML);
     }
 
     public void setNeighbors(PointController[][] points){
@@ -29,7 +53,7 @@ public class PointController extends Point implements ActionListener {
         }else{
             setDiag(null);
         }
-        view = new PointView(this, model.getRight(), model.getBottom(), model.getDiag());
+        view = new PointView(this, model.getRight(), model.getBottom(), model.getDiag(), MMA, ML);
     }
 
     public void setBottom(PointController point){
@@ -42,14 +66,6 @@ public class PointController extends Point implements ActionListener {
 
     public void setDiag(PointController point){
         getModel().setDiag(point);
-    }
-
-    public PointModel getModel() {
-        return model;
-    }
-
-    public PointView getView() {
-        return view;
     }
 
     public void actionPerformed(ActionEvent e){
