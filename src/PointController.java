@@ -11,6 +11,10 @@ public class PointController extends Point implements ActionListener {
         public void mouseDragged(MouseEvent e) {
             System.out.println("Mouse Event Dragged:");
             System.out.println(e.getPoint());
+            Point t = e.getPoint();
+            model.setX((int)t.getX());
+            model.setY((int)t.getY());
+            view.repaint();
         }
     };
 
