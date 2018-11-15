@@ -40,9 +40,9 @@ public class LineView extends JComponent {
 
         Graphics2D g2 = (Graphics2D)g;
 
-        super.paintComponent(g2);
-        g2.setColor(Color.RED);
-        g2.drawOval(point1.getModel().getY(), point1.getModel().getX(), 10, 10);
+        //super.paintComponent(g2);
+//        g2.setColor(Color.RED);
+//        g2.drawOval(point1.getModel().getY(), point1.getModel().getX(), 10, 10);
         System.out.println("("+point1.getModel().getX()+", " + point1.getModel().getY() + ")");
         System.out.println("("+point2.getModel().getX()+", " + point2.getModel().getY() + ")");
         g2.setColor(Color.BLUE);

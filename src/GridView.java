@@ -27,9 +27,9 @@ public class GridView extends JPanel {
 //                if(!points[row][col].getModel().getLeftBound()) {
 //                    this.add(points[row][col].getModel().getLeftLine().getView());
 //                }
-//                if(!points[row][col].getModel().getRightBound() && !points[row][col].getModel().getTopBound()) {
-//                    this.add(points[row][col].getModel().getDiagLine().getView());
-//                }
+                if(!points[row][col].getModel().getRightBound() && !points[row][col].getModel().getTopBound()) {
+                    this.add(points[row][col].getModel().getDiagLine().getView());
+                }
             }
         }
 

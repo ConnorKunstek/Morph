@@ -20,9 +20,9 @@ public class PointView extends JComponent {
         super.paintComponent(g);
         g.setColor(getColor());
         g.fillOval(0, 0, 10, 10);
-        if(!isBottom() && !isRight()) {
-            g.drawRect(5, 5, 50, 50);
-        }
+//        if(!isBottom() && !isRight()) {
+//            g.drawRect(5, 5, 50, 50);
+//        }
 
     }
 
