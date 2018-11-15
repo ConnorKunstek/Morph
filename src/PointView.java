@@ -3,27 +3,38 @@ import java.awt.*;
 
 public class PointView extends JComponent {
 
-    public PointView(int x, int y, boolean right, boolean bottom){
+    private PointController thisPoint, diag, right, bottom;
+    private Color color;
+    private int y, x;
+
+    public PointView(PointController thisPoint, PointController rightPoint, PointController bottomPoint, PointController diagPoint){
         super();
-        setX(x);
-        setY(y);
-        setRight(right);
-        setBottom(bottom);
-        this.setLocation(x, y);
+        setThisPoint(thisPoint);
+        setRight(rightPoint);
+        setBottom(bottomPoint);
+        setDiag(diagPoint);
+        this.setPreferredSize(new Dimension(500, 500));
         this.setVisible(true);
     }
 
-    private Color color;
-
     @Override
     public void paintComponent(Graphics g){
+
         super.paintComponent(g);
         g.setColor(getColor());
-        g.fillOval(0, 0, 10, 10);
-//        if(!isBottom() && !isRight()) {
-//            g.drawRect(5, 5, 50, 50);
-//        }
-
+        g.fillOval(thisPoint.getModel().getX(), thisPoint.getModel().getY(), 10, 10);
+        Graphics2D g2 = (Graphics2D)g;
+        g2.setColor(getColor());
+        g2.setStroke(new BasicStroke(2));
+        if(getRight() != null) {
+            g.drawLine(getThisPoint().getModel().getX(), getThisPoint().getModel().getY(), getRight().getModel().getX(), getRight().getModel().getY());
+        }
+        if(getBottom() != null){
+            g.drawLine(getThisPoint().getModel().getX(), getThisPoint().getModel().getY(), getBottom().getModel().getX(), getBottom().getModel().getY());
+        }
+        if(getDiag() != null){
+            g.drawLine(getThisPoint().getModel().getX(), getThisPoint().getModel().getY(), getDiag().getModel().getX(), getDiag().getModel().getY());
+        }
     }
 
     public void setColor(Color color){this.color = color; repaint();}
@@ -37,8 +48,6 @@ public class PointView extends JComponent {
         this.x = x;
     }
 
-    private int x;
-
     public int getY() {
         return y;
     }
@@ -47,26 +56,35 @@ public class PointView extends JComponent {
         this.y = y;
     }
 
-    private int y;
-
-    public boolean isRight() {
-        return right;
+    public void setThisPoint(PointController thisPoint) {
+        this.thisPoint = thisPoint;
     }
 
-    public void setRight(boolean right) {
-        this.right = right;
+    public PointController getThisPoint() {
+        return thisPoint;
     }
 
-    private boolean right;
-
-    public boolean isBottom() {
-        return bottom;
-    }
-
-    public void setBottom(boolean bottom) {
+    public void setBottom(PointController bottom) {
         this.bottom = bottom;
     }
 
-    private boolean bottom;
+    public PointController getBottom() {
+        return bottom;
+    }
 
+    public void setRight(PointController right) {
+        this.right = right;
+    }
+
+    public PointController getRight() {
+        return right;
+    }
+
+    public void setDiag(PointController diag) {
+        this.diag = diag;
+    }
+
+    public PointController getDiag() {
+        return diag;
+    }
 }

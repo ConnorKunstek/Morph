@@ -15,7 +15,8 @@ public class GridView extends JPanel {
         super();
 
 //        this.setLayout(new GridLayout(dim, dim, 10, 10));
-        this.setLayout(new GridBagLayout());
+        //this.setLayout(new GridBagLayout());
+        this.setLayout(new FlowLayout());
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.HORIZONTAL;
         for(int row = 0; row < dim; row++){
@@ -26,7 +27,7 @@ public class GridView extends JPanel {
                 c.gridy = col;
                 c.ipadx = 25;
                 c.ipady = 25;
-                this.add(points[row][col].getView(),c);
+                this.add(points[row][col].getView());
 
                 //System.out.println("Point: (" + points[row][col].getView().getX() +", " + points[row][col].getView().getY() + ")");
 //                if(!points[row][col].getModel().getTopBound()) {
@@ -35,9 +36,9 @@ public class GridView extends JPanel {
 //                if(!points[row][col].getModel().getLeftBound()) {
 //                    this.add(points[row][col].getModel().getLeftLine().getView());
 //                }
-                if(!points[row][col].getModel().getRightBound() && !points[row][col].getModel().getTopBound()) {
-                    this.add(points[row][col].getModel().getDiagLine().getView());
-                }
+//                if(!points[row][col].getModel().getRightBound() && !points[row][col].getModel().getTopBound()) {
+//                    this.add(points[row][col].getModel().getDiagLine().getView());
+//                }
             }
         }
 

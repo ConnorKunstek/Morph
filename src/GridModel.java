@@ -36,6 +36,11 @@ public class GridModel {
                 points[row][col] = new PointController(row, col, dim);
             }
         }
+        for(int row = 0; row < dim; row++){
+            for(int col = 0; col < dim; col++){
+                points[row][col].setNeighbors(points);
+            }
+        }
     }
 
     public PointController getPoint(int row, int col){

@@ -29,7 +29,7 @@ public class FrameModel{
     public FrameModel(int gridDimension){
         gridPostContoller = new GridController(gridDimension);
         gridPreContoller = new GridController(gridDimension);
-        imageController = new ImageController();
+        //imageController = new ImageController();
     }
 
 
