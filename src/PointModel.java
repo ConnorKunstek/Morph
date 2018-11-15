@@ -9,24 +9,30 @@
 
 public class PointModel {
 
+    private int row;
+
+    private PointController top;
+    private PointController left;
+    private PointController diag;
+    private Boolean bound;
+    private Boolean topBound;
+    private Boolean bottomBound;
+
+
+
+
     public int getRow() {
         return row;
     }
-
     public void setRow(int row) {
         this.row = row;
     }
-
-    private int row;
-
     public int getCol() {
         return col;
     }
-
     public void setCol(int col) {
         this.col = col;
     }
-
     private int col;
 
     public PointController getTop() {
@@ -37,8 +43,6 @@ public class PointModel {
         this.top = top;
     }
 
-    private PointController top;
-
     public PointController getLeft() {
         return left;
     }
@@ -46,8 +50,6 @@ public class PointModel {
     public void setLeft(PointController left) {
         this.left = left;
     }
-
-    private PointController left;
 
     public PointController getDiag() {
         return diag;
@@ -57,8 +59,6 @@ public class PointModel {
         this.diag = diag;
     }
 
-    private PointController diag;
-
     public Boolean getBound() {
         return bound;
     }
@@ -66,8 +66,6 @@ public class PointModel {
     public void setBound(Boolean bound) {
         this.bound = bound;
     }
-
-    private Boolean bound;
 
     public Boolean getTopBound() {
         return topBound;
@@ -77,8 +75,6 @@ public class PointModel {
         this.topBound = topBound;
     }
 
-    private Boolean topBound;
-
     public Boolean getBottomBound() {
         return bottomBound;
     }
@@ -86,8 +82,6 @@ public class PointModel {
     public void setBottomBound(Boolean bottomBound) {
         this.bottomBound = bottomBound;
     }
-
-    private Boolean bottomBound;
 
     public Boolean getRightBound() {
         return rightBound;

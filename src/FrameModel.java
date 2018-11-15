@@ -9,21 +9,26 @@
 
 
 public class FrameModel{
+    private GridController gridPreContoller;
+    private GridController gridPostContoller;
+    private ImageController imageController;
 
-    public GridController getGridController() {
-        return gridController;
+
+    public GridController getGridPreContoller() {
+        return gridPreContoller;
     }
 
-    private GridController gridController;
+    public GridController getGridPostContoller() {
+        return gridPostContoller;
+    }
 
     public ImageController getImageController() {
         return imageController;
     }
 
-    private ImageController imageController;
-
     public FrameModel(int gridDimension){
-        gridController = new GridController(gridDimension);
+        gridPostContoller = new GridController(gridDimension);
+        gridPreContoller = new GridController(gridDimension);
         imageController = new ImageController();
     }
 

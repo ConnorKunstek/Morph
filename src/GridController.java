@@ -1,6 +1,6 @@
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import javax.swing.*;
+import java.awt.event.*;
 
 /**
  * @Function: ()
@@ -13,17 +13,22 @@ import java.awt.event.ActionListener;
 public class GridController implements ActionListener {
 
 
+    GridView view;
+    GridModel model;
+    private MouseMotionAdapter ML = new MouseMotionAdapter() {
+        @Override
+        public void mouseDragged(MouseEvent e) {
+            super.mouseDragged(e);
+        }
+    };
+
     public GridView getView() {
         return view;
     }
 
-    GridView view;
-
     public GridModel getModel() {
         return model;
     }
-
-    GridModel model;
 
     public GridController(int dim){
         model = new GridModel(dim);
@@ -47,5 +52,7 @@ public class GridController implements ActionListener {
     }
 
 
-    public void actionPerformed(ActionEvent e){}
+    public void actionPerformed(ActionEvent e){
+        System.out.println(e);
+    }
 }
