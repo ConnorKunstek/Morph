@@ -1,4 +1,7 @@
 
+import java.awt.Point;
+
+
 /**
  * @Function: ()
  * @Parameters: Type:
@@ -103,9 +106,67 @@ public class PointModel {
 
     private Boolean leftBound;
 
-    public PointModel(int row, int col, int dim){
+    private LineController topLine;
+
+    public LineController getTopLine(){
+        return this.topLine;
+    }
+
+    public void setTopLine(PointController point1, PointController point2){
+        System.out.println("Top line");
+        topLine = new LineController(point1, point2);
+    }
+
+    private LineController leftLine;
+
+    public LineController getLeftLine(){
+        return this.leftLine;
+    }
+
+    public void setLeftLine(PointController point1, PointController point2){
+        System.out.println("left line");
+        leftLine = new LineController(point1, point2);
+    }
+
+    private LineController diagLine;
+
+    public LineController getDiagLine(){
+        return this.diagLine;
+    }
+
+    public void setDiagLine(PointController point1, PointController point2){
+        System.out.println("diagonal line");
+        diagLine = new LineController(point1, point2);
+    }
+
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    private int x;
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    private int y;
+
+
+    public PointModel(int row, int col, int dim, int space){
         setRow(row);
         setCol(col);
+
+        setX(col * space);
+        setY(row * space);
 
         setBound(false);
         setTopBound(false);
@@ -125,7 +186,7 @@ public class PointModel {
             setLeftBound(true);
             setBound(true);
         }
-        if(row == dim -1){
+        if(col == dim - 1){
             setRightBound(true);
             setBound(true);
         }
