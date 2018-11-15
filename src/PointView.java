@@ -3,7 +3,14 @@ import java.awt.*;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionAdapter;
 
+
+/**
+ * @Class: FrameController()
+ * @Description: Creates program
+ */
+
 public class PointView extends JComponent {
+
     private int x;
     private int y;
     private boolean isChosen;
@@ -11,48 +18,93 @@ public class PointView extends JComponent {
     private PointController thisPoint, diag, right, bottom;
     private Color color;
 
+    /**
+     * @Function: cosntructor()
+     * @Parameters: this point and neighbor points and mouse listeners Type: PointControllers and mouse listeners
+     * @Returns: N/A
+     * @Description: creates each point's and lines visuals
+     *
+     */
 
-
-    public PointView(PointController thisPoint, PointController rightPoint, PointController bottomPoint, PointController diagPoint, MouseMotionAdapter MMA, MouseListener ML){
+    public PointView(PointController thisPoint,
+                     PointController rightPoint,
+                     PointController bottomPoint,
+                     PointController diagPoint,
+                     MouseMotionAdapter MMA, MouseListener ML)
+    {
         super();
+
+        //set points
         setThisPoint(thisPoint);
         setRight(rightPoint);
         setBottom(bottomPoint);
         setDiag(diagPoint);
+
+        //add mouse listeners
         this.addMouseMotionListener(MMA);
         this.addMouseListener(ML);
+
         this.setPreferredSize(new Dimension(500, 500));
         this.setVisible(true);
     }
 
+
+    /**
+     * @Function: paint()
+     * @Parameters: Grapics type: graphics
+     * @Returns: N/A
+     * @Description: paints dot and needed lines
+     *
+     */
     @Override
     public void paintComponent(Graphics g){
 
+        //Dots
         super.paintComponent(g);
         g.setColor(getColor());
         g.fillOval(thisPoint.getModel().getX(), thisPoint.getModel().getY(), 10, 10);
+
+        //Lines
         Graphics2D g2 = (Graphics2D)g;
         g2.setColor(getColor());
         g2.setStroke(new BasicStroke(2));
+
+        //Right Line
         if(getRight() != null) {
-            g.drawLine(getThisPoint().getModel().getX(), getThisPoint().getModel().getY(), getRight().getModel().getX(), getRight().getModel().getY());
+            g.drawLine( getThisPoint().getModel().getX(),
+                        getThisPoint().getModel().getY(),
+                        getRight().getModel().getX(),
+                        getRight().getModel().getY()
+            );
         }
+
+        //Bottom Line
         if(getBottom() != null){
-            g.drawLine(getThisPoint().getModel().getX(), getThisPoint().getModel().getY(), getBottom().getModel().getX(), getBottom().getModel().getY());
+            g.drawLine( getThisPoint().getModel().getX(),
+                        getThisPoint().getModel().getY(),
+                        getBottom().getModel().getX(),
+                        getBottom().getModel().getY()
+            );
         }
+
+        //Diagonal Line
         if(getDiag() != null){
-            g.drawLine(getThisPoint().getModel().getX(), getThisPoint().getModel().getY(), getDiag().getModel().getX(), getDiag().getModel().getY());
+            g.drawLine( getThisPoint().getModel().getX(),
+                        getThisPoint().getModel().getY(),
+                        getDiag().getModel().getX(),
+                        getDiag().getModel().getY()
+            );
         }
     }
 
-    public void setColor(Color color){this.color = color; repaint();}
+    ////////////////////////////////GETTERS AND SETTER//////////////////////////////////////////////////////////////////
 
+    public void setColor(Color color){this.color = color; repaint();}
     public Color getColor(){return this.color;}
 
     public int getX() {
         return x;
     }
-
     public void setX(int x) {
         this.x = x;
     }
@@ -60,7 +112,6 @@ public class PointView extends JComponent {
     public int getY() {
         return y;
     }
-
     public void setY(int y) {
         this.y = y;
     }
@@ -68,7 +119,6 @@ public class PointView extends JComponent {
     public void setThisPoint(PointController thisPoint) {
         this.thisPoint = thisPoint;
     }
-
     public PointController getThisPoint() {
         return thisPoint;
     }
@@ -76,7 +126,6 @@ public class PointView extends JComponent {
     public void setBottom(PointController bottom) {
         this.bottom = bottom;
     }
-
     public PointController getBottom() {
         return this.bottom;
     }
@@ -84,7 +133,6 @@ public class PointView extends JComponent {
     public PointController getRight() {
         return right;
     }
-
     public void setRight(PointController right) {
         this.right = right;
     }
@@ -92,7 +140,6 @@ public class PointView extends JComponent {
     public PointController getDiag() {
         return diag;
     }
-
     public void setDiag(PointController diag) {
         this.diag = diag;
     }

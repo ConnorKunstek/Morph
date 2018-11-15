@@ -3,22 +3,31 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * @Function: ()
- * @Parameters: Type:
- * @Returns: N/A
- * @Description:
- *
+ * @Class: FrameController()
+ * @Description: Creates program
  */
 
 public class FrameController implements ActionListener {
 
-    public FrameController(int gridDimmesion){
-        FrameModel model = new FrameModel(gridDimmesion);
-        //FrameView view = new FrameView(model.getGrid().getView(), model.getImage().getView());
-        //FrameView view = new FrameView(model.getGrid().getView());
-//        FrameView view = new FrameView(model.getImageController().getView());
-        FrameView view = new FrameView(model.getGridPreContoller().getView(), model.getGridPostContoller().getView());
+    /**
+     * @Function: constructor()
+     * @Parameters: dimmension of grid Type: int
+     * @Returns: N/A
+     * @Description: Creates FrameModel and FrameView
+     *
+     */
 
+    public FrameController(int gridDimmesion){
+
+        FrameModel model = new FrameModel(gridDimmesion);
+        FrameView view = new FrameView(
+                model.getGridPreContoller().getView(),
+                model.getGridPostContoller().getView()
+        );
+
+//        FrameView view = new FrameView(model.getGrid().getView(), model.getImage().getView());
+//        FrameView view = new FrameView(model.getGrid().getView());
+//        FrameView view = new FrameView(model.getImageController().getView());
 
     }
 
