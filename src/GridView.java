@@ -36,8 +36,8 @@ public class GridView extends JPanel {
 //                c.weighty = 5;
 //                c.gridx = row;
 //                c.gridy = col;
-//                c.ipadx = 25;
-//                c.ipady = 25;
+//                c.ipadx = 5;
+//                c.ipady = 5;
 //                this.add(points[row][col].getView(), c);
 
                 this.add(points[row][col].getView());

@@ -7,29 +7,8 @@ import java.awt.Point;
  * @Description: Creates program
  */
 
-<<<<<<< HEAD
-    PointView view;
-    PointModel model;
-    private MouseMotionAdapter MMA = new MouseMotionAdapter() {
-        public void mouseDragged(MouseEvent e) {
-            System.out.println("Mouse Event Dragged:");
-            System.out.println(e.getPoint());
-            Point t = e.getPoint();
-            model.setX((int)t.getX());
-            model.setY((int)t.getY());
-            view.repaint( );
-        }
-    };
 
-    private MouseListener ML = new MouseAdapter() {
-        public void mouseReleased(MouseEvent e) {
-            System.out.println("Mouse Event Released:");
-            System.out.println(e.getSource());
-        }
-    };
-=======
 public class PointController extends Point implements ActionListener {
->>>>>>> c0421a53a0cc3e2c69acf798011047b526b234bd
 
     private PointView view;
     private PointModel model;

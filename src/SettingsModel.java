@@ -10,7 +10,6 @@ public class SettingsModel {
     private int speed, frames;
     public SettingsModel(){
         init();
-        setup();
     }
 
     public void init(){
@@ -21,9 +20,10 @@ public class SettingsModel {
         speed = 2;  // seconds
         frames = 30;// fps
     }
-    public void setup(){
-        speedSli.setValue(2);
-        speedSli.addChangeListener(new ChangeListener() {
+
+    public JSlider setUpSpeed(JSlider s){
+        s.setValue(2);
+        s.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
                 speed = speedSli.getValue();
@@ -33,11 +33,19 @@ public class SettingsModel {
         speedLabels.put(0, new JLabel("0"));
         speedLabels.put(1000, new JLabel("Speed - secs"));
         speedLabels.put(2000, new JLabel("5"));
-        framesSli.setValue(30);
-        framesSli.addChangeListener(new ChangeListener() {
+        s.setLabelTable(speedLabels);
+        s.setPaintLabels(true);
+        s.setMajorTickSpacing(1); // create tick every 10
+        s.setPaintTicks(true); // paint ticks on slider
+        return s;
+    }
+
+    public JSlider setUpFrames(JSlider f){
+        f.setValue(30);
+        f.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                speed = speedSli.getValue();
+                frames = framesSli.getValue();
             }
         });
         Hashtable<Integer, JLabel> frameLabels = new Hashtable<>();
@@ -46,15 +54,11 @@ public class SettingsModel {
         frameLabels.put(2000, new JLabel("60"));
         frameLabels.put(2000, new JLabel("90"));
         frameLabels.put(2000, new JLabel("120"));
-        speedSli.setLabelTable(speedLabels);
-        speedSli.setPaintLabels(true);
-        framesSli.setLabelTable(speedLabels);
-        framesSli.setPaintLabels(true);
-        speedSli.setMajorTickSpacing(1); // create tick every 10
-        speedSli.setPaintTicks(true); // paint ticks on slider
-        framesSli.setMajorTickSpacing(10); // create tick every 10
-        framesSli.setPaintTicks(true); // paint ticks on slider
-
+        f.setLabelTable(frameLabels);
+        f.setPaintLabels(true);
+        f.setMajorTickSpacing(10); // create tick every 10
+        f.setPaintTicks(true); // paint ticks on slider
+        return f;
     }
 
     public JSlider getSpeedSli() {
