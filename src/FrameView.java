@@ -39,12 +39,14 @@ public class FrameView extends JFrame {
     public FrameView(GridView pre, GridView post, SettingsView settings){
 
         super("Morph");
+
         Container c = getContentPane();
 
 //        this.setLayout(new GridLayout(1,2, 10, 10));
         this.setLayout(new GridLayout(1,3));
 
 //        this.setLayout(new GridBagLayout());
+//        this.setLayout(new FlowLayout());
 //        GridBagConstraints d = new GridBagConstraints();
 
         pre.setOpaque(true);
@@ -55,6 +57,7 @@ public class FrameView extends JFrame {
         this.buildMenu();
         post.setMaximumSize(new Dimension(500, 500));
         pre.setMaximumSize(new Dimension(500, 500));
+<<<<<<< HEAD
 
 //        c.add(pre);
 //        c.add(post);
@@ -62,6 +65,9 @@ public class FrameView extends JFrame {
 
         settings.setMaximumSize(new Dimension(100, 500));
 
+=======
+        settings.setMaximumSize(new Dimension(200, 500));
+>>>>>>> 1c2f0406c01dd0d9645b240b8f7971c8b234aa0b
         Border border = settings.getBorder();
         Border margin = new EmptyBorder(100,100,100,100);
         settings.setBorder(new CompoundBorder(border,margin));
@@ -69,8 +75,12 @@ public class FrameView extends JFrame {
         c.add(post);
         c.add(pre);
         c.add(settings);
+<<<<<<< HEAD
 
         this.setSize(1500, 550);
+=======
+        this.setSize(1450, 500);
+>>>>>>> 1c2f0406c01dd0d9645b240b8f7971c8b234aa0b
         this.setVisible(true);
     }
 
