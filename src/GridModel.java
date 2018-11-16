@@ -1,13 +1,16 @@
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionAdapter;
-
 /**
- * @Function: ()
- * @Parameters: Type:
- * @Returns: N/A
- * @Description:
+ * Connor Kunstek (@ConnorKunstek) and Nick Sladic (@Nickadiemus)
+ * CS335 Project 3 - Image Morphing Part 1
  *
+ *
+ * Take a pre-image, morph into post-image using triangulated mesh overlay
+ *
+ * to run
+ *         $ javac *.class
+ *         $ java Morph
  */
+
+
 
 /**
  * @Class: FrameController()
@@ -17,13 +20,9 @@ import java.awt.event.MouseMotionAdapter;
 public class GridModel {
 
     private int dim;
-    private MouseListener mouseListener;
-    private MouseMotionAdapter mouseMotionAdapter;
     private PointController[][] points;
 
     public GridModel(int dim){
-
-        setDim(dim);
 
         points = new PointController[dim][dim];
 
@@ -43,14 +42,6 @@ public class GridModel {
     ////////////////////////////////GETTERS AND SETTER//////////////////////////////////////////////////////////////////
 
     public PointController[][] getPoints() {return points; }
-
-    public int getDim() {return dim;}
-    public void setDim(int dim) { this.dim = dim; }
-
-    public MouseListener getMouseListener() { return mouseListener; }
-
-    public MouseMotionAdapter getMouseMotionAdapter() { return mouseMotionAdapter; }
-
     public PointController getPoint(int row, int col){
         return points[row][col];
     }

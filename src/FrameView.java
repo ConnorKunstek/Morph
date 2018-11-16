@@ -1,4 +1,14 @@
-
+/**
+ * Connor Kunstek (@ConnorKunstek) and Nick Sladic (@Nickadiemus)
+ * CS335 Project 3 - Image Morphing Part 1
+ *
+ *
+ * Take a pre-image, morph into post-image using triangulated mesh overlay
+ *
+ * to run
+ *         $ javac *.class
+ *         $ java Morph
+ */
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -26,16 +36,16 @@ public class FrameView extends JFrame {
 
         super("Morph");
         Container c = getContentPane();
-        this.setLayout(new GridLayout(1,2));
+        this.setLayout(new GridLayout(1,2, 10, 10));
         pre.setOpaque(true);
-        pre.setBackground(Color.BLUE);
+        pre.setBackground(Color.ORANGE);
         post.setOpaque(true);
-        post.setBackground(Color.ORANGE);
+        post.setBackground(Color.BLUE);
         this.buildMenu();
         post.setMaximumSize(new Dimension(500, 500));
         pre.setMaximumSize(new Dimension(500, 500));
-        c.add(post);
         c.add(pre);
+        c.add(post);
         this.setSize(1000, 500);
         this.setVisible(true);
     }

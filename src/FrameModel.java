@@ -1,6 +1,14 @@
-
-
-
+/**
+ * Connor Kunstek (@ConnorKunstek) and Nick Sladic (@Nickadiemus)
+ * CS335 Project 3 - Image Morphing Part 1
+ *
+ *
+ * Take a pre-image, morph into post-image using triangulated mesh overlay
+ *
+ * to run
+ *         $ javac *.class
+ *         $ java Morph
+ */
 /**
  * @Class: FrameModel()
  * @Description: Holds Frame data

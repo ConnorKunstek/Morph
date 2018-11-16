@@ -1,6 +1,16 @@
+/**
+ * Connor Kunstek (@ConnorKunstek) and Nick Sladic (@Nickadiemus)
+ * CS335 Project 3 - Image Morphing Part 1
+ *
+ *
+ * Take a pre-image, morph into post-image using triangulated mesh overlay
+ *
+ * to run
+ *         $ javac *.class
+ *         $ java Morph
+ */
 
 import java.awt.event.*;
-
 
 /**
  * @Class: GridController()
@@ -23,7 +33,6 @@ public class GridController implements ActionListener {
         model = new GridModel(dim);
         view = new GridView(model.getPoints(), dim);
     }
-
 
     ////////////////////////////////GETTERS AND SETTER//////////////////////////////////////////////////////////////////
 

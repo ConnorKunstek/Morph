@@ -1,8 +1,18 @@
+
+/**
+ * Connor Kunstek (@ConnorKunstek) and Nick Sladic (@Nickadiemus)
+ * CS335 Project 3 - Image Morphing Part 1
+ *
+ *
+ * Take a pre-image, morph into post-image using triangulated mesh overlay
+ *
+ * to run
+ *         $ javac *.class
+ *         $ java Morph
+ */
+
 import javax.swing.JPanel;
 import java.awt.*;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionAdapter;
-
 
 
 /**
@@ -23,31 +33,31 @@ public class GridView extends JPanel {
 
         super();
 
-//        this.setLayout(new GridLayout(dim, dim, 10, 10));
-//        this.setLayout(new GridBagLayout());
-//        GridBagConstraints c = new GridBagConstraints();
-//        c.fill = GridBagConstraints.HORIZONTAL;
+        this.setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+        c.fill = GridBagConstraints.BOTH;
 
-        this.setLayout(new FlowLayout());
+//        this.setLayout(new FlowLayout());
+
+//        this.setLayout(new GridLayout(dim, dim, 10, 10));
+
         for(int row = 0; row < dim; row++){
             for(int col = 0; col < dim; col++){
 
-//                c.weightx = 5;
-//                c.weighty = 5;
-//                c.gridx = row;
-//                c.gridy = col;
+                c.weightx = 0.5;
+                c.weighty = 0.5;
+                c.gridy = row;
+                c.gridx = col;
 //                c.ipadx = 25;
 //                c.ipady = 25;
-//                this.add(points[row][col].getView(), c);
+                this.add(points[row][col].getView(), c);
 
-                this.add(points[row][col].getView());
+//                this.add(points[row][col].getView());
             }
         }
-        this.setSize(1000, 1000);
+        this.setPreferredSize(new Dimension(500, 500));
         this.setVisible(true);
     }
 
-
     public void testMouse(){ System.out.println("GridView Function Called"); }
-
 }

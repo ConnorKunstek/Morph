@@ -1,6 +1,17 @@
+/**
+ * Connor Kunstek (@ConnorKunstek) and Nick Sladic (@Nickadiemus)
+ * CS335 Project 3 - Image Morphing Part 1
+ *
+ *
+ * Take a pre-image, morph into post-image using triangulated mesh overlay
+ *
+ * to run
+ *         $ javac *.class
+ *         $ java Morph
+ */
 
+import java.awt.*;
 import java.awt.event.*;
-import java.awt.Point;
 
 /**
  * @Class: FrameController()
@@ -12,9 +23,27 @@ public class PointController extends Point implements ActionListener {
     private PointView view;
     private PointModel model;
 
+    private MouseMotionAdapter MMA = new MouseMotionAdapter() {
+        public void mouseDragged(MouseEvent e) {
+            System.out.println("Mouse Event Dragged:");
+            System.out.println(e.getPoint());
+            Point t = e.getPoint();
+            model.setX((int)t.getX());
+            model.setY((int)t.getY());
+            view.setColor(Color.RED);
+            view.repaint();
+        }
+    };
+    private MouseListener ML = new MouseAdapter() {
+        public void mouseReleased(MouseEvent e) {
+            System.out.println("Mouse Event Released:");
+            System.out.println(e.getSource());
+            view.setColor(Color.BLACK);
+        }
+    };
 
     /**
-     * @Function: cosntructor()
+     * @Function: constructor()
      * @Parameters: row, col, dim Type: in, '', ''
      * @Returns: N/A
      * @Description: creates model
@@ -67,25 +96,6 @@ public class PointController extends Point implements ActionListener {
             setDiag(null);
         }
     }
-
-    private MouseMotionAdapter MMA = new MouseMotionAdapter() {
-        public void mouseDragged(MouseEvent e) {
-            System.out.println("Mouse Event Dragged:");
-            System.out.println(e.getPoint());
-            Point t = e.getPoint();
-            model.setX((int)t.getX());
-            model.setY((int)t.getY());
-            view.repaint();
-        }
-    };
-
-    private MouseListener ML = new MouseAdapter() {
-        public void mouseReleased(MouseEvent e) {
-            System.out.println("Mouse Event Released:");
-            System.out.println(e.getSource());
-        }
-    };
-
 
     ////////////////////////////////GETTERS AND SETTER//////////////////////////////////////////////////////////////////
 
