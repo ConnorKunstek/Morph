@@ -131,11 +131,10 @@ public class GridModel {
                     System.out.println("Found!!!!");
                     cur = points[r][c];
                     return cp;
-                }else{
-                    System.out.println("Not Found!!!!");
                 }
             }
         }
+
         return p;
 
     }

@@ -58,7 +58,7 @@ public class PointView extends JComponent {
         //Dots
         super.paintComponent(g);
         g.setColor(getColor());
-        g.fillOval(thisPoint.getModel().getX(), thisPoint.getModel().getY(), 10, 10);
+        g.fillOval(thisPoint.getModel().getX()-5, thisPoint.getModel().getY()-5, 10, 10);
 
         //Lines
         Graphics2D g2 = (Graphics2D)g;

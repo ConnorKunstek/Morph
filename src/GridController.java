@@ -53,12 +53,12 @@ public class GridController implements ActionListener {
 
     public boolean checkCurrentPoints(Point cur){
         Point p = model.checkPoints(cur);
-        if((p.getX() == -1) && (p.getY() == -1)){
+        if(((int)p.getX() == -1) && ((int)p.getY() == -1)){
             currentPoint = p;
-            return true;
+            return false;
         }
         else{
-            return false;
+            return true;
         }
     }
 
