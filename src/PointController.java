@@ -15,7 +15,7 @@ public class PointController extends Point implements ActionListener {
 
 
     /**
-     * @Function: cosntructor()
+     * @Function: constructor()
      * @Parameters: row, col, dim Type: in, '', ''
      * @Returns: N/A
      * @Description: creates model

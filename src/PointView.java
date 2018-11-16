@@ -21,7 +21,7 @@ public class PointView extends JComponent {
     private Color color;
 
     /**
-     * @Function: cosntructor()
+     * @Function: constructor()
      * @Parameters: this point and neighbor points and mouse listeners Type: PointControllers and mouse listeners
      * @Returns: N/A
      * @Description: creates each point's and lines visuals
@@ -57,12 +57,18 @@ public class PointView extends JComponent {
 
         //Dots
         super.paintComponent(g);
-        g.setColor(getColor());
-        g.fillOval(thisPoint.getModel().getX()-5, thisPoint.getModel().getY()-5, 10, 10);
-
+        if(
+            thisPoint.getModel().getRow() != 0 &&
+            thisPoint.getModel().getRow() != thisPoint.getModel().getDim()-1 &&
+            thisPoint.getModel().getCol() != 0 &&
+            thisPoint.getModel().getCol() != thisPoint.getModel().getDim()-1)
+        {
+            g.setColor(getColor());
+            g.fillOval(thisPoint.getModel().getX() - 5, thisPoint.getModel().getY() - 5, 10, 10);
+        }
         //Lines
         Graphics2D g2 = (Graphics2D)g;
-        g2.setColor(getColor());
+        g2.setColor(Color.BLACK);
         g2.setStroke(new BasicStroke(2));
 
         //Right Line
@@ -95,7 +101,7 @@ public class PointView extends JComponent {
 
     ////////////////////////////////GETTERS AND SETTER//////////////////////////////////////////////////////////////////
 
-    public void setColor(Color color){this.color = color; repaint();}
+    public void setDotColor(Color color){this.color = color; repaint();}
     public Color getColor(){return this.color;}
 
     public int getX() {

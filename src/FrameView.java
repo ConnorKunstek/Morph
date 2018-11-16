@@ -41,41 +41,62 @@ public class FrameView extends JFrame {
         super("Morph");
         Container c = getContentPane();
 
-//        this.setLayout(new GridLayout(1,2, 10, 10));
-//        this.setLayout(new BorderLayout());
-        this.setLayout(new GridLayout(1, 3, 10 ,10));
-
-//        this.setLayout(new GridBagLayout());
-//        GridBagConstraints d = new GridBagConstraints();
-
         pre.setOpaque(true);
         pre.setBackground(Color.ORANGE);
         post.setOpaque(true);
         post.setBackground(Color.BLUE);
 
         this.buildMenu();
-        post.setMaximumSize(new Dimension(500, 500));
-        pre.setMaximumSize(new Dimension(500, 500));
 
-//        c.add(pre);
-//        c.add(post);
-//        this.setSize(1000, 500);
+        this.setLayout(new GridBagLayout());
+        GridBagConstraints d = new GridBagConstraints();
 
-        settings.setMaximumSize(new Dimension(100, 500));
+        //PRE
+        pre.setPreferredSize(new Dimension(450,450));
+        pre.setMinimumSize(new Dimension(450, 450));
+        pre.setMaximumSize(new Dimension(450, 450));
 
-        Border border = settings.getBorder();
-        Border margin = new EmptyBorder(100,100,100,100);
-        settings.setBorder(new CompoundBorder(border,margin));
+        d.gridx = 0;
+        d.gridy = 0;
+        d.insets = new Insets(20, 20, 10, 10);
+        d.weightx = .5;
+        d.weighty = .8;
+        d.gridwidth = 1;
+        d.gridheight = 1;
 
-//        c.add(pre, BorderLayout.WEST);
-//        c.add(post, BorderLayout.EAST);
-//        c.add(settings, BorderLayout.SOUTH);
+        c.add(pre, d);
 
-        c.add(pre);
-        c.add(post);
-        c.add(settings);
+        //POST
+        post.setPreferredSize(new Dimension(450,450));
+        post.setMinimumSize(new Dimension(450, 450));
+        post.setMaximumSize(new Dimension(450, 450));
 
-        this.setSize(1500, 550);
+        d.gridx = 1;
+        d.gridy = 0;
+        d.insets = new Insets(20, 10, 10, 20);
+        d.weightx = .5;
+        d.weighty = .8;
+        d.gridwidth = 1;
+        d.gridheight = 1;
+
+        c.add(post, d);
+
+        //SETTINGS
+        settings.setPreferredSize(new Dimension(1000,200));
+        settings.setMinimumSize(new Dimension(1000, 200));
+        settings.setMaximumSize(new Dimension(1000, 200));
+
+        d.gridx = 0;
+        d.gridy = 1;
+        d.insets = new Insets(10, 20, 20, 20);
+        d.weightx = 1;
+        d.weighty = .2;
+        d.gridwidth = 2;
+        d.gridheight = 1;
+
+        c.add(settings, d);
+
+        this.setSize(1060, 760);
         this.setVisible(true);
     }
 

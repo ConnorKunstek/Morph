@@ -13,6 +13,7 @@ public class PointModel {
     private int y;
     private int oldX;
     private int oldY;
+    private int dim;
 
     private PointController bottom;
     private PointController right;
@@ -31,6 +32,8 @@ public class PointModel {
      */
 
     public PointModel(int row, int col, int dim, int space){
+
+        setDim(dim);
 
         setRow(row);
         setCol(col);
@@ -107,4 +110,11 @@ public class PointModel {
         return p;
     }
 
+    public void setDim(int dim) {
+        this.dim = dim;
+    }
+
+    public int getDim() {
+        return dim;
+    }
 }

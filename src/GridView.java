@@ -39,13 +39,13 @@ public class GridView extends JPanel implements MouseMotionListener,MouseListene
             System.out.println("( " + x +", " + y + ")");
             isDrag = true;
         }
-
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
         isDrag = false;
         hasPoint = false;
+        controller.updateCurrentPointColor(Color.BLACK);
         System.out.println("MouseReleased");
         debug();
 
@@ -68,6 +68,7 @@ public class GridView extends JPanel implements MouseMotionListener,MouseListene
         if(isDrag){
             if(hasPoint){
                 controller.updateCurrentPoint(e.getPoint());
+                controller.updateCurrentPointColor(Color.RED);
             }
             else{
                 System.out.println("Mouse Event Dragged:");

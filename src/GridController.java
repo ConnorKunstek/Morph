@@ -67,4 +67,8 @@ public class GridController implements ActionListener {
         model.setNewPoint(currentPoint);
         model.updatePoint();
     }
+    public void updateCurrentPointColor(Color color){
+        model.changePointColor(color);
+        model.updatePoint();
+    }
 }
