@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ba7569e5-3fcd-48dd-8ab5-75b889009304" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/GridController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GridController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GridModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GridModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GridView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GridView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PointView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PointView.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -46,20 +44,20 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="class" value="1" />
-          <entry key="java" value="8290" />
+          <entry key="java" value="8338" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CLASS" value="1" />
-          <entry key="JAVA" value="8290" />
+          <entry key="JAVA" value="8338" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/PointView.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="465">
@@ -117,11 +115,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GridView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="813">
-              <caret line="116" column="69" selection-start-line="116" selection-start-column="69" selection-end-line="116" selection-end-column="69" />
+            <state relative-caret-position="193">
+              <caret line="47" column="25" selection-start-line="47" selection-start-column="25" selection-end-line="47" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -189,8 +187,8 @@
         <option value="$PROJECT_DIR$/src/PointModel.java" />
         <option value="$PROJECT_DIR$/src/GridController.java" />
         <option value="$PROJECT_DIR$/src/GridModel.java" />
-        <option value="$PROJECT_DIR$/src/GridView.java" />
         <option value="$PROJECT_DIR$/src/PointView.java" />
+        <option value="$PROJECT_DIR$/src/GridView.java" />
       </list>
     </option>
   </component>
@@ -239,7 +237,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542345640068" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542346182710" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -280,12 +278,12 @@
       <workItem from="1542087847727" duration="136000" />
       <workItem from="1542089484601" duration="55000" />
       <workItem from="1542237541489" duration="19045000" />
-      <workItem from="1542327188326" duration="16089000" />
+      <workItem from="1542327188326" duration="16520000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36197000" />
+    <option name="totallyTimeSpent" value="36628000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="6" />
@@ -490,13 +488,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GridView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="813">
-          <caret line="116" column="69" selection-start-line="116" selection-start-column="69" selection-end-line="116" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/PointModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="813">
@@ -546,6 +537,13 @@
             <element signature="e#3811#3812#0" expanded="true" />
             <element signature="e#3843#3844#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GridView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="47" column="25" selection-start-line="47" selection-start-column="25" selection-end-line="47" selection-end-column="25" />
         </state>
       </provider>
     </entry>

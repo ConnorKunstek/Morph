@@ -26,6 +26,12 @@ public class GridView extends JPanel implements MouseMotionListener,MouseListene
     @Override
     public void mouseClicked(MouseEvent e) {
         System.out.println("MouseClicked");
+        debug();
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        System.out.println("MousePressed");
         if(!isDrag){
             Point p = e.getPoint();
             int x = (int)p.getX();
@@ -34,18 +40,15 @@ public class GridView extends JPanel implements MouseMotionListener,MouseListene
             isDrag = true;
         }
 
-
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        System.out.println("MouseReleased");
         isDrag = false;
+        hasPoint = false;
+        System.out.println("MouseReleased");
+        debug();
+
     }
 
     @Override
@@ -60,6 +63,8 @@ public class GridView extends JPanel implements MouseMotionListener,MouseListene
 
     @Override
     public void mouseDragged(MouseEvent e) {
+        System.out.println("Mouse Event Dragged:");
+        debug();
         if(isDrag){
             if(hasPoint){
                 controller.updateCurrentPoint(e.getPoint());
