@@ -6,45 +6,21 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import javax.imageio.*;
 
+/**
+ * @Class: FrameView()
+ * @Description: Creates JFrame
+ */
 
 public class FrameView extends JFrame {
 
-    public FrameView(GridView grid, ImageView image){
 
-        super("Morph");
-
-        Container c = getContentPane();
-
-        c.add(grid);
-        c.add(image);
-
-        this.setSize(1000, 1000);
-        this.setVisible(true);
-    }
-
-    public FrameView(GridView grid){
-
-        super("Morph");
-
-        Container c = getContentPane();
-
-        c.add(grid);
-
-        this.setSize(1000, 1000);
-        this.setVisible(true);
-    }
-
-    public FrameView(ImageView image){
-
-        super("Morph");
-
-        Container c = this.getContentPane();
-
-        c.add(image);
-
-        this.setSize(1000, 1000);
-        this.setVisible(true);
-    }
+    /**
+     * @Function: constructor()
+     * @Parameters: pre and post grids Type: GridController(s)
+     * @Returns: N/A
+     * @Description:
+     *
+     */
 
     public FrameView(GridView pre, GridView post){
 
@@ -63,6 +39,15 @@ public class FrameView extends JFrame {
         this.setSize(1000, 500);
         this.setVisible(true);
     }
+
+
+    /**
+     * @Function: ()
+     * @Parameters: Type:
+     * @Returns: N/A
+     * @Description:
+     *
+     */
 
     public void buildMenu(){
 
@@ -120,6 +105,14 @@ public class FrameView extends JFrame {
         bar.add(fileMenu);
     }
 
+
+    /**
+     * @Function: ()
+     * @Parameters: Type:
+     * @Returns: N/A
+     * @Description:
+     *
+     */
     public void setupMenu(){}
 
 }

@@ -1,10 +1,13 @@
-import javax.swing.*;
+
 import java.awt.event.*;
 import java.awt.Point;
 
-public class PointController extends Point implements ActionListener {
+/**
+ * @Class: FrameController()
+ * @Description: Creates program
+ */
 
-
+<<<<<<< HEAD
     PointView view;
     PointModel model;
     private MouseMotionAdapter MMA = new MouseMotionAdapter() {
@@ -24,23 +27,51 @@ public class PointController extends Point implements ActionListener {
             System.out.println(e.getSource());
         }
     };
+=======
+public class PointController extends Point implements ActionListener {
+>>>>>>> c0421a53a0cc3e2c69acf798011047b526b234bd
 
-    public PointModel getModel() {
-        return model;
-    }
+    private PointView view;
+    private PointModel model;
 
-    public PointView getView() {
-        return view;
-    }
 
+    /**
+     * @Function: cosntructor()
+     * @Parameters: row, col, dim Type: in, '', ''
+     * @Returns: N/A
+     * @Description: creates model
+     *
+     */
 
     public PointController(int row, int col, int dim){
         super();
         model = new PointModel(row, col, dim, 50);
-
-        //view = new PointView(row * 50, col * 50, model.getRightBound(), model.getBottomBound(), MMA, ML);
     }
 
+    /**
+     * @Function: ()
+     * @Parameters: Type:
+     * @Returns: N/A
+     * @Description: creates view
+     *
+     *
+     * NEEDS TO BE CALLED LAST, after constructor and after setNeighbors
+     *
+     * view is created last because it needs each point and their neighbors (set in constructor and setNeighbors)
+     */
+    public void createView(){
+        view = new PointView(this, model.getRight(), model.getBottom(), model.getDiag(), MMA, ML);
+    }
+
+    /**
+     * @Function: setNeighbors()
+     * @Parameters: Type:
+     * @Returns: N/A
+     * @Description: Saves point to the right, bottom, and right-down diagonal to the points model
+     *
+     *
+     * NEEDS TO BE CALLED 2ND, after Constructor and before View is created
+     */
     public void setNeighbors(PointController[][] points){
         if(!model.getRightBound()){
             setRight(points[model.getRow()][model.getCol()+1]);
@@ -57,7 +88,35 @@ public class PointController extends Point implements ActionListener {
         }else{
             setDiag(null);
         }
-        view = new PointView(this, model.getRight(), model.getBottom(), model.getDiag(), MMA, ML);
+    }
+
+    private MouseMotionAdapter MMA = new MouseMotionAdapter() {
+        public void mouseDragged(MouseEvent e) {
+            System.out.println("Mouse Event Dragged:");
+            System.out.println(e.getPoint());
+            Point t = e.getPoint();
+            model.setX((int)t.getX());
+            model.setY((int)t.getY());
+            view.repaint();
+        }
+    };
+
+    private MouseListener ML = new MouseAdapter() {
+        public void mouseReleased(MouseEvent e) {
+            System.out.println("Mouse Event Released:");
+            System.out.println(e.getSource());
+        }
+    };
+
+
+    ////////////////////////////////GETTERS AND SETTER//////////////////////////////////////////////////////////////////
+
+    public PointModel getModel() {
+        return model;
+    }
+
+    public PointView getView() {
+        return view;
     }
 
     public void setBottom(PointController point){
@@ -65,7 +124,7 @@ public class PointController extends Point implements ActionListener {
     }
 
     public void setRight(PointController point){
-        getModel().setLeft(point);
+        getModel().setRight(point);
     }
 
     public void setDiag(PointController point){

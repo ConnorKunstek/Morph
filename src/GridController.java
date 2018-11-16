@@ -1,22 +1,31 @@
 
-import javax.swing.*;
 import java.awt.event.*;
 
+
 /**
- * @Function: ()
- * @Parameters: Type:
- * @Returns: N/A
- * @Description:
- *
+ * @Class: GridController()
+ * @Description: Creates Grid View and Model
  */
 
 public class GridController implements ActionListener {
 
-
     GridView view;
     GridModel model;
 
+    /**
+     * @Function: constructor()
+     * @Parameters: Mesh dimmension Type: int
+     * @Returns: N/A
+     * @Description: Creates grid view and model
+     *
+     */
+    public GridController(int dim){
+        model = new GridModel(dim);
+        view = new GridView(model.getPoints(), dim);
+    }
 
+
+    ////////////////////////////////GETTERS AND SETTER//////////////////////////////////////////////////////////////////
 
     public GridView getView() {
         return view;
@@ -26,27 +35,6 @@ public class GridController implements ActionListener {
         return model;
     }
 
-    public GridController(int dim){
-//        model = new GridModel(dim, MMA, ML);
-        model = new GridModel(dim);
-
-//        for(int row = 0; row < dim; row++){
-//            for(int col = 0; col < dim; col++){
-//                if(row > 0){
-//                    model.getPoint(row, col).setTop(model.getPoint(row-1, col));
-//                }
-//                if(col > 0){
-//                    model.getPoint(row, col).setLeft(model.getPoint(row, col-1));
-//                }
-//                if((row -1 > -1) && (col + 1 < dim)){
-//                    model.getPoint(row, col).setDiag(model.getPoint(row-1, col+1));
-//                }
-//            }
-//        }
-
-        view = new GridView(model.getPoints(), dim);
-
-    }
     public void actionPerformed(ActionEvent e){
         System.out.println(e);
     }
