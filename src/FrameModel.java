@@ -19,6 +19,7 @@ public class FrameModel{
     private GridController gridPreContoller;
     private GridController gridPostContoller;
     private ImageController imageController;
+    private SettingsController settingsController;
 
     /**
      * @Function: constructor()
@@ -35,6 +36,7 @@ public class FrameModel{
         gridPostContoller = new GridController(dim);
         gridPreContoller = new GridController(dim);
         //imageController = new ImageController();
+        settingsController = new SettingsController();
     }
 
     ////////////////////////////////GETTERS AND SETTER//////////////////////////////////////////////////////////////////
@@ -43,6 +45,10 @@ public class FrameModel{
 
     public GridController getGridPostContoller() {
         return gridPostContoller;
+    }
+
+    public SettingsController getSettingsController() {
+        return settingsController;
     }
 
     public ImageController getImageController() {

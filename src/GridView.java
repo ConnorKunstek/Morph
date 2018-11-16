@@ -44,6 +44,7 @@ public class GridView extends JPanel {
         for(int row = 0; row < dim; row++){
             for(int col = 0; col < dim; col++){
 
+<<<<<<< HEAD
                 c.weightx = 0.5;
                 c.weighty = 0.5;
                 c.gridy = row;
@@ -51,6 +52,15 @@ public class GridView extends JPanel {
 //                c.ipadx = 25;
 //                c.ipady = 25;
                 this.add(points[row][col].getView(), c);
+=======
+//                c.weightx = 5;
+//                c.weighty = 5;
+//                c.gridx = row;
+//                c.gridy = col;
+//                c.ipadx = 5;
+//                c.ipady = 5;
+//                this.add(points[row][col].getView(), c);
+>>>>>>> remotes/origin/dev
 
 //                this.add(points[row][col].getView());
             }
