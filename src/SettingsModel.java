@@ -5,11 +5,15 @@ import javax.swing.plaf.SliderUI;
 import java.util.Hashtable;
 
 public class SettingsModel {
+
     private JButton previewBut, startBut;
     private JSlider framesSli, speedSli;
-    private int speed, frames;
-    public SettingsModel(){
+    private int speed, frames, frameNumber;
+    private boolean previewFlag;
+
+    public SettingsModel(boolean previewFlag){
         init();
+        setPreviewFlag(previewFlag);
     }
 
     public void init(){
@@ -64,7 +68,6 @@ public class SettingsModel {
     public JSlider getSpeedSli() {
         return speedSli;
     }
-
     public JSlider getFramesSli() {
         return framesSli;
     }
@@ -72,7 +75,6 @@ public class SettingsModel {
     public int getFrames() {
         return frames;
     }
-
     public int getSpeed() {
         return speed;
     }
@@ -80,7 +82,6 @@ public class SettingsModel {
     public JButton getPreviewBut() {
         return previewBut;
     }
-
     public JButton getStartBut() {
         return startBut;
     }
@@ -88,8 +89,13 @@ public class SettingsModel {
     public void setFrames(int frames) {
         this.frames = frames;
     }
-
     public void setSpeed(int speed) {
         this.speed = speed;
     }
+
+    public boolean isPreviewFlag() { return previewFlag; }
+    public void setPreviewFlag(boolean previewFlag) { this.previewFlag = previewFlag;  }
+
+    public int getFrameNumber() { return frameNumber;  }
+    public void incrementFrameNumber(){frameNumber++; }
 }

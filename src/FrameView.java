@@ -66,8 +66,8 @@ public class FrameView extends JFrame {
         Border margin = new EmptyBorder(100,100,100,100);
         settings.setBorder(new CompoundBorder(border,margin));
 
-        c.add(post);
         c.add(pre);
+        c.add(post);
         c.add(settings);
 
         this.setSize(1500, 550);

@@ -36,7 +36,7 @@ public class FrameModel{
         gridPostController = new GridController(dim);
         gridPreController = new GridController(dim);
         //imageController = new ImageController();
-        settingsController = new SettingsController();
+        settingsController = new SettingsController(true);
     }
 
     ////////////////////////////////GETTERS AND SETTER//////////////////////////////////////////////////////////////////
