@@ -67,4 +67,8 @@ public class GridController implements ActionListener {
             return false;
         }
     }
+
+    public Polygon getpoly(){
+        return model.getTp();
+    }
 }

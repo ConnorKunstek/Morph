@@ -5,6 +5,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 /**
  * @Function: ()
@@ -26,7 +27,7 @@ public class GridModel {
     private MouseMotionListener mouseMotionListener;
     private PointController[][] points;
     private PointController cur;
-
+    private Polygon tp;
     public GridModel(int dim){
 
         setDim(dim);
@@ -106,22 +107,76 @@ public class GridModel {
     public boolean checkIfInsideNeighbors(){
         int curr = cur.getModel().getRow();
         int curc = cur.getModel().getCol();
-        ArrayList<PointController> nb = getItsNeighbors(curr,curc);
-        return true;
+        Hashtable<String, Point > nb = getItsNeighbors(curr,curc);
+        if(checkInBounds(nb)){
+            System.out.println("CheckIfInsideNeighbors");
+            System.out.println("INSIDE OF BOUNDS");
+            return true;
+        }
+        else{
+            System.out.println("CheckIfInsideNeighbors");
+            System.out.println("OUTSIDE OF BOUNDS");
+            return false;
+        }
     }
 
-    public ArrayList<PointController> getItsNeighbors(int r, int c){
-        ArrayList<PointController> n = null;
-        if(points[r][c].getModel().getBottomBound()){
-            n.add(points[r][c].getModel().getBottom());
-        }
-        if(points[r][c].getModel().getRightBound()){
-            n.add(points[r][c].getModel().getRight());
-        }
-        if(points[r][c].getModel().get)
+    public Hashtable<String, Point > getItsNeighbors(int r, int c){
+        Hashtable<String, Point > hashbounds = new Hashtable<>();
+        PointController topbound = points[r-1][c-1];
+        PointController bottombound = points[r][c];
+        hashbounds.put("NW", topbound.getModel().getPoint());
+        hashbounds.put("N", topbound.getModel().getRight().getModel().getPoint());
+        hashbounds.put("W", topbound.getModel().getBottom().getModel().getPoint());
+        hashbounds.put("S", bottombound.getModel().getBottom().getModel().getPoint());
+        hashbounds.put("E", bottombound.getModel().getRight().getModel().getPoint());
+        hashbounds.put("SE",bottombound.getModel().getDiag().getModel().getPoint());
 
-        return n;
+        return hashbounds;
     }
 
+    public boolean checkInBounds(Hashtable<String, Point> b){
+        //NW to N bound
+        Polygon bound;
+        int xp[] = {
+                (int)b.get("NW").getX(),
+                (int)b.get("N").getX(),
+                (int)b.get("E").getX(),
+                (int)b.get("SE").getX(),
+                (int)b.get("S").getX(),
+                (int)b.get("W").getX()
+        };
+        int yp[] = {
+                (int)b.get("NW").getY(),
+                (int)b.get("N").getY(),
+                (int)b.get("E").getY(),
+                (int)b.get("SE").getY(),
+                (int)b.get("S").getY(),
+                (int)b.get("W").getY()
+        };
 
+        bound = new Polygon(xp,yp,xp.length);
+        for(int i = 0; i < xp.length; i++){
+            System.out.println("(" + xp[i] + "," + yp[i] + ")");
+        }
+        debugCur();
+        tp = bound;
+        if(bound.contains(cur.getModel().getX(),cur.getModel().getY())){
+            return true;
+        }
+        else{
+            return false;
+        }
+
+    }
+
+    public void debugPoint(Point c){
+        System.out.println("Current Point: (" + (int)c.getX() + ", " + (int)c.getY() + ")");
+    }
+    public void debugCur(){
+        System.out.println("(" + cur.getModel().getX() + ", " + cur.getModel().getY() + ")");
+    }
+
+    public Polygon getTp() {
+        return tp;
+    }
 }
