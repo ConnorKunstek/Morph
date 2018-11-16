@@ -48,15 +48,14 @@ public class FrameController implements ActionListener {
 
     }
 
-//    public void preview(){
-//
-//
-//        for(int row = 0; row < dim; row++) {
-//
-//            model.getGridPreContoller().getModel().getPoint(row, col).set
-//
-//        }
-//    }
+    public void preview(){
+
+        for(int row = 0; row < dim; row++) {
+
+            model.g
+
+        }
+    }
 
     public void actionPerformed(ActionEvent e){}
 
