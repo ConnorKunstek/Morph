@@ -1,3 +1,5 @@
+import java.awt.*;
+
 public class SettingsController {
     private SettingsModel model;
     private SettingsView view;
@@ -12,4 +14,5 @@ public class SettingsController {
     public SettingsView getView() {
         return view;
     }
+
 }

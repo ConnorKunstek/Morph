@@ -12,7 +12,6 @@ public class PointController extends Point implements ActionListener {
 
     private PointView view;
     private PointModel model;
-    private int x,y;
 
 
     /**
@@ -40,7 +39,7 @@ public class PointController extends Point implements ActionListener {
      * view is created last because it needs each point and their neighbors (set in constructor and setNeighbors)
      */
     public void createView(){
-        view = new PointView(this, model.getRight(), model.getBottom(), model.getDiag(), MMA, ML);
+        view = new PointView(this, model.getRight(), model.getBottom(), model.getDiag());
     }
 
     /**
@@ -69,47 +68,6 @@ public class PointController extends Point implements ActionListener {
             setDiag(null);
         }
     }
-    private MouseListener ML = new MouseListener() {
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            Point p = e.getPoint();
-            x = (int)p.getX();
-            y = (int)p.getY();
-            System.out.println("( " + x +", " + y + ")");
-        }
-
-        @Override
-        public void mousePressed(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseReleased(MouseEvent e) {
-            System.out.println("Mouse Event Released:");
-            System.out.println(e.getSource());
-        }
-
-        @Override
-        public void mouseEntered(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseExited(MouseEvent e) {
-
-        }
-    };
-
-    private MouseMotionAdapter MMA = new MouseMotionAdapter() {
-        public void mouseDragged(MouseEvent e) {
-            System.out.println("Mouse Event Dragged:");
-            System.out.println(e.getPoint());
-            Point t = e.getPoint();
-            model.setX((int)t.getX());
-            model.setY((int)t.getY());
-            view.repaint();
-        }
-    };
 
 
 
@@ -138,4 +96,5 @@ public class PointController extends Point implements ActionListener {
     public void actionPerformed(ActionEvent e){
         System.out.println("THIS IS E: " + e);
     }
+
 }

@@ -1,4 +1,5 @@
 
+import java.awt.*;
 import java.awt.event.*;
 
 
@@ -11,6 +12,7 @@ public class GridController implements ActionListener {
 
     GridView view;
     GridModel model;
+    Point currentPoint = null;
 
     /**
      * @Function: constructor()
@@ -19,9 +21,10 @@ public class GridController implements ActionListener {
      * @Description: Creates grid view and model
      *
      */
+
     public GridController(int dim){
         model = new GridModel(dim);
-        view = new GridView(model.getPoints(), dim);
+        view = new GridView(model.getPoints(), dim, this);
     }
 
 
@@ -37,5 +40,22 @@ public class GridController implements ActionListener {
 
     public void actionPerformed(ActionEvent e){
         System.out.println(e);
+    }
+
+    public boolean checkCurrentPoints(Point cur){
+        Point p = model.checkPoints(cur);
+        if((p.getX() == -1) && (p.getY() == -1)){
+            currentPoint = p;
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public void updateCurrentPoint(Point e){
+        currentPoint = e;
+        model.setNewPoint(currentPoint);
+        model.updatePoint();
     }
 }

@@ -1,8 +1,9 @@
 import javax.swing.JPanel;
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionAdapter;
-
+import java.awt.event.MouseMotionListener;
 
 
 /**
@@ -10,7 +11,7 @@ import java.awt.event.MouseMotionAdapter;
  * @Description: Creates program
  */
 
-public class GridView extends JPanel {
+public class GridView extends JPanel implements MouseMotionListener,MouseListener {
 
     /**
      * @Function: constructor()
@@ -19,10 +20,72 @@ public class GridView extends JPanel {
      * @Description:
      *
      */
-    public GridView(PointController[][] points, int dim) {
+    private boolean isDrag;
+    private boolean hasPoint;
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        if(!isDrag){
+            Point p = e.getPoint();
+            int x = (int)p.getX();
+            int y = (int)p.getY();
+            System.out.println("( " + x +", " + y + ")");
+            isDrag = true;
+        }
+
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        isDrag = false;
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        if(isDrag){
+            if(hasPoint){
+                controller.updateCurrentPoint(e.getPoint());
+            }
+            else{
+                System.out.println("Mouse Event Dragged:");
+                System.out.println(e.getPoint());
+                if(controller.checkCurrentPoints(e.getPoint())){
+                    hasPoint = true;
+                }
+            }
+
+        }
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+
+    }
+
+    private GridController controller;
+    public GridView(PointController[][] points, int dim, GridController c) {
 
         super();
-
+        isDrag = false;
+        controller = c;
+        this.addMouseListener(this);
+        this.addMouseMotionListener(this);
 //        this.setLayout(new GridLayout(dim, dim, 10, 10));
 //        this.setLayout(new GridBagLayout());
 //        GridBagConstraints c = new GridBagConstraints();
@@ -47,7 +110,5 @@ public class GridView extends JPanel {
         this.setVisible(true);
     }
 
-
-    public void testMouse(){ System.out.println("GridView Function Called"); }
 
 }

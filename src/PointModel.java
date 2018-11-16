@@ -1,5 +1,4 @@
-
-
+import java.awt.*;
 
 /**
  * @Class: FrameController()
@@ -94,5 +93,10 @@ public class PointModel {
 
     public Boolean getRightBound() {  return rightBound; }
     public void setRightBound(Boolean rightBound) {this.rightBound = rightBound;}
+
+    public Point getPoint(){
+        Point p = new Point(x, y);
+        return p;
+    }
 
 }

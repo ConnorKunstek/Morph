@@ -1,7 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionAdapter;
+import java.awt.event.MouseMotionListener;
 
 
 /**
@@ -29,20 +31,14 @@ public class PointView extends JComponent {
     public PointView(PointController thisPoint,
                      PointController rightPoint,
                      PointController bottomPoint,
-                     PointController diagPoint,
-                     MouseMotionAdapter MMA, MouseListener ML)
+                     PointController diagPoint)
     {
         super();
-
         //set points
         setThisPoint(thisPoint);
         setRight(rightPoint);
         setBottom(bottomPoint);
         setDiag(diagPoint);
-
-        //add mouse listeners
-        this.addMouseMotionListener(MMA);
-        this.addMouseListener(ML);
 
         this.setPreferredSize(new Dimension(500, 500));
         this.setVisible(true);
