@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * @Class: FrameController()
@@ -21,6 +22,7 @@ public class PointModel {
 
     private Boolean bottomBound;
     private Boolean rightBound;
+    private Boolean diagBound;
 
 
     /**
@@ -43,6 +45,7 @@ public class PointModel {
 
         setRightBound(false);
         setBottomBound(false);
+        setDiagBound(false);
 
         if(row >= dim - 1){
             setBottomBound(true);
@@ -50,6 +53,8 @@ public class PointModel {
         if(col >= dim - 1){
             setRightBound(true);
         }
+        if((row - col) >= dim -1)
+            setDiagBound(true);
     }
 
     ////////////////////////////////GETTERS AND SETTER//////////////////////////////////////////////////////////////////
@@ -104,6 +109,14 @@ public class PointModel {
 
     public Boolean getRightBound() {  return rightBound; }
     public void setRightBound(Boolean rightBound) {this.rightBound = rightBound;}
+
+    public Boolean getDiagBound() {
+        return diagBound;
+    }
+
+    public void setDiagBound(Boolean diagBound) {
+        this.diagBound = diagBound;
+    }
 
     public Point getPoint(){
         Point p = new Point(x, y);

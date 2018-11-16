@@ -39,6 +39,7 @@ public class PointController extends Point implements ActionListener {
      * view is created last because it needs each point and their neighbors (set in constructor and setNeighbors)
      */
     public void createView(){
+
         view = new PointView(this, model.getRight(), model.getBottom(), model.getDiag());
     }
 
