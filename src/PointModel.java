@@ -22,6 +22,8 @@ public class PointModel {
     private int col;
     private int x;
     private int y;
+    private int oldX;
+    private int oldY;
 
     private PointController bottom;
     private PointController right;
@@ -48,6 +50,8 @@ public class PointModel {
 
         setX(col * space);
         setY(row * space);
+        setOldX(col * space);
+        setOldY(row * space);
 
         setTopBound(false);
         setLeftBound(false);
@@ -89,6 +93,12 @@ public class PointModel {
 
     public int getY() { return y; }
     public void setY(int y) { this.y = y; }
+
+    public int getOldX() {  return oldX; }
+    public void setOldX(int oldX) { this.oldX = oldX; }
+
+    public int getOldY() {return oldY;}
+    public void setOldY(int oldY) {this.oldY = oldY; }
 
     public PointController getBottom() {
         return this.bottom;

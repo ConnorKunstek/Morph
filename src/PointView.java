@@ -59,7 +59,10 @@ public class PointView extends JComponent {
         this.addMouseMotionListener(MMA);
         this.addMouseListener(ML);
 
+        this.setSize(50, 50);
         this.setPreferredSize(new Dimension(50, 50));
+        this.setMinimumSize(new Dimension(50, 50));
+        this.setMaximumSize(new Dimension(50, 50));
         this.setVisible(true);
     }
 

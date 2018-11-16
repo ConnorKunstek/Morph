@@ -92,13 +92,6 @@ public class PointController extends Point implements ActionListener {
             view.repaint();
         }
     };
-//    private MouseListener ML = new MouseAdapter() {
-//        public void mouseReleased(MouseEvent e) {
-//            System.out.println("Mouse Event Released:");
-//            System.out.println(e.getSource());
-//            view.setColor(Color.BLACK);
-//        }
-//    };
 
     private MouseListener ML = new MouseListener() {
         @Override
@@ -118,6 +111,7 @@ public class PointController extends Point implements ActionListener {
         public void mouseReleased(MouseEvent e) {
             System.out.println("Mouse Event Released:");
             System.out.println(e.getSource());
+            view.setColor(Color.BLACK);
         }
 
         @Override

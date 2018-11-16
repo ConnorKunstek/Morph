@@ -16,8 +16,8 @@
 
 public class FrameModel{
 
-    private GridController gridPreContoller;
-    private GridController gridPostContoller;
+    private GridController gridPreController;
+    private GridController gridPostController;
     private ImageController imageController;
     private SettingsController settingsController;
 
@@ -33,18 +33,18 @@ public class FrameModel{
      */
 
     public FrameModel(int dim){
-        gridPostContoller = new GridController(dim);
-        gridPreContoller = new GridController(dim);
+        gridPostController = new GridController(dim);
+        gridPreController = new GridController(dim);
         //imageController = new ImageController();
         settingsController = new SettingsController();
     }
 
     ////////////////////////////////GETTERS AND SETTER//////////////////////////////////////////////////////////////////
 
-    public GridController getGridPreContoller() {return gridPreContoller;}
+    public GridController getGridPreContoller() {return gridPreController;}
 
     public GridController getGridPostContoller() {
-        return gridPostContoller;
+        return gridPostController;
     }
 
     public SettingsController getSettingsController() {
