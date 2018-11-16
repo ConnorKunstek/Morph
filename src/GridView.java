@@ -67,6 +67,12 @@ public class GridView extends JPanel implements MouseMotionListener,MouseListene
         debug();
         if(isDrag){
             if(hasPoint){
+//                if(controller.checkCurrentNeighbors()){
+//                    controller.updateCurrentPoint(e.getPoint());
+//                }
+//                else{
+//
+//                }
                 controller.updateCurrentPoint(e.getPoint());
             }
             else{
@@ -93,27 +99,15 @@ public class GridView extends JPanel implements MouseMotionListener,MouseListene
         controller = c;
         addMouseListener(this);
         addMouseMotionListener(this);
-//        this.setLayout(new GridLayout(dim, dim, 10, 10));
-//        this.setLayout(new GridBagLayout());
-//        GridBagConstraints c = new GridBagConstraints();
-//        c.fill = GridBagConstraints.HORIZONTAL;
 
         this.setLayout(new FlowLayout());
         for(int row = 0; row < dim; row++){
             for(int col = 0; col < dim; col++){
 
-//                c.weightx = 5;
-//                c.weighty = 5;
-//                c.gridx = row;
-//                c.gridy = col;
-//                c.ipadx = 5;
-//                c.ipady = 5;
-//                this.add(points[row][col].getView(), c);
-
                 this.add(points[row][col].getView());
             }
         }
-        this.setSize(1000, 1000);
+        this.setSize(500, 500);
         this.setVisible(true);
     }
     public void debug(){

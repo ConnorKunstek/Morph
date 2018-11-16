@@ -58,4 +58,13 @@ public class GridController implements ActionListener {
         model.setNewPoint(currentPoint);
         model.updatePoint();
     }
+
+    public boolean checkCurrentNeighbors(){
+        if(model.checkIfInsideNeighbors()){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }

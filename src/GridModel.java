@@ -1,8 +1,10 @@
+
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
 
 /**
  * @Function: ()
@@ -53,57 +55,6 @@ public class GridModel {
     public void updatePoint(){
         cur.getView().repaint();
     }
-//    public void setupListeners(){
-//        mouseListener = new MouseListener() {
-//            @Override
-//            public void mouseClicked(MouseEvent e) {
-//                if(!isDrag){
-//                    Point p = e.getPoint();
-//                    int x = (int)p.getX();
-//                    int y = (int)p.getY();
-//                    System.out.println("( " + x +", " + y + ")");
-//                    isDrag = true;
-//                }
-//
-//
-//            }
-//
-//            @Override
-//            public void mousePressed(MouseEvent e) {
-//
-//            }
-//
-//            @Override
-//            public void mouseReleased(MouseEvent e) {
-//                isDrag = false;
-//            }
-//
-//            @Override
-//            public void mouseEntered(MouseEvent e) {
-//
-//            }
-//
-//            @Override
-//            public void mouseExited(MouseEvent e) {
-//
-//            }
-//        };
-//        mouseMotionListener = new MouseMotionListener() {
-//            @Override
-//            public void mouseDragged(MouseEvent e) {
-//                if(isDrag){
-//                    System.out.println("Mouse Event Dragged:");
-//                    System.out.println(e.getPoint());
-//
-//                }
-//            }
-//
-//            @Override
-//            public void mouseMoved(MouseEvent e) {
-//
-//            }
-//        };
-//    }
 
     ////////////////////////////////GETTERS AND SETTER//////////////////////////////////////////////////////////////////
 
@@ -150,6 +101,26 @@ public class GridModel {
         else{
             return false;
         }
+    }
+
+    public boolean checkIfInsideNeighbors(){
+        int curr = cur.getModel().getRow();
+        int curc = cur.getModel().getCol();
+        ArrayList<PointController> nb = getItsNeighbors(curr,curc);
+        return true;
+    }
+
+    public ArrayList<PointController> getItsNeighbors(int r, int c){
+        ArrayList<PointController> n = null;
+        if(points[r][c].getModel().getBottomBound()){
+            n.add(points[r][c].getModel().getBottom());
+        }
+        if(points[r][c].getModel().getRightBound()){
+            n.add(points[r][c].getModel().getRight());
+        }
+        if(points[r][c].getModel().get)
+
+        return n;
     }
 
 

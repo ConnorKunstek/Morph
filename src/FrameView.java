@@ -29,9 +29,11 @@ public class FrameView extends JFrame {
     public FrameView(GridView pre, GridView post, SettingsView settings){
 
         super("Morph");
+
         Container c = getContentPane();
         this.setLayout(new GridLayout(1,3));
 //        this.setLayout(new GridBagLayout());
+//        this.setLayout(new FlowLayout());
 //        GridBagConstraints d = new GridBagConstraints();
         pre.setOpaque(true);
         pre.setBackground(Color.BLUE);
@@ -40,14 +42,14 @@ public class FrameView extends JFrame {
         this.buildMenu();
         post.setMaximumSize(new Dimension(500, 500));
         pre.setMaximumSize(new Dimension(500, 500));
-        settings.setMaximumSize(new Dimension(100, 500));
+        settings.setMaximumSize(new Dimension(200, 500));
         Border border = settings.getBorder();
         Border margin = new EmptyBorder(100,100,100,100);
         settings.setBorder(new CompoundBorder(border,margin));
         c.add(post);
         c.add(pre);
         c.add(settings);
-        this.setSize(1500, 550);
+        this.setSize(1450, 500);
         this.setVisible(true);
     }
 
