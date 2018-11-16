@@ -1,19 +1,9 @@
-/**
- * Connor Kunstek (@ConnorKunstek) and Nick Sladic (@Nickadiemus)
- * CS335 Project 3 - Image Morphing Part 1
- *
- *
- * Take a pre-image, morph into post-image using triangulated mesh overlay
- *
- * to run
- *         $ javac *.class
- *         $ java Morph
- */
-
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionAdapter;
+import java.awt.event.MouseMotionListener;
 
 
 /**
@@ -38,31 +28,19 @@ public class PointView extends JComponent {
      *
      */
 
-    public PointView(
-                    PointController thisPoint,
-                    PointController rightPoint,
-                    PointController bottomPoint,
-                    PointController diagPoint,
-
-                    MouseMotionAdapter MMA,
-                    MouseListener ML
-    ){
+    public PointView(PointController thisPoint,
+                     PointController rightPoint,
+                     PointController bottomPoint,
+                     PointController diagPoint)
+    {
         super();
-
         //set points
         setThisPoint(thisPoint);
         setRight(rightPoint);
         setBottom(bottomPoint);
         setDiag(diagPoint);
 
-        //add mouse listeners
-        this.addMouseMotionListener(MMA);
-        this.addMouseListener(ML);
-
-        this.setSize(50, 50);
-        this.setPreferredSize(new Dimension(50, 50));
-        this.setMinimumSize(new Dimension(50, 50));
-        this.setMaximumSize(new Dimension(50, 50));
+        this.setPreferredSize(new Dimension(500, 500));
         this.setVisible(true);
     }
 
@@ -77,17 +55,10 @@ public class PointView extends JComponent {
     @Override
     public void paintComponent(Graphics g){
 
+        //Dots
         super.paintComponent(g);
-
-        //dots
-        if(     !thisPoint.getModel().getTopBound() &&
-                !thisPoint.getModel().getLeftBound() &&
-                !thisPoint.getModel().getRightBound() &&
-                !thisPoint.getModel().getBottomBound())
-        {
-            g.setColor(getColor());
-            g.fillOval(thisPoint.getModel().getX(), thisPoint.getModel().getY(), 10, 10);
-        }
+        g.setColor(getColor());
+        g.fillOval(thisPoint.getModel().getX(), thisPoint.getModel().getY(), 10, 10);
 
         //Lines
         Graphics2D g2 = (Graphics2D)g;
@@ -96,28 +67,28 @@ public class PointView extends JComponent {
 
         //Right Line
         if(getRight() != null) {
-            g.drawLine( getThisPoint().getModel().getX()+5,
-                        getThisPoint().getModel().getY()+5,
-                        getRight().getModel().getX()+5,
-                        getRight().getModel().getY()+5
+            g.drawLine( getThisPoint().getModel().getX(),
+                        getThisPoint().getModel().getY(),
+                        getRight().getModel().getX(),
+                        getRight().getModel().getY()
             );
         }
 
         //Bottom Line
         if(getBottom() != null){
-            g.drawLine( getThisPoint().getModel().getX()+5,
-                        getThisPoint().getModel().getY()+5,
-                        getBottom().getModel().getX()+5,
-                        getBottom().getModel().getY()+5
+            g.drawLine( getThisPoint().getModel().getX(),
+                        getThisPoint().getModel().getY(),
+                        getBottom().getModel().getX(),
+                        getBottom().getModel().getY()
             );
         }
 
         //Diagonal Line
         if(getDiag() != null){
-            g.drawLine( getThisPoint().getModel().getX()+5,
-                        getThisPoint().getModel().getY()+5,
-                        getDiag().getModel().getX()+5,
-                        getDiag().getModel().getY()+5
+            g.drawLine( getThisPoint().getModel().getX(),
+                        getThisPoint().getModel().getY(),
+                        getDiag().getModel().getX(),
+                        getDiag().getModel().getY()
             );
         }
     }

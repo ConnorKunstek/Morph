@@ -1,15 +1,4 @@
-/**
- * Connor Kunstek (@ConnorKunstek) and Nick Sladic (@Nickadiemus)
- * CS335 Project 3 - Image Morphing Part 1
- *
- *
- * Take a pre-image, morph into post-image using triangulated mesh overlay
- *
- * to run
- *         $ javac *.class
- *         $ java Morph
- */
-
+import java.awt.*;
 
 /**
  * @Class: FrameController()
@@ -22,15 +11,11 @@ public class PointModel {
     private int col;
     private int x;
     private int y;
-    private int oldX;
-    private int oldY;
 
     private PointController bottom;
     private PointController right;
     private PointController diag;
 
-    private Boolean topBound;
-    private Boolean leftBound;
     private Boolean bottomBound;
     private Boolean rightBound;
 
@@ -50,20 +35,10 @@ public class PointModel {
 
         setX(col * space);
         setY(row * space);
-        setOldX(col * space);
-        setOldY(row * space);
 
-        setTopBound(false);
-        setLeftBound(false);
         setRightBound(false);
         setBottomBound(false);
 
-        if(row < 1){
-            setTopBound(true);
-        }
-        if(col < 1){
-            setLeftBound(true);
-        }
         if(row >= dim - 1){
             setBottomBound(true);
         }
@@ -94,12 +69,6 @@ public class PointModel {
     public int getY() { return y; }
     public void setY(int y) { this.y = y; }
 
-    public int getOldX() {  return oldX; }
-    public void setOldX(int oldX) { this.oldX = oldX; }
-
-    public int getOldY() {return oldY;}
-    public void setOldY(int oldY) {this.oldY = oldY; }
-
     public PointController getBottom() {
         return this.bottom;
     }
@@ -119,15 +88,15 @@ public class PointModel {
     }
     public void setDiag(PointController diag) {this.diag = diag; }
 
-    public void setLeftBound(Boolean leftBound) { this.leftBound = leftBound;  }
-    public Boolean getLeftBound() {return leftBound; }
-
-    public void setTopBound(Boolean topBound) {this.topBound = topBound;}
-    public Boolean getTopBound() {return topBound; }
-
     public Boolean getBottomBound() {   return bottomBound;  }
     public void setBottomBound(Boolean bottomBound) {this.bottomBound = bottomBound; }
 
     public Boolean getRightBound() {  return rightBound; }
     public void setRightBound(Boolean rightBound) {this.rightBound = rightBound;}
+
+    public Point getPoint(){
+        Point p = new Point(x, y);
+        return p;
+    }
+
 }

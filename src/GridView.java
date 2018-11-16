@@ -1,18 +1,9 @@
-
-/**
- * Connor Kunstek (@ConnorKunstek) and Nick Sladic (@Nickadiemus)
- * CS335 Project 3 - Image Morphing Part 1
- *
- *
- * Take a pre-image, morph into post-image using triangulated mesh overlay
- *
- * to run
- *         $ javac *.class
- *         $ java Morph
- */
-
 import javax.swing.JPanel;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionAdapter;
+import java.awt.event.MouseMotionListener;
 
 
 /**
@@ -20,7 +11,7 @@ import java.awt.*;
  * @Description: Creates program
  */
 
-public class GridView extends JPanel {
+public class GridView extends JPanel implements MouseMotionListener,MouseListener {
 
     /**
      * @Function: constructor()
@@ -29,35 +20,95 @@ public class GridView extends JPanel {
      * @Description:
      *
      */
-    public GridView(PointController[][] points, int dim) {
+    private boolean isDrag;
+    private boolean hasPoint;
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        if(!isDrag){
+            Point p = e.getPoint();
+            int x = (int)p.getX();
+            int y = (int)p.getY();
+            System.out.println("( " + x +", " + y + ")");
+            isDrag = true;
+        }
+
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        isDrag = false;
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        if(isDrag){
+            if(hasPoint){
+                controller.updateCurrentPoint(e.getPoint());
+            }
+            else{
+                System.out.println("Mouse Event Dragged:");
+                System.out.println(e.getPoint());
+                if(controller.checkCurrentPoints(e.getPoint())){
+                    hasPoint = true;
+                }
+            }
+
+        }
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+
+    }
+
+    private GridController controller;
+    public GridView(PointController[][] points, int dim, GridController c) {
 
         super();
-
+        isDrag = false;
+        controller = c;
+        this.addMouseListener(this);
+        this.addMouseMotionListener(this);
+//        this.setLayout(new GridLayout(dim, dim, 10, 10));
 //        this.setLayout(new GridBagLayout());
 //        GridBagConstraints c = new GridBagConstraints();
-//        c.fill = GridBagConstraints.BOTH;
+//        c.fill = GridBagConstraints.HORIZONTAL;
 
         this.setLayout(new FlowLayout());
-
-//        this.setLayout(new GridLayout(dim, dim, 10, 10));
-
         for(int row = 0; row < dim; row++){
             for(int col = 0; col < dim; col++){
 
-//                c.weightx = 0.5;
-//                c.weighty = 0.5;
-//                c.gridy = row;
-//                c.gridx = col;
-////                c.ipadx = 25;
-//                c.ipady = 25;
+//                c.weightx = 5;
+//                c.weighty = 5;
+//                c.gridx = row;
+//                c.gridy = col;
+//                c.ipadx = 5;
+//                c.ipady = 5;
 //                this.add(points[row][col].getView(), c);
 
                 this.add(points[row][col].getView());
             }
         }
-        this.setPreferredSize(new Dimension(500, 500));
+        this.setSize(1000, 1000);
         this.setVisible(true);
     }
 
-    public void testMouse(){ System.out.println("GridView Function Called"); }
+
 }

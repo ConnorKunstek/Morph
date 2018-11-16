@@ -1,16 +1,16 @@
+import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionAdapter;
+import java.awt.event.MouseMotionListener;
+
 /**
- * Connor Kunstek (@ConnorKunstek) and Nick Sladic (@Nickadiemus)
- * CS335 Project 3 - Image Morphing Part 1
+ * @Function: ()
+ * @Parameters: Type:
+ * @Returns: N/A
+ * @Description:
  *
- *
- * Take a pre-image, morph into post-image using triangulated mesh overlay
- *
- * to run
- *         $ javac *.class
- *         $ java Morph
  */
-
-
 
 /**
  * @Class: FrameController()
@@ -20,10 +20,15 @@
 public class GridModel {
 
     private int dim;
+    private MouseListener mouseListener;
+    private MouseMotionListener mouseMotionListener;
     private PointController[][] points;
+    private PointController cur;
 
     public GridModel(int dim){
 
+        setDim(dim);
+//        setupListeners();
         points = new PointController[dim][dim];
 
         for(int row = 0; row < dim; row++){
@@ -39,11 +44,114 @@ public class GridModel {
         }
     }
 
+    public void setNewPoint(Point c){
+        int x = (int)c.getX();
+        int y = (int)c.getY();
+        cur.getModel().setX(x);
+        cur.getModel().setY(y);
+    }
+    public void updatePoint(){
+        cur.getView().repaint();
+    }
+//    public void setupListeners(){
+//        mouseListener = new MouseListener() {
+//            @Override
+//            public void mouseClicked(MouseEvent e) {
+//                if(!isDrag){
+//                    Point p = e.getPoint();
+//                    int x = (int)p.getX();
+//                    int y = (int)p.getY();
+//                    System.out.println("( " + x +", " + y + ")");
+//                    isDrag = true;
+//                }
+//
+//
+//            }
+//
+//            @Override
+//            public void mousePressed(MouseEvent e) {
+//
+//            }
+//
+//            @Override
+//            public void mouseReleased(MouseEvent e) {
+//                isDrag = false;
+//            }
+//
+//            @Override
+//            public void mouseEntered(MouseEvent e) {
+//
+//            }
+//
+//            @Override
+//            public void mouseExited(MouseEvent e) {
+//
+//            }
+//        };
+//        mouseMotionListener = new MouseMotionListener() {
+//            @Override
+//            public void mouseDragged(MouseEvent e) {
+//                if(isDrag){
+//                    System.out.println("Mouse Event Dragged:");
+//                    System.out.println(e.getPoint());
+//
+//                }
+//            }
+//
+//            @Override
+//            public void mouseMoved(MouseEvent e) {
+//
+//            }
+//        };
+//    }
+
     ////////////////////////////////GETTERS AND SETTER//////////////////////////////////////////////////////////////////
 
     public PointController[][] getPoints() {return points; }
+
+    public int getDim() {return dim;}
+    public void setDim(int dim) { this.dim = dim; }
+
+    public MouseListener getMouseListener() { return mouseListener; }
+
+    public MouseMotionListener getMouseMotionListener() { return mouseMotionListener; }
+
     public PointController getPoint(int row, int col){
         return points[row][col];
     }
+
+    public Point checkPoints(Point curr){
+        Point p = new Point(-1,-1);
+        for(int r = 0; r < points.length; r++){
+            for(int c = 0; c < points.length; c++){
+                int curx = points[r][c].getModel().getX();
+                int cury = points[r][c].getModel().getY();
+                Point cp = new Point(curx,cury);
+                if(checkCurrentPoint(cp,curr)){
+                    System.out.println("Found!!!!");
+                    cur = points[r][c];
+                    return cp;
+                }else{
+                    System.out.println("Not Found!!!!");
+                }
+            }
+        }
+        return p;
+
+    }
+
+    public boolean checkCurrentPoint(Point checkpoint, Point curpoint){
+        int xcheck = (int)checkpoint.getX();
+        int ycheck = (int)checkpoint.getY();
+        int cpx = (int)curpoint.getX();
+        int cpy = (int)curpoint.getY();
+        if((xcheck-5 <= cpx) && (cpx <= xcheck+5) && (ycheck-5 <= cpy) && (cpy <= ycheck+5)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
 
 }
