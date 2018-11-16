@@ -14,7 +14,7 @@ public class PointController extends Point implements ActionListener {
             Point t = e.getPoint();
             model.setX((int)t.getX());
             model.setY((int)t.getY());
-            view.repaint();
+            view.repaint( );
         }
     };
 
