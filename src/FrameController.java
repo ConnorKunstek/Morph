@@ -21,15 +21,8 @@ import java.awt.event.ActionListener;
 
 public class FrameController implements ActionListener {
 
-    public final static int ONE_SECOND = 1000;
-
     private FrameModel model;
     private FrameView view;
-    private int dim, framesPerSec, secondsCounter, frameCounter;
-
-    private boolean previewing, previewed;
-
-    private Timer timer, timer2;
 
     /**
      * @Function: constructor()
@@ -40,8 +33,6 @@ public class FrameController implements ActionListener {
      */
 
     public FrameController(int dim){
-
-        setDim(dim);
 
         model = new FrameModel(dim);
         view = new FrameView(
@@ -64,8 +55,20 @@ public class FrameController implements ActionListener {
     }
 
     public void stopTimers(){
-        timer.stop();
-        timer2.stop();
+        System.out.println("Stopped");
+        model.getTimer().stop();
+        model.getTimer2().stop();
+        for (int row = 0; row < model.getDim(); row++) {
+            for (int col = 0; col < model.getDim(); col++) {
+                model.getGridPreContoller().getModel().getPoint(row, col).getModel().setX(
+                        model.getGridPostContoller().getModel().getPoint(row, col).getModel().getX()
+                );
+                model.getGridPreContoller().getModel().getPoint(row, col).getModel().setY(
+                        model.getGridPostContoller().getModel().getPoint(row, col).getModel().getY()
+                );
+                model.getGridPreContoller().getModel().getPoint(row, col).getView().repaint();
+            }
+        }
     }
 
     public void preview() {
@@ -75,8 +78,8 @@ public class FrameController implements ActionListener {
             model.getSettingsController().getModel().getPreviewBut().setText("Reset Pre-Image");
             model.getSettingsController().getModel().setPreviewFlag(false);
 
-            for (int row = 0; row < dim; row++) {
-                for (int col = 0; col < dim; col++) {
+            for (int row = 0; row < model.getDim(); row++) {
+                for (int col = 0; col < model.getDim(); col++) {
 
                     //save old coordinates
                     model.getGridPreContoller().getModel().getPoint(row, col).getModel().setOldX(
@@ -87,49 +90,34 @@ public class FrameController implements ActionListener {
                     );
                 }
             }
-            frameCounter = 0;
-            secondsCounter = 0;
-            framesPerSec = model.getSettingsController().getModel().getFrames() /
-                    model.getSettingsController().getModel().getSpeed();
-            timer = new Timer(ONE_SECOND/ framesPerSec, this);
-            timer2 = new Timer(ONE_SECOND, new ActionListener() {
+            model.setFrameCounter(0);
+            model.setSecondsCounter(0);
+            model.setFramesPerSec(model.getSettingsController().getModel().getFrames() /
+                    model.getSettingsController().getModel().getSeconds());
+            model.setTimer(new Timer(model.getOneSec()/ model.getFramesPerSec(), this));
+            model.setTimer2(new Timer(model.getOneSec(), new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    System.out.println("Secs: " + secondsCounter);
-                    secondsCounter++;
-                    if(secondsCounter == model.getSettingsController().getModel().getSpeed()) {
+                    System.out.println("Seconds Counter: " + model.getSecondsCounter());
+                    System.out.println("Seconds to Count: " + model.getSettingsController().getModel().getSeconds());
+                    model.setSecondsCounter(model.getSecondsCounter() + 1);
+                    if(model.getSecondsCounter() == model.getSettingsController().getModel().getSeconds()) {
                         stopTimers();
                     }
                 }
-            });
-            timer.start();
-            timer2.start();
-//            while(true){
-//                if(secondsCounter == model.getSettingsController().getModel().getSpeed()){
-//                    timer.stop();
-//                    timer2.stop();
-//                    break;
-//                }
-//            }
-            for (int row = 0; row < dim; row++) {
-                for (int col = 0; col < dim; col++) {
-                    model.getGridPreContoller().getModel().getPoint(row, col).getModel().setX(
-                            model.getGridPostContoller().getModel().getPoint(row, col).getModel().getX()
-                    );
-                    model.getGridPreContoller().getModel().getPoint(row, col).getModel().setY(
-                            model.getGridPostContoller().getModel().getPoint(row, col).getModel().getY()
-                    );
-                    model.getGridPreContoller().getModel().getPoint(row, col).getView().repaint();
-                }
-            }
+            }));
+            model.getTimer().start();
+            model.getTimer2().start();
+            model.setPreviewed(true);
+            model.setPreviewing(false);
 
         }else{
 
             model.getSettingsController().getModel().getPreviewBut().setText("Preview");
             model.getSettingsController().getModel().setPreviewFlag(true);
 
-            for (int row = 0; row < dim; row++) {
-                for (int col = 0; col < dim; col++) {
+            for (int row = 0; row < model.getDim(); row++) {
+                for (int col = 0; col < model.getDim(); col++) {
 
                     //reset to old coordinates
                     model.getGridPreContoller().getModel().getPoint(row, col).getModel().setX(
@@ -165,21 +153,13 @@ public class FrameController implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e){
-        frameCounter++;
-        System.out.println(frameCounter);
-        for (int row = 0; row < dim; row++) {
-            for (int col = 0; col < dim; col++) {
-                movePoint(row, col, frameCounter, framesPerSec);
+        model.setFrameCounter(model.getFrameCounter()+1);
+        System.out.println("Frame Counter: " + model.getFrameCounter());
+        for (int row = 0; row < model.getDim(); row++) {
+            for (int col = 0; col < model.getDim(); col++) {
+                movePoint(row, col, model.getFrameCounter(), model.getFramesPerSec());
                 model.getGridPreContoller().getModel().getPoint(row, col).getView().repaint();
             }
         }
-    }
-
-    public void setDim(int dim) {
-        this.dim = dim;
-    }
-
-    public int getDim() {
-        return dim;
     }
 }

@@ -7,8 +7,8 @@ import java.util.Hashtable;
 public class SettingsModel {
 
     private JButton previewBut, startBut;
-    private JSlider framesSli, speedSli;
-    private int speed, frames, frameNumber;
+    private JSlider framesSli, secondsSli;
+    private int seconds, frames, frameNumber;
     private boolean previewFlag;
 
     public SettingsModel(boolean previewFlag){
@@ -20,8 +20,8 @@ public class SettingsModel {
         previewBut = new JButton("Preview");
         startBut= new JButton("Start");
         framesSli = new JSlider(SwingConstants.HORIZONTAL,0,120,30);
-        speedSli = new JSlider(SwingConstants.HORIZONTAL,0,5,2);
-        speed = 2;  // seconds
+        secondsSli = new JSlider(SwingConstants.HORIZONTAL,0,5,2);
+        seconds = 2;  // seconds
         frames = 30;// fps
     }
 
@@ -30,7 +30,7 @@ public class SettingsModel {
         s.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                speed = speedSli.getValue();
+                seconds = secondsSli.getValue();
             }
         });
         Hashtable<Integer, JLabel> speedLabels = new Hashtable<>();
@@ -66,7 +66,7 @@ public class SettingsModel {
     }
 
     public JSlider getSpeedSli() {
-        return speedSli;
+        return secondsSli;
     }
     public JSlider getFramesSli() {
         return framesSli;
@@ -75,8 +75,8 @@ public class SettingsModel {
     public int getFrames() {
         return frames;
     }
-    public int getSpeed() {
-        return speed;
+    public int getSeconds() {
+        return seconds;
     }
 
     public JButton getPreviewBut() {
@@ -89,8 +89,8 @@ public class SettingsModel {
     public void setFrames(int frames) {
         this.frames = frames;
     }
-    public void setSpeed(int speed) {
-        this.speed = speed;
+    public void setSeconds(int seconds) {
+        this.seconds = seconds;
     }
 
     public boolean isPreviewFlag() { return previewFlag; }

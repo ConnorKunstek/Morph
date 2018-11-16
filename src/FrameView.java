@@ -42,7 +42,8 @@ public class FrameView extends JFrame {
         Container c = getContentPane();
 
 //        this.setLayout(new GridLayout(1,2, 10, 10));
-        this.setLayout(new GridLayout(1,3));
+//        this.setLayout(new BorderLayout());
+        this.setLayout(new GridLayout(1, 3, 10 ,10));
 
 //        this.setLayout(new GridBagLayout());
 //        GridBagConstraints d = new GridBagConstraints();
@@ -65,6 +66,10 @@ public class FrameView extends JFrame {
         Border border = settings.getBorder();
         Border margin = new EmptyBorder(100,100,100,100);
         settings.setBorder(new CompoundBorder(border,margin));
+
+//        c.add(pre, BorderLayout.WEST);
+//        c.add(post, BorderLayout.EAST);
+//        c.add(settings, BorderLayout.SOUTH);
 
         c.add(pre);
         c.add(post);
