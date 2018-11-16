@@ -1,18 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ba7569e5-3fcd-48dd-8ab5-75b889009304" name="Default Changelist" comment="">
+    <list default="true" id="ba7569e5-3fcd-48dd-8ab5-75b889009304" name="Default Changelist" comment="before leaving">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FrameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FrameView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GridController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GridController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GridModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GridModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GridView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GridView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PointController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PointController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PointModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PointModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PointView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PointView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SettingsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SettingsModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SettingsModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SettingsView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SettingsView.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -122,11 +112,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="java" value="2728" />
+          <entry key="txt" value="14" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JAVA" value="2728" />
+          <entry key="PLAIN_TEXT" value="14" />
         </counts>
       </usages-collector>
     </session>
@@ -145,7 +137,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/FrameController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
+            <state relative-caret-position="-320">
               <caret line="48" column="11" selection-start-line="48" selection-start-column="11" selection-end-line="48" selection-end-column="11" />
             </state>
           </provider>
@@ -349,7 +341,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542407692773" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542407779016" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -393,7 +385,7 @@
       <workItem from="1542327188326" duration="16520000" />
       <workItem from="1542388214230" duration="3371000" />
       <workItem from="1542399535571" duration="4777000" />
-      <workItem from="1542404327801" duration="3235000" />
+      <workItem from="1542404327801" duration="3494000" />
     </task>
     <task id="LOCAL-00001" summary="Preview works. A little buggy, but all the functionality is there">
       <created>1542358711034</created>
@@ -409,15 +401,35 @@
       <option name="project" value="LOCAL" />
       <updated>1542358819194</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="before leaving">
+      <created>1542407649352</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1542407649352</updated>
+    </task>
+    <task id="LOCAL-00004" summary="before leaving">
+      <created>1542407750452</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1542407750452</updated>
+    </task>
+    <task id="LOCAL-00005" summary="before leaving">
+      <created>1542407803810</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1542407803810</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57636000" />
+    <option name="totallyTimeSpent" value="57895000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-30" width="1920" height="1230" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12433298" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -437,8 +449,8 @@
       <window_info anchor="bottom" id="TODO" order="7" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" weight="0.3283582" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" />
-      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.4994664" visible="true" />
+      <window_info active="true" anchor="bottom" id="Event Log" order="11" sideWeight="0.50053364" side_tool="true" visible="true" />
       <window_info anchor="bottom" id="Java Enterprise" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -491,7 +503,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Preview works. A little buggy, but all the functionality is there" />
-    <option name="LAST_COMMIT_MESSAGE" value="Preview works. A little buggy, but all the functionality is there" />
+    <MESSAGE value="before leaving" />
+    <option name="LAST_COMMIT_MESSAGE" value="before leaving" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/.idea/artifacts/Morph_war_exploded.xml" />
@@ -659,7 +672,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/FrameController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
+        <state relative-caret-position="-320">
           <caret line="48" column="11" selection-start-line="48" selection-start-column="11" selection-end-line="48" selection-end-column="11" />
         </state>
       </provider>
