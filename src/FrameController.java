@@ -19,6 +19,10 @@ import java.awt.event.ActionListener;
 
 public class FrameController implements ActionListener {
 
+    private FrameModel model;
+    private FrameView view;
+    private int dim;
+
     /**
      * @Function: constructor()
      * @Parameters: dimmension of grid Type: int
@@ -27,10 +31,12 @@ public class FrameController implements ActionListener {
      *
      */
 
-    public FrameController(int gridDimmesion){
+    public FrameController(int dim){
 
-        FrameModel model = new FrameModel(gridDimmesion);
-        FrameView view = new FrameView(
+        setDim(dim);
+
+        model = new FrameModel(dim);
+        view = new FrameView(
                 model.getGridPreContoller().getView(),
                 model.getGridPostContoller().getView(),
                 model.getSettingsController().getView()
@@ -42,5 +48,23 @@ public class FrameController implements ActionListener {
 
     }
 
+//    public void preview(){
+//
+//
+//        for(int row = 0; row < dim; row++) {
+//
+//            model.getGridPreContoller().getModel().getPoint(row, col).set
+//
+//        }
+//    }
+
     public void actionPerformed(ActionEvent e){}
+
+    public void setDim(int dim) {
+        this.dim = dim;
+    }
+
+    public int getDim() {
+        return dim;
+    }
 }
