@@ -19,13 +19,15 @@ import javax.swing.*;
 
 public class FrameModel{
 
+    private final int ONE_SECOND = 1000;
+
     private GridController gridPreController;
     private GridController gridPostController;
     private ImageController imageController;
     private SettingsController settingsController;
 
     Timer timer, timer2;
-    int dim, frames, seconds, totalFrames, frameCounter;
+    int dim, frames, seconds, totalFrames, frameCounter, secondsCounter;
 
     /**
      * @Function: constructor()
@@ -40,6 +42,8 @@ public class FrameModel{
 
     public FrameModel(int dim){
         setDim(dim);
+        setSeconds(2);
+        setFrames(30);
         gridPreController = new GridController(dim);
         gridPostController = new GridController(dim);
         //imageController = new ImageController();
@@ -82,4 +86,16 @@ public class FrameModel{
 
     public int getDim() {  return dim;  }
     public void setDim(int dim) {  this.dim = dim; }
+
+    public int getSecondsCounter() {
+        return secondsCounter;
+    }
+
+    public int getONE_SECOND() {
+        return ONE_SECOND;
+    }
+
+    public void setSecondsCounter(int secondsCounter) {
+        this.secondsCounter = secondsCounter;
+    }
 }
