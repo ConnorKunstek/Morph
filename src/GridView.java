@@ -48,6 +48,7 @@ public class GridView extends JPanel implements MouseMotionListener,MouseListene
         debug();
         System.out.println("MouseReleased");
 
+        controller.updateCurrentPointColor(Color.BLACK);
     }
 
     @Override
@@ -68,6 +69,7 @@ public class GridView extends JPanel implements MouseMotionListener,MouseListene
             if(hasPoint){
                 if(controller.checkCurrentNeighbors()){
                     controller.updateCurrentPoint(e.getPoint());
+                    controller.updateCurrentPointColor(Color.RED);
                 }
                 else{
                     controller.updateCurrentPoint(controller.getPreviousPoint());

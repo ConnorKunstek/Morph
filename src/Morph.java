@@ -50,7 +50,7 @@ public class Morph {
      */
 
     public Morph(){
-        FrameController frame = new FrameController(4);
+        FrameController frame = new FrameController(10);
     }
 
     /**

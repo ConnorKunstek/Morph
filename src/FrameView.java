@@ -1,4 +1,14 @@
-
+/**
+ * Connor Kunstek (@ConnorKunstek) and Nick Sladic (@Nickadiemus)
+ * CS335 Project 3 - Image Morphing Part 1
+ *
+ *
+ * Take a pre-image, morph into post-image using triangulated mesh overlay
+ *
+ * to run
+ *         $ javac *.class
+ *         $ java Morph
+ */
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -31,25 +41,63 @@ public class FrameView extends JFrame {
         super("Morph");
 
         Container c = getContentPane();
-        this.setLayout(new GridLayout(1,3));
-//        this.setLayout(new GridBagLayout());
-//        this.setLayout(new FlowLayout());
-//        GridBagConstraints d = new GridBagConstraints();
+
         pre.setOpaque(true);
-        pre.setBackground(Color.BLUE);
+        pre.setBackground(Color.ORANGE);
         post.setOpaque(true);
-        post.setBackground(Color.ORANGE);
+        post.setBackground(Color.BLUE);
+
         this.buildMenu();
-        post.setMaximumSize(new Dimension(500, 500));
+
+        this.setLayout(new GridBagLayout());
+        GridBagConstraints d = new GridBagConstraints();
+
+        //pre
+        pre.setPreferredSize(new Dimension(500, 500));
+        pre.setMinimumSize(new Dimension(500, 500));
         pre.setMaximumSize(new Dimension(500, 500));
-        settings.setMaximumSize(new Dimension(200, 500));
-        Border border = settings.getBorder();
-        Border margin = new EmptyBorder(100,100,100,100);
-        settings.setBorder(new CompoundBorder(border,margin));
-        c.add(post);
-        c.add(pre);
-        c.add(settings);
-        this.setSize(1450, 500);
+
+        d.gridx = 0;
+        d.gridy = 0;
+        d.insets = new Insets(20, 20, 10, 10);
+        d.gridwidth = 1;
+        d.gridheight = 1;
+        d.weightx = 0.5;
+        d.weighty = 0.8;
+
+        c.add(pre, d);
+
+        //post
+        post.setPreferredSize(new Dimension(500, 500));
+        post.setMinimumSize(new Dimension(500, 500));
+        post.setMaximumSize(new Dimension(500, 500));
+
+        d.gridx = 1;
+        d.gridy = 0;
+        d.insets = new Insets(20, 10, 10, 20);
+        d.gridwidth = 1;
+        d.gridheight = 1;
+        d.weightx = 0.5;
+        d.weighty = 0.8;
+
+        c.add(post, d);
+
+        //settings
+        settings.setPreferredSize(new Dimension(1000, 200));
+        settings.setMinimumSize(new Dimension(1000, 200));
+        settings.setMaximumSize(new Dimension(1000, 200));
+
+        d.gridx = 0;
+        d.gridy = 1;
+        d.insets = new Insets(10, 20, 20, 20);
+        d.gridwidth = 2;
+        d.gridheight = 1;
+        d.weightx = 1;
+        d.weighty = 0.2;
+
+        c.add(settings, d);
+
+        this.setSize(1060, 760);
         this.setVisible(true);
     }
 

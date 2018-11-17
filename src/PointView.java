@@ -4,6 +4,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseMotionListener;
+import java.util.Collections;
 
 
 /**
@@ -57,12 +58,20 @@ public class PointView extends JComponent {
 
         //Dots
         super.paintComponent(g);
-        g.setColor(getColor());
-        g.fillOval(thisPoint.getModel().getX()-5, thisPoint.getModel().getY()-5, 10, 10);
+
+        if(
+                thisPoint.getModel().getRow() != 0 &&
+                thisPoint.getModel().getRow() != thisPoint.getModel().getDim()-1 &&
+                thisPoint.getModel().getCol() != 0 &&
+                thisPoint.getModel().getCol() != thisPoint.getModel().getDim()-1)
+        {
+            g.setColor(getDotColor());
+            g.fillOval(thisPoint.getModel().getX() - 5, thisPoint.getModel().getY() - 5, 10, 10);
+        }
 
         //Lines
         Graphics2D g2 = (Graphics2D)g;
-        g2.setColor(getColor());
+        g2.setColor(Color.BLACK);
         g2.setStroke(new BasicStroke(2));
 
         //Right Line
@@ -95,8 +104,8 @@ public class PointView extends JComponent {
 
     ////////////////////////////////GETTERS AND SETTER//////////////////////////////////////////////////////////////////
 
-    public void setColor(Color color){this.color = color; repaint();}
-    public Color getColor(){return this.color;}
+    public void setDotColor(Color color){this.color = color; repaint();}
+    public Color getDotColor(){return this.color;}
 
     public int getX() {
         return x;
