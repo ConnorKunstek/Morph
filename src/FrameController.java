@@ -9,6 +9,9 @@
  *         $ javac *.class
  *         $ java Morph
  */
+import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -47,6 +50,20 @@ public class FrameController implements ActionListener {
             }
         });
 
+        model.getSettingsController().getModel().getFramesSli().addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                model.setFrames(model.getSettingsController().getModel().getFrames());
+            }
+        });
+
+        model.getSettingsController().getModel().getSecondsSli().addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+
+                model.setSeconds(model.getSettingsController().getModel().getSeconds());
+            }
+        });
 
 //        FrameView view = new FrameView(model.getGrid().getView(), model.getImage().getView());
 //        FrameView view = new FrameView(model.getGrid().getView());
@@ -54,10 +71,12 @@ public class FrameController implements ActionListener {
 
     }
 
-    public void stopTimers(){
+    public void stopTimers(boolean flag){
         System.out.println("Stopped");
         model.getTimer().stop();
-        model.getTimer2().stop();
+        if(flag) {
+            model.getTimer2().stop();
+        }
         for (int row = 0; row < model.getDim(); row++) {
             for (int col = 0; col < model.getDim(); col++) {
                 model.getGridPreController().getModel().getPoint(row, col).getModel().setX(
@@ -90,28 +109,27 @@ public class FrameController implements ActionListener {
                     );
                 }
             }
-            stopTimers();
-//            model.setFrameCounter(0);
-//            model.setSecondsCounter(0);
-//            model.setFramesPerSec(model.getSettingsController().getModel().getFrames() /
-//                    model.getSettingsController().getModel().getSeconds());
-//            model.setTimer(new Timer(model.getOneSec()/ model.getFramesPerSec(), this));
-//            model.setTimer2(new Timer(model.getOneSec(), new ActionListener() {
-//                @Override
-//                public void actionPerformed(ActionEvent e) {
-//                    System.out.println("Seconds Counter: " + model.getSecondsCounter());
-//                    System.out.println("Seconds to Count: " + model.getSettingsController().getModel().getSeconds());
-//                    model.setSecondsCounter(model.getSecondsCounter() + 1);
-//                    if(model.getSecondsCounter() == model.getSettingsController().getModel().getSeconds()) {
-//                        stopTimers();
-//                    }
-//                }
-//            }));
-//            model.getTimer().start();
-//            model.getTimer2().start();
-//            model.setPreviewed(true);
-//            model.setPreviewing(false);
 
+            model.setFrameCounter(0);
+            model.setSecondsCounter(0);
+            model.setTimer(new Timer(model.getOneSec() / model.getFrames(), this));
+            if(model.getSecondsCounter() == model.getSettingsController().getModel().getSeconds()) {
+                stopTimers(false);
+            }else {
+                model.setTimer2(new Timer(model.getOneSec(), new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        //System.out.println("Seconds Counter: " + model.getSecondsCounter());
+                        //System.out.println("Seconds to Count: " + model.getSettingsController().getModel().getSeconds());
+                        if (model.getSecondsCounter() == model.getSettingsController().getModel().getSeconds()) {
+                            stopTimers(true);
+                        }
+                        model.setSecondsCounter(model.getSecondsCounter() + 1);
+                    }
+                }));
+                model.getTimer().start();
+                model.getTimer2().start();
+            }
         }else{
 
             model.getSettingsController().getModel().getPreviewBut().setText("Preview");
@@ -142,7 +160,6 @@ public class FrameController implements ActionListener {
         int postX = model.getGridPostController().getModel().getPoint(row, col).getModel().getX();
         int postY = model.getGridPostController().getModel().getPoint(row, col).getModel().getY();
 
-
         int xd = postX - preX;
         int yd = postY - preY;
 
@@ -156,7 +173,7 @@ public class FrameController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e){
         model.setFrameCounter(model.getFrameCounter()+1);
-        System.out.println("Frame Counter: " + model.getFrameCounter());
+        //System.out.println("Frame Counter: " + model.getFrameCounter());
         for (int row = 0; row < model.getDim(); row++) {
             for (int col = 0; col < model.getDim(); col++) {
                 movePoint(row, col, model.getFrameCounter(), model.getFrames());
