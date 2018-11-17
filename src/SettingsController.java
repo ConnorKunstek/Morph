@@ -15,7 +15,7 @@ public class SettingsController {
                 model.getFramesSli(),
                 model.getSecondsLabel(),
                 model.getFramesLabel(),
-                model.getTotalFramesLabel(),
+                model.getFramesPerSecLabel(),
                 model.getEmpty());
 
         model.getSecondsSli().addChangeListener(new ChangeListener() {
@@ -23,8 +23,8 @@ public class SettingsController {
             public void stateChanged(ChangeEvent e) {
                 model.setSeconds(model.getSecondsSli().getValue());
                 model.getSecondsLabel().setText("Seconds: " + model.getSeconds());
-                model.setTotalFrames(model.getFrames() * model.getSeconds());
-                model.getTotalFramesLabel().setText("Total Frames: " + model.getTotalFrames());
+                model.setFramesPerSec(model.getFrames() / model.getSeconds());
+                model.getFramesPerSecLabel().setText("Frames per sec: " + model.getFramesPerSec());
             }
         });
 
@@ -33,8 +33,8 @@ public class SettingsController {
             public void stateChanged(ChangeEvent e) {
                 model.getFramesLabel().setText("Frames per Second: " + model.getFramesSli().getValue());
                 model.setFrames(model.getFramesSli().getValue());
-                model.setTotalFrames(model.getFrames() * model.getSeconds());
-                model.getTotalFramesLabel().setText("Total Frames: " + model.getTotalFrames());
+                model.setFramesPerSec(model.getFrames() / model.getSeconds());
+                model.getFramesPerSecLabel().setText("Frames per sec: " + model.getFramesPerSec());
             }
         });
     }

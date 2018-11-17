@@ -27,7 +27,7 @@ public class FrameModel{
     private SettingsController settingsController;
 
     Timer timer, timer2;
-    int dim, frames, seconds, totalFrames, frameCounter, secondsCounter;
+    int dim, frames, seconds, totalFrames, frameCounter, secondsCounter, framesPerSecond;
 
     /**
      * @Function: constructor()
@@ -97,5 +97,13 @@ public class FrameModel{
 
     public int getOneSec() {
         return ONE_SECOND;
+    }
+
+    public int getFramesPerSecond() {
+        return framesPerSecond;
+    }
+
+    public void setFramesPerSecond(int framesPerSecond) {
+        this.framesPerSecond = framesPerSecond;
     }
 }

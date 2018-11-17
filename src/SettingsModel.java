@@ -8,8 +8,8 @@ public class SettingsModel {
 
     private JButton previewBut, startBut;
     private JSlider framesSli, secondsSli;
-    private JLabel framesLabel, secondsLabel, totalFramesLabel, empty;
-    private int seconds, frames, frameNumber, totalFrames;
+    private JLabel framesLabel, secondsLabel, framesPerSecLabel, empty;
+    private int seconds, frames, frameNumber, framesPerSec;
     private boolean previewFlag;
 
     public SettingsModel(boolean previewFlag){
@@ -33,11 +33,11 @@ public class SettingsModel {
         secondsSli.setSnapToTicks(true);
         seconds = secondsSli.getValue();  // seconds = 2
         frames = framesSli.getValue(); // fps = 30
-        totalFrames = seconds * frames;
+        framesPerSec = frames / seconds;
 
         secondsLabel = new JLabel("Seconds: " + seconds);
         framesLabel = new JLabel("Frames per second: " + frames);
-        totalFramesLabel = new JLabel("Total Frames: " + totalFrames);
+        framesPerSecLabel = new JLabel("Frames Per Sec: " + framesPerSec);
         empty = new JLabel();
 
     }
@@ -79,11 +79,11 @@ public class SettingsModel {
     public JLabel getFramesLabel() {   return framesLabel;  }
     public JLabel getSecondsLabel() {  return secondsLabel;  }
 
-    public void setTotalFramesLabel(JLabel totalFramesLabel) {this.totalFramesLabel = totalFramesLabel; }
-    public JLabel getTotalFramesLabel() {  return totalFramesLabel;  }
+    public void setFramesPerSecLabel(JLabel framesPerSecLabel) {this.framesPerSecLabel = framesPerSecLabel; }
+    public JLabel getFramesPerSecLabel() {  return framesPerSecLabel;  }
 
-    public int getTotalFrames() {  return totalFrames; }
-    public void setTotalFrames(int totalFrames) { this.totalFrames = totalFrames;  }
+    public int getFramesPerSec() {  return framesPerSec; }
+    public void setFramesPerSec(int framesPerSec) { this.framesPerSec = framesPerSec;  }
 
     public JLabel getEmpty() {return empty; }
 }

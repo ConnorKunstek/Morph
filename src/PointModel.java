@@ -42,6 +42,8 @@ public class PointModel {
 
         setX(col * space);
         setY(row * space);
+        setOldX(col * space);
+        setOldY(row * space);
 
         setRightBound(false);
         setBottomBound(false);
