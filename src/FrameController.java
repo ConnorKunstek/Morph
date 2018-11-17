@@ -133,6 +133,7 @@ public class FrameController implements ActionListener {
 
         model.getGridPreController().getView().repaint();
     }
+
     public void movePoint(int row, int col, int frameCounter, int framesPerSec){
 
         int preX = model.getGridPreController().getModel().getPoint(row, col).getModel().getOldX();
@@ -140,6 +141,7 @@ public class FrameController implements ActionListener {
 
         int postX = model.getGridPostController().getModel().getPoint(row, col).getModel().getX();
         int postY = model.getGridPostController().getModel().getPoint(row, col).getModel().getY();
+
 
         int xd = postX - preX;
         int yd = postY - preY;
