@@ -133,7 +133,7 @@ public class FrameController implements ActionListener {
 
         model.getGridPreController().getView().repaint();
     }
-    
+
     public void movePoint(int row, int col, int frameCounter, int framesPerSec){
 
         int preX = model.getGridPreController().getModel().getPoint(row, col).getModel().getOldX();
