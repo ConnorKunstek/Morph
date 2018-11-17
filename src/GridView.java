@@ -25,8 +25,6 @@ public class GridView extends JPanel implements MouseMotionListener,MouseListene
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        System.out.println("MouseClicked");
-        debug();
     }
 
     @Override
@@ -47,8 +45,8 @@ public class GridView extends JPanel implements MouseMotionListener,MouseListene
         isDrag = false;
         hasPoint = false;
         System.out.println("MouseReleased");
-        debug();
 
+        controller.updateCurrentPointColor(Color.BLACK);
     }
 
     @Override
@@ -64,10 +62,13 @@ public class GridView extends JPanel implements MouseMotionListener,MouseListene
     @Override
     public void mouseDragged(MouseEvent e) {
         System.out.println("Mouse Event Dragged:");
-        debug();
+//        debug();
         if(isDrag){
             if(hasPoint){
-                controller.updateCurrentPoint(e.getPoint());
+                if(controller.checkCurrentNeighbors()){
+                    controller.updateCurrentPoint(e.getPoint());
+                    controller.updateCurrentPointColor(Color.RED);
+                }
             }
             else{
                 System.out.println("Mouse Event Dragged:");
@@ -93,27 +94,15 @@ public class GridView extends JPanel implements MouseMotionListener,MouseListene
         controller = c;
         addMouseListener(this);
         addMouseMotionListener(this);
-//        this.setLayout(new GridLayout(dim, dim, 10, 10));
-//        this.setLayout(new GridBagLayout());
-//        GridBagConstraints c = new GridBagConstraints();
-//        c.fill = GridBagConstraints.HORIZONTAL;
 
         this.setLayout(new FlowLayout());
         for(int row = 0; row < dim; row++){
             for(int col = 0; col < dim; col++){
 
-//                c.weightx = 5;
-//                c.weighty = 5;
-//                c.gridx = row;
-//                c.gridy = col;
-//                c.ipadx = 5;
-//                c.ipady = 5;
-//                this.add(points[row][col].getView(), c);
-
                 this.add(points[row][col].getView());
             }
         }
-        this.setSize(1000, 1000);
+        this.setSize(500, 500);
         this.setVisible(true);
     }
     public void debug(){

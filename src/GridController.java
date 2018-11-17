@@ -67,4 +67,22 @@ public class GridController implements ActionListener {
         model.setNewPoint(currentPoint);
         model.updatePoint();
     }
+
+    public boolean checkCurrentNeighbors(){
+        if(model.checkIfInsideNeighbors()){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public void updateCurrentPointColor(Color color){
+        model.changePointColor(color);
+        model.updatePoint();
+    }
+
+    public Polygon getpoly(){
+        return model.getTp();
+    }
 }

@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * @Class: FrameController()
@@ -11,6 +12,9 @@ public class PointModel {
     private int col;
     private int x;
     private int y;
+    private int oldX;
+    private int oldY;
+    private int dim;
 
     private PointController bottom;
     private PointController right;
@@ -18,6 +22,7 @@ public class PointModel {
 
     private Boolean bottomBound;
     private Boolean rightBound;
+    private Boolean diagBound;
 
 
     /**
@@ -30,6 +35,8 @@ public class PointModel {
 
     public PointModel(int row, int col, int dim, int space){
 
+        setDim(dim);
+
         setRow(row);
         setCol(col);
 
@@ -38,6 +45,7 @@ public class PointModel {
 
         setRightBound(false);
         setBottomBound(false);
+        setDiagBound(false);
 
         if(row >= dim - 1){
             setBottomBound(true);
@@ -45,6 +53,8 @@ public class PointModel {
         if(col >= dim - 1){
             setRightBound(true);
         }
+        if((row - col) >= dim -1)
+            setDiagBound(true);
     }
 
     ////////////////////////////////GETTERS AND SETTER//////////////////////////////////////////////////////////////////
@@ -68,6 +78,12 @@ public class PointModel {
 
     public int getY() { return y; }
     public void setY(int y) { this.y = y; }
+
+    public int getOldY() {   return oldY;  }
+    public void setOldY(int oldY) { this.oldY = oldY;}
+
+    public void setOldX(int oldX) {  this.oldX = oldX;}
+    public int getOldX() { return oldX; }
 
     public PointController getBottom() {
         return this.bottom;
@@ -94,9 +110,24 @@ public class PointModel {
     public Boolean getRightBound() {  return rightBound; }
     public void setRightBound(Boolean rightBound) {this.rightBound = rightBound;}
 
+    public Boolean getDiagBound() {
+        return diagBound;
+    }
+    public void setDiagBound(Boolean diagBound) {
+        this.diagBound = diagBound;
+    }
+
     public Point getPoint(){
         Point p = new Point(x, y);
         return p;
+    }
+
+    public void setDim(int dim) {
+        this.dim = dim;
+    }
+
+    public int getDim() {
+        return dim;
     }
 
 }
