@@ -12,6 +12,9 @@ public class PointModel {
     private int col;
     private int x;
     private int y;
+    private int oldX;
+    private int oldY;
+    private int dim;
 
     private PointController bottom;
     private PointController right;
@@ -31,6 +34,8 @@ public class PointModel {
      */
 
     public PointModel(int row, int col, int dim, int space){
+
+        setDim(dim);
 
         setRow(row);
         setCol(col);
@@ -74,6 +79,12 @@ public class PointModel {
     public int getY() { return y; }
     public void setY(int y) { this.y = y; }
 
+    public int getOldY() {   return oldY;  }
+    public void setOldY(int oldY) { this.oldY = oldY;}
+
+    public void setOldX(int oldX) {  this.oldX = oldX;}
+    public int getOldX() { return oldX; }
+
     public PointController getBottom() {
         return this.bottom;
     }
@@ -102,7 +113,6 @@ public class PointModel {
     public Boolean getDiagBound() {
         return diagBound;
     }
-
     public void setDiagBound(Boolean diagBound) {
         this.diagBound = diagBound;
     }
@@ -110,6 +120,14 @@ public class PointModel {
     public Point getPoint(){
         Point p = new Point(x, y);
         return p;
+    }
+
+    public void setDim(int dim) {
+        this.dim = dim;
+    }
+
+    public int getDim() {
+        return dim;
     }
 
 }

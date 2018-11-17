@@ -77,6 +77,11 @@ public class GridController implements ActionListener {
         }
     }
 
+    public void updateCurrentPointColor(Color color){
+        model.changePointColor(color);
+        model.updatePoint();
+    }
+
     public Polygon getpoly(){
         return model.getTp();
     }

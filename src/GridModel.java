@@ -52,7 +52,14 @@ public class GridModel {
         int y = (int)c.getY();
         cur.getModel().setX(x);
         cur.getModel().setY(y);
+
+
     }
+
+    public void changePointColor(Color color){
+        cur.getView().setDotColor(color);
+    }
+
     public void updatePoint(){
         cur.getView().repaint();
     }
