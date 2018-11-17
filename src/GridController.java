@@ -55,6 +55,7 @@ public class GridController implements ActionListener {
 
     public void updateCurrentPoint(Point e){
         currentPoint = e;
+        model.debugCur();
         model.setNewPoint(currentPoint);
         model.updatePoint();
     }
@@ -68,7 +69,7 @@ public class GridController implements ActionListener {
         }
     }
 
-    public Polygon getpoly(){
-        return model.getTp();
+    public Point getPreviousPoint(){
+        return model.getPrev();
     }
 }

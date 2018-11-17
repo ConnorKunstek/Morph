@@ -27,7 +27,7 @@ public class GridModel {
     private MouseMotionListener mouseMotionListener;
     private PointController[][] points;
     private PointController cur;
-    private Polygon tp;
+    private PointController prev;
     public GridModel(int dim){
 
         setDim(dim);
@@ -50,8 +50,12 @@ public class GridModel {
     public void setNewPoint(Point c){
         int x = (int)c.getX();
         int y = (int)c.getY();
+        debugCur();
+        prev = cur;
         cur.getModel().setX(x);
         cur.getModel().setY(y);
+        debugCur();
+
     }
     public void updatePoint(){
         cur.getView().repaint();
@@ -82,11 +86,11 @@ public class GridModel {
                 if(checkCurrentPoint(cp,curr)){
                     System.out.println("Found!!!!");
                     cur = points[r][c];
+                    prev = points[r][c];
                     return cp;
                 }
             }
         }
-
         return p;
 
     }
@@ -108,13 +112,12 @@ public class GridModel {
         int curr = cur.getModel().getRow();
         int curc = cur.getModel().getCol();
         Hashtable<String, Point > nb = getItsNeighbors(curr,curc);
+        System.out.println("CheckIfInsideNeighbors");
         if(checkInBounds(nb)){
-            System.out.println("CheckIfInsideNeighbors");
             System.out.println("INSIDE OF BOUNDS");
             return true;
         }
         else{
-            System.out.println("CheckIfInsideNeighbors");
             System.out.println("OUTSIDE OF BOUNDS");
             return false;
         }
@@ -158,12 +161,11 @@ public class GridModel {
         for(int i = 0; i < xp.length; i++){
             System.out.println("(" + xp[i] + "," + yp[i] + ")");
         }
-        debugCur();
-        tp = bound;
         if(bound.contains(cur.getModel().getX(),cur.getModel().getY())){
             return true;
         }
         else{
+            cur = prev;
             return false;
         }
 
@@ -173,10 +175,12 @@ public class GridModel {
         System.out.println("Current Point: (" + (int)c.getX() + ", " + (int)c.getY() + ")");
     }
     public void debugCur(){
-        System.out.println("(" + cur.getModel().getX() + ", " + cur.getModel().getY() + ")");
-    }
+        System.out.println("Current: (" + cur.getModel().getX() + ", " + cur.getModel().getY() + ")");
+        System.out.println("Previous: (" + prev.getModel().getX() + ", " + prev.getModel().getY() + ")");
 
-    public Polygon getTp() {
-        return tp;
+
+    }
+    public Point getPrev(){
+        return prev.getModel().getPoint();
     }
 }
