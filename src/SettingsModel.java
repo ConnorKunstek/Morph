@@ -1,8 +1,4 @@
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-import javax.swing.plaf.SliderUI;
-import java.util.Hashtable;
 
 public class SettingsModel {
 
@@ -12,11 +8,24 @@ public class SettingsModel {
     private int seconds, frames, frameNumber, totalFrames;
     private boolean previewFlag;
 
+    /**
+     * @Function: constructor()
+     * @Parameters:  previewFlag Type: Boolean
+     * @Returns: N/A
+     * @Description: creates model
+     *
+     */
     public SettingsModel(boolean previewFlag){
         init();
         setPreviewFlag(previewFlag);
     }
-
+    /**
+     * @Function: init()
+     * @Parameters:  N/A
+     * @Returns: N/A
+     * @Description: sets up the buttons, sliders, and data inputs
+     *
+     */
     public void init(){
         previewBut = new JButton("Preview");
         startBut= new JButton("Start");
@@ -41,6 +50,9 @@ public class SettingsModel {
         empty = new JLabel();
 
     }
+
+
+    ////////////////////////////////GETTERS AND SETTER//////////////////////////////////////////////////////////////////
 
     public JSlider getSecondsSli() {
         return secondsSli;

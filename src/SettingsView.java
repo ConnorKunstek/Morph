@@ -2,10 +2,13 @@ import javax.swing.*;
 import java.awt.*;
 
 public class SettingsView extends JPanel {
-
-//    private JButton startbut, previewbut;
-//    private JSlider seconds, frames;
-
+    /**
+     * @Function: cosntructor()
+     * @Parameters: start, preview Type: JButton | seconds, frames Type: JSlider | seconds, framesLabel, totalFramesLabel, empty Type: JLabel
+     * @Returns: N/A
+     * @Description: constructs Settings View
+     *
+     */
     public SettingsView(
             JButton start,
             JButton preview,
@@ -20,18 +23,16 @@ public class SettingsView extends JPanel {
 
         this.init(start, preview, seconds, frames, secondsLabel, framesLabel, totalFramesLabel, empty);
 
-//        startbut = start;
-//        previewbut = preview;
-//        this.seconds = seconds;
-//        this.frames = frames;
     }
-
+    /**
+     * @Function: cosntructor()
+     * @Parameters: startBut, previewBut Type: JButton | secondsSli, framesSli Type: JSlider | secondsLabel, framesLabel, totalFramesLabel, empty Type: JLabel
+     * @Returns: N/A
+     * @Description: creates view for settings panel
+     *
+     */
     public void init(JButton startBut, JButton previewBut, JSlider secondsSli, JSlider framesSli, JLabel secondsLabel, JLabel framesLabel, JLabel totalFramesLabel, JLabel empty){
 
-//        speed.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-//        frames.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-//        preview.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-//        start.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
         this.add(framesLabel);
         this.add(totalFramesLabel);
@@ -46,20 +47,4 @@ public class SettingsView extends JPanel {
         this.setSize(1000, 200);
         this.setVisible(true);
     }
-
-//    public JSlider getFrames() {
-//        return frames;
-//    }
-//
-//    public JSlider getSpeeds() {
-//        return seconds;
-//    }
-//
-//    public void setSpeeds(JSlider speeds) {
-//        this.seconds = seconds;
-//    }
-//
-//    public void setFrames(JSlider frames) {
-//        this.frames = frames;
-//    }
 }

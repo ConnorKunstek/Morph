@@ -1,37 +1,29 @@
 
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionAdapter;
-import java.awt.event.MouseMotionListener;
-import java.util.ArrayList;
 import java.util.Hashtable;
 
-/**
- * @Function: ()
- * @Parameters: Type:
- * @Returns: N/A
- * @Description:
- *
- */
 
 /**
- * @Class: FrameController()
+ * @Class: GridModel()
  * @Description: Creates program
  */
 
 public class GridModel {
 
     private int dim;
-    private MouseListener mouseListener;
-    private MouseMotionListener mouseMotionListener;
     private PointController[][] points;
     private PointController cur;
     private PointController prev;
+    /**
+     * @Function: constructor()
+     * @Parameters: dim Type: int
+     * @Returns: N/A
+     * @Description: creates the data stored for manipulation based on view and controller
+     * responses
+     */
     public GridModel(int dim){
 
         setDim(dim);
-//        setupListeners();
         points = new PointController[dim][dim];
 
         for(int row = 0; row < dim; row++){
@@ -47,6 +39,13 @@ public class GridModel {
         }
     }
 
+    /**
+     * @Function: setNewPoint()
+     * @Parameters: c Type: Point
+     * @Returns: N/A
+     * @Description: Sets the new point of the current selected point while dragging
+     *
+     */
     public void setNewPoint(Point c){
         int x = (int)c.getX();
         int y = (int)c.getY();
@@ -56,30 +55,35 @@ public class GridModel {
         cur.getModel().setY(y);
 
     }
-
+    /**
+     * @Function: changePointColor()
+     * @Parameters: color Type: Color
+     * @Returns: N/A
+     * @Description: Changes the current point chosen to red to show visually selected point
+     */
     public void changePointColor(Color color){
         cur.getView().setDotColor(color);
     }
 
+    /**
+     * @Function: updatePoint()
+     * @Parameters: N/A
+     * @Returns: N/A
+     * @Description: calls the respected function of the point chosen to repaint the updated coordinates
+     *
+     */
     public void updatePoint(){
         cur.getView().repaint();
     }
 
-    ////////////////////////////////GETTERS AND SETTER//////////////////////////////////////////////////////////////////
-
-    public PointController[][] getPoints() {return points; }
-
-    public int getDim() {return dim;}
-    public void setDim(int dim) { this.dim = dim; }
-
-    public MouseListener getMouseListener() { return mouseListener; }
-
-    public MouseMotionListener getMouseMotionListener() { return mouseMotionListener; }
-
-    public PointController getPoint(int row, int col){
-        return points[row][col];
-    }
-
+    /**
+     * @Function: checkPoints()
+     * @Parameters: curr Type: Point
+     * @Returns: Point
+     * @Description: checks if the current point is within the buffer of the point clicked on. It will
+     * return the point if found and set the current point of the model's class to the point. Else it will
+     * return a point out of bounds if not found
+     */
     public Point checkPoints(Point curr){
         Point p = new Point(-1,-1);
         for(int r = 0; r < points.length; r++){
@@ -99,6 +103,12 @@ public class GridModel {
 
     }
 
+    /**
+     * @Function: checkCurrentPoint()
+     * @Parameters: checkpoint, curpoint Type: Point
+     * @Returns: boolean
+     * @Description: buffer for checking if a user selects a point
+     */
     public boolean checkCurrentPoint(Point checkpoint, Point curpoint){
         int xcheck = (int)checkpoint.getX();
         int ycheck = (int)checkpoint.getY();
@@ -112,6 +122,12 @@ public class GridModel {
         }
     }
 
+    /**
+     * @Function: checkIfInsideNeighbors()
+     * @Parameters: NA
+     * @Returns: boolean
+     * @Description: checks if the current point being moved is inside the hexagonal bounds of the mesh
+     */
     public boolean checkIfInsideNeighbors(){
         int curr = cur.getModel().getRow();
         int curc = cur.getModel().getCol();
@@ -127,6 +143,13 @@ public class GridModel {
         }
     }
 
+    /**
+     * @Function: getItsNeighbors()
+     * @Parameters: r, c Type: int
+     * @Returns: Hashtable
+     * @Description: gets the surrounding neighbors of the current point in the array
+     *
+     */
     public Hashtable<String, Point > getItsNeighbors(int r, int c){
         Hashtable<String, Point > hashbounds = new Hashtable<>();
         PointController topbound = points[r-1][c-1];
@@ -141,6 +164,12 @@ public class GridModel {
         return hashbounds;
     }
 
+    /**
+     * @Function: checkInBounds()
+     * @Parameters: b Type: HashTable<String, Point>
+     * @Returns: boolean
+     * @Description: returns true if the current point is inside the polygon created from the surrounding neighbors
+     */
     public boolean checkInBounds(Hashtable<String, Point> b){
         //NW to N bound
         Polygon bound;
@@ -174,16 +203,38 @@ public class GridModel {
         }
 
     }
-
+    /**
+     * @Function: debugPoint()
+     * @Parameters: c Type: Point
+     * @Returns: N/A
+     * @Description: debugger for a point
+     *
+     */
     public void debugPoint(Point c){
         System.out.println("Current Point: (" + (int)c.getX() + ", " + (int)c.getY() + ")");
     }
+    /**
+     * @Function: debugCur()
+     * @Parameters: Type:
+     * @Returns: N/A
+     * @Description: returns current and previous points positions from the model object
+     */
     public void debugCur(){
         System.out.println("Current: (" + cur.getModel().getX() + ", " + cur.getModel().getY() + ")");
         System.out.println("Previous: (" + prev.getModel().getX() + ", " + prev.getModel().getY() + ")");
-
-
     }
+
+    ////////////////////////////////GETTERS AND SETTER//////////////////////////////////////////////////////////////////
+
+    public PointController[][] getPoints() {return points; }
+    public int getDim() {return dim;}
+
+    public void setDim(int dim) { this.dim = dim; }
+
+    public PointController getPoint(int row, int col){
+        return points[row][col];
+    }
+
     public Point getPrev(){
         return prev.getModel().getPoint();
     }

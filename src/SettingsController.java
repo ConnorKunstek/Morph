@@ -5,6 +5,13 @@ import java.awt.*;
 public class SettingsController {
     private SettingsModel model;
     private SettingsView view;
+    /**
+     * @Function: constructor()
+     * @Parameters: previewFlag Type: boolean
+     * @Returns: N/A
+     * @Description: creates Controller
+     *
+     */
     public SettingsController(boolean previewFlag){
         super();
         model = new SettingsModel(previewFlag);
@@ -38,6 +45,8 @@ public class SettingsController {
             }
         });
     }
+
+    ////////////////////////////////GETTERS AND SETTER//////////////////////////////////////////////////////////////////
 
     public SettingsView getView() {
         return view;

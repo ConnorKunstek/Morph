@@ -22,7 +22,8 @@ public class GridView extends JPanel implements MouseMotionListener,MouseListene
      */
     private boolean isDrag;
     private boolean hasPoint;
-    private boolean isOnLine;
+    private GridController controller;
+
 
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -35,7 +36,6 @@ public class GridView extends JPanel implements MouseMotionListener,MouseListene
             Point p = e.getPoint();
             int x = (int)p.getX();
             int y = (int)p.getY();
-            System.out.println("( " + x +", " + y + ")");
             isDrag = true;
         }
 
@@ -80,7 +80,6 @@ public class GridView extends JPanel implements MouseMotionListener,MouseListene
                 System.out.println(e.getPoint());
                 if(controller.checkCurrentPoints(e.getPoint())){
                     hasPoint = true;
-                    isOnLine = false;
                 }
             }
 
@@ -91,8 +90,13 @@ public class GridView extends JPanel implements MouseMotionListener,MouseListene
     public void mouseMoved(MouseEvent e) {
 
     }
-
-    private GridController controller;
+    /**
+     * @Function: constructor()
+     * @Parameters: points Type: Array of PointController[][] | dim Type: Int | c Type: GridController
+     * @Returns: N/A
+     * @Description: creates view for the grid of points
+     *
+     */
     public GridView(PointController[][] points, int dim, GridController c) {
 
         super();
@@ -111,6 +115,14 @@ public class GridView extends JPanel implements MouseMotionListener,MouseListene
         this.setSize(500, 500);
         this.setVisible(true);
     }
+
+    /**
+     * @Function: debug()
+     * @Parameters: NA
+     * @Returns: N/A
+     * @Description: prints out in the console the current status of booleans set
+     * for dragging and containing a point
+     */
     public void debug(){
         System.out.println("/***************************************/");
         System.out.println("/ Current| isDrag: \t\t" + isDrag );
