@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class PointModel extends Ellipse2D.Double{
 
-    private double x,y,pointHeight,pointWidth;
+    private double x,y;
     private Color pointColor;
     /**
      * @Function: constructor()
@@ -18,8 +18,8 @@ public class PointModel extends Ellipse2D.Double{
      */
 
     public PointModel(double x, double y){
-        setPointHeight(10);
-        setPointWidth(10);
+        height = 10;
+        width = 10;
         setX(x);
         setY(y);
         setColor(Color.BLACK);
@@ -50,28 +50,7 @@ public class PointModel extends Ellipse2D.Double{
     public void setY(double y) {
         this.y = y;
     }
-
-    /**
-     * @Function:       setPointHeight()
-     * @Parameters:     Type: double
-     * @Returns:        NA
-     * @Description:    Sets the private variable pointHeight
-     *
-     */
-    public void setPointHeight(double pointHeight) {
-        this.pointHeight = pointHeight;
-    }
-
-    /**
-     * @Function:       setPointWidth()
-     * @Parameters:     Type: double
-     * @Returns:        NA
-     * @Description:    sets the private variable pointWidth
-     *
-     */
-    public void setPointWidth(double pointWidth) {
-        this.pointWidth = pointWidth;
-    }
+    
     /**
      * @Function:       setColor()
      * @Parameters:     Type: Color
@@ -106,4 +85,13 @@ public class PointModel extends Ellipse2D.Double{
         setY(y);
     }
 
+    @Override
+    public double getX() {
+        return x;
+    }
+
+    @Override
+    public double getY() {
+        return y;
+    }
 }

@@ -161,8 +161,8 @@ public class GridController extends JPanel{
         Graphics2D g2 = (Graphics2D)g;
         if(pre != null && post != null){
             try{
-                g2.setComposite(Alpha1);
-                g2.setComposite(Alpha2);
+                g2.setComposite(this.Alpha1);
+                g2.setComposite(this.Alpha2);
                 g2.drawImage(pre, 0,0,null);
                 g2.drawImage(post, 0,0,null);
             }catch( IllegalAccessError e){
@@ -174,6 +174,7 @@ public class GridController extends JPanel{
             for(int i = 0; i < this.size; i++) {
                 for (int j = 0; j < this.size; j++) {
                     if(j+1 < this.size){
+                        g2.setColor(Color.BLACK);
                         g2.draw(new Line2D.Double(
                                 p[i][j].getModel().getX() + 5,
                                 p[i][j].getModel().getY() + 5,
