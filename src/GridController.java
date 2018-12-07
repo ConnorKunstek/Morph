@@ -10,79 +10,147 @@
  *         $ java Morph
  */
 
+import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.RescaleOp;
+import java.util.ArrayList;
+import java.util.List;
+import java.awt.geom.Line2D;
 import java.awt.event.*;
+import javax.swing.Timer;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 /**
  * @Class: GridController()
- * @Description: Creates Grid View and Model
+ * @Description: Creates grid for the application
  */
 
-public class GridController implements ActionListener {
+public class GridController extends JPanel{
+    public BufferedImage image = null;
+    public BufferedImage original = null;
+    public BufferedImage image1 = null;
+    public BufferedImage image2 = null;
+    public PolygonController poly[][][];               //triangles
+    public PointController p[][];                   //points
+    private AlphaComposite Alpha1;
+    private AlphaComposite Alpha2;
 
-    GridView view;
-    GridModel model;
-    Point currentPoint = null;
+    //MorphTool
+    private MorphTools MorptT;
 
-    /**
-     * @Function: constructor()
-     * @Parameters: Mesh dimmension Type: int
-     * @Returns: N/A
-     * @Description: Creates grid view and model
-     *
+    private Timer preview;
+    private double tspeed;
+    private double increments;
+    private int frames;
+    private int size;
+    private int[][] neighbors ={
+            {-1,-1},                //top-right
+            {-1,0},                 //left
+            {0,-1},                 //top
+            {1,0},                  //right
+            {0,1},                  //bottom
+            {1,1}                   //bottom-right
+    };
+
+    /*
+     * @Function:       ()
+     * @Parameters:     Type:
+     * @Returns:        NA
+     * @Description:
      */
-
-    public GridController(int dim){
-        model = new GridModel(dim);
-        view = new GridView(model.getPoints(), dim, this);
+    public GridController(int s){
+        int margin = 500/this.size;
+        setGridSize(s);
+        initializePoints(margin);
+        initializePolygons();
     }
 
-    ////////////////////////////////GETTERS AND SETTER//////////////////////////////////////////////////////////////////
-
-    public GridView getView() {
-        return view;
-    }
-
-    public GridModel getModel() {
-        return model;
-    }
-
-    public void actionPerformed(ActionEvent e){
-        System.out.println(e);
-    }
-
-    public boolean checkCurrentPoints(Point cur){
-        Point p = model.checkPoints(cur);
-        if(((int)p.getX() == -1) && ((int)p.getY() == -1)){
-            currentPoint = p;
-            return false;
+    /*
+     * @Function:       ()
+     * @Parameters:     Type:
+     * @Returns:        NA
+     * @Description:
+     */
+    public void setGridSize(int s){
+        if(s == 5){
+            this.setSize(s);
+            super.setPreferredSize(new Dimension(400,400));
+        }
+        else if(s == 20){
+            this.setSize(s);
+            super.setPreferredSize(new Dimension(500,500));
         }
         else{
-            return true;
+            this.setSize(10);
+            super.setPreferredSize(new Dimension(450,450));
+        }
+
+    }
+
+    /*
+     * @Function:       ()
+     * @Parameters:     Type:
+     * @Returns:        NA
+     * @Description:
+     */
+    public void initializePoints(int margin){
+        p = new PointController[this.size][this.size];
+        for(int i = 0; i < this.size; i++){
+            for(int j = 0; j <this.size; j++){
+              int x = i * margin + 5;
+              int y = j * margin + 5;
+              p[i][j] = new PointController(x,y);
+            }
         }
     }
 
-    public void updateCurrentPoint(Point e){
-        currentPoint = e;
-        model.setNewPoint(currentPoint);
-        model.updatePoint();
+    /*
+     * @Function:       ()
+     * @Parameters:     Type:
+     * @Returns:        NA
+     * @Description:
+     */
+    public void initializePolygons(){
+        poly = new PolygonController[size - 1][size - 1][2]; //eliminates borders
+        for(int i = 0; i < this.size; i++) {
+            for (int j = 0; j < this.size; j++) {
+                poly[i][j][0] = new PolygonController(p[i][j],p[i+1][j],p[i+1][j+1]);
+                poly[i][j][1] = new PolygonController(p[i][j],p[i][j+1],p[i+1][j+1]);
+
+            }
+        }
     }
 
-    public boolean checkCurrentNeighbors(){
-        if(model.checkIfInsideNeighbors()){
-            return true;
+    /*
+     * @Function:       ()
+     * @Parameters:     Type:
+     * @Returns:        NA
+     * @Description:
+     */
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+
+
+    public void paintComponent(Graphics g){
+        super.paintComponent(g);
+        Graphics2D g2 = (Graphics2D)g;
+        if(image1 != null && image2 != null){
+            try{
+                g2.setComposite(Alpha1);
+                g2.setComposite(Alpha2);
+                g2.drawImage(image1, 0,0,null);
+                g2.drawImage(image2, 0,0,null);
+            }catch( IllegalAccessError e){
+                System.out.println("ERROR: " + e);
+            }
         }
         else{
-            return false;
+
         }
-    }
-
-    public void updateCurrentPointColor(Color color){
-        model.changePointColor(color);
-        model.updatePoint();
-    }
-
-    public Polygon getpoly(){
-        return model.getTp();
     }
 }
