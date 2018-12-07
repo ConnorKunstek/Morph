@@ -62,8 +62,8 @@ public class GridController extends JPanel{
      * @Description:
      */
     public GridController(int s){
-        int margin = 500/this.size;
         setGridSize(s);
+        int margin = 500/this.size;
         initializePoints(margin);
         initializePolygons();
     }
@@ -115,8 +115,8 @@ public class GridController extends JPanel{
      */
     public void initializePolygons(){
         poly = new PolygonController[size - 1][size - 1][2]; //eliminates borders
-        for(int i = 0; i < this.size; i++) {
-            for (int j = 0; j < this.size; j++) {
+        for(int i = 0; i < this.size-1; i++) {
+            for (int j = 0; j < this.size-1; j++) {
                 poly[i][j][0] = new PolygonController(p[i][j],p[i+1][j],p[i+1][j+1]);
                 poly[i][j][1] = new PolygonController(p[i][j],p[i][j+1],p[i+1][j+1]);
 
@@ -130,7 +130,7 @@ public class GridController extends JPanel{
      * @Returns:        NA
      * @Description:
      */
-    public void updateolygons(){
+    public void updatePolygons(){
         for(int i = 0; i < this.size; i++) {
             for (int j = 0; j < this.size; j++) {
                 poly[i][j][0] = new PolygonController(p[i][j],p[i+1][j],p[i+1][j+1]);

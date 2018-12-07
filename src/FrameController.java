@@ -137,7 +137,7 @@ public class FrameController extends JFrame implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 int temp = getPreFileChooser().showOpenDialog(null);
                 if(temp == JFileChooser.APPROVE_OPTION) {
-                    getPreGridController().setImage(getPreFileChooser().getSelectedFile().getPath());
+                    getPreGridController().getImage(getPreFileChooser().getSelectedFile().getPath());
                 }
             }
         });
@@ -149,7 +149,7 @@ public class FrameController extends JFrame implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 int returnVal = getPostFileChooser().showOpenDialog(null);
                 if(returnVal == JFileChooser.APPROVE_OPTION) {
-                    getPostGridController().setImage(getPostFileChooser().getSelectedFile().getPath());
+                    getPostGridController().getImage(getPostFileChooser().getSelectedFile().getPath());
                 }
             }
         });
@@ -165,6 +165,10 @@ public class FrameController extends JFrame implements ActionListener {
                 preview();
             }
         });
+
+        set_5(new JMenuItem("5x5"));
+        set_10(new JMenuItem("10x10"));
+        set_20(new JMenuItem("20x20"));
 
 
         getMenu().add(getPreFileChooser());
@@ -184,13 +188,13 @@ public class FrameController extends JFrame implements ActionListener {
     public void start(){
         setMorphGridController(new GridController(getDim()));
 
-        getMorphGridController().setImageCustom(getPreFileChooser().getSelectedFile().getPath(), getPostFileChooser().getSelectedFile().getPath());
-        getMorphGridController().generateAnimated(getPreGridController(), getPostGridController());
+        getMorphGridController().setImages(getPreFileChooser().getSelectedFile().getPath(), getPostFileChooser().getSelectedFile().getPath());
+        getMorphGridController().createAnimation(getPreGridController(), getPostGridController(), false);
 
         JFrame animateFrame = new JFrame("Morphing");
 
         animateFrame.add(getMorphGridController());
-        animateFrame.setSize(getPreGridController().getImg().getWidth()+5, getMorphGridController().getImg().getHeight()+10);
+        animateFrame.setSize(getMorphGridController().pre.getWidth()+10, getMorphGridController().pre.getHeight()+10);
         animateFrame.setVisible(true);
     }
 
@@ -256,7 +260,7 @@ public class FrameController extends JFrame implements ActionListener {
             public void mouseReleased(MouseEvent e){
                 if (getPoint() != null) {
                     getPreGridController().updatePolygons();
-                    getPostGridController().getCurrentPoint()[getPoint()[0]][getPoint()[1]].setColor(Color.BLACK);
+                    getPostGridController().p[getPoint()[0]][getPoint()[1]].getModel().setColor(Color.BLACK);
                     getPostGridController().repaint();
                 }
                 setMove(false);
@@ -268,8 +272,8 @@ public class FrameController extends JFrame implements ActionListener {
                 setPoint(getPreGridController().getCurrentPoint(e.getPoint()));
                 if (getPoint() != null) {
                     setMove(true);
-                    setBorder(getPreGridController().createPoly(getPoint()[0], getPoint()[1]));
-                    getPostGridController().getCurrentPoint()[getPoint()[0]][getPoint()[1]].setColor(Color.RED);
+                    setBorder(getPreGridController().createPolygon(getPoint()[0], getPoint()[1]));
+                    getPostGridController().p[getPoint()[0]][getPoint()[1]].getModel().setColor(Color.RED);
                     getPostGridController().revalidate();
                     getPostGridController().repaint();
                 }
@@ -281,8 +285,8 @@ public class FrameController extends JFrame implements ActionListener {
         getPreGridController().addMouseMotionListener(new MouseMotionListener() {
             public void mouseDragged(MouseEvent e) {
                 if (isMove() && getBorder().contains(e.getPoint())){
-                    getPreGridController().getCurrentPoint()[getPoint()[0]][getPoint()[1]] = new PointController(e.getX(), e.getY());
-                    getPreGridController().getCurrentPoint()[getPoint()[0]][getPoint()[1]].setColor(Color.RED);                      // remove
+                    getPreGridController().p[getPoint()[0]][getPoint()[1]] = new PointController(e.getX(), e.getY());
+                    getPreGridController().p[getPoint()[0]][getPoint()[1]].getModel().setColor(Color.RED);                      // remove
                     getPreGridController().repaint();
                     getPreGridController().repaint();
                 }
