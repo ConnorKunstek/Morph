@@ -54,24 +54,26 @@ public class FrameController extends JFrame implements ActionListener {
         this.setPreGridController(new GridController(dim));
         this.setPostGridController(new GridController(dim));
         this.setMorphGridController(new GridController(dim));
+        this.setSettingsController(new SettingsController(false));
         this.setC(new Container());
 
         c = getContentPane();
 
-        preGridController.setOpaque(true);
-        preGridController.setBackground(Color.ORANGE);
-        postGridController.setOpaque(true);
-        postGridController.setBackground(Color.BLUE);
+        getPreGridController().setOpaque(true);
+        getPreGridController().setBackground(Color.ORANGE);
+        getPostGridController().setOpaque(true);
+        getPostGridController().setBackground(Color.BLUE);
 
         this.createMenu();
+        this.buildMenu();
 
         this.setLayout(new GridBagLayout());
         GridBagConstraints d = new GridBagConstraints();
 
         //pre
-        preGridController.setPreferredSize(new Dimension(500, 500));
-        preGridController.setMinimumSize(new Dimension(500, 500));
-        preGridController.setMaximumSize(new Dimension(500, 500));
+        getPreGridController().setPreferredSize(new Dimension(500, 500));
+        getPreGridController().setMinimumSize(new Dimension(500, 500));
+        getPreGridController().setMaximumSize(new Dimension(500, 500));
 
         d.gridx = 0;
         d.gridy = 0;
@@ -81,12 +83,12 @@ public class FrameController extends JFrame implements ActionListener {
         d.weightx = 0.5;
         d.weighty = 0.8;
 
-        c.add(preGridController, d);
+        getC().add(getPreGridController(), d);
 
         //post
-        postGridController.setPreferredSize(new Dimension(500, 500));
-        postGridController.setMinimumSize(new Dimension(500, 500));
-        postGridController.setMaximumSize(new Dimension(500, 500));
+        getPostGridController().setPreferredSize(new Dimension(500, 500));
+        getPostGridController().setMinimumSize(new Dimension(500, 500));
+        getPostGridController().setMaximumSize(new Dimension(500, 500));
 
         d.gridx = 1;
         d.gridy = 0;
@@ -96,12 +98,12 @@ public class FrameController extends JFrame implements ActionListener {
         d.weightx = 0.5;
         d.weighty = 0.8;
 
-        c.add(postGridController, d);
+        getC().add(getPostGridController(), d);
 
         //settings
-        settingsController.setPreferredSize(new Dimension(1000, 200));
-        settingsController.setMinimumSize(new Dimension(1000, 200));
-        settingsController.setMaximumSize(new Dimension(1000, 200));
+        getSettingsController().setPreferredSize(new Dimension(1000, 200));
+        getSettingsController().setMinimumSize(new Dimension(1000, 200));
+        getSettingsController().setMaximumSize(new Dimension(1000, 200));
 
         d.gridx = 0;
         d.gridy = 1;
@@ -111,20 +113,20 @@ public class FrameController extends JFrame implements ActionListener {
         d.weightx = 1;
         d.weighty = 0.2;
 
-        c.add(settingsController, d);
+        getC().add(getSettingsController(), d);
 
         this.setSize(1060, 760);
         this.setVisible(true);
     }
 
-    private void buildMenu(){
+    private void createMenu(){
 
         setPreFileChooser(new JFileChooser());
         setPostFileChooser(new JFileChooser());
 
         setFileFilter(new FileNameExtensionFilter("JPEG/JPG Images", "jpg", "jpeg"));
-        preFileChooser.setFileFilter(getFileFilter());
-        postFileChooser.setFileFilter(getFileFilter());
+        getPreFileChooser().setFileFilter(getFileFilter());
+        getPostFileChooser().setFileFilter(getFileFilter());
 
         setJMenuBar(new JMenuBar());
         setMenu(new JMenu("Options"));
@@ -133,7 +135,7 @@ public class FrameController extends JFrame implements ActionListener {
         getChoosePre().setAccelerator(KeyStroke.getKeyStroke('1', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
         getChoosePre().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                int temp = getChoosePre().showOpenDialog(null);
+                int temp = getPreFileChooser().showOpenDialog(null);
                 if(temp == JFileChooser.APPROVE_OPTION) {
                     getPreGridController().setImage(getPreFileChooser().getSelectedFile().getPath());
                 }
@@ -246,15 +248,15 @@ public class FrameController extends JFrame implements ActionListener {
 //    }
 
 
-    public void createMouseListeners(GridController getPreGridController(), GridController getPostGridController()) {
+    public void createMouseListeners() {
 
         getPreGridController().addMouseListener(new MouseListener(){
             public void mouseExited(MouseEvent e){}
             public void mouseEntered(MouseEvent e){}
             public void mouseReleased(MouseEvent e){
-                if (getPoint()() != null) {
-                    getPreGridController().setTriangles();
-                    getPostGridController().getPoint()s[getPoint()()[0]][getPoint()()[1]].setColor(Color.BLACK);
+                if (getPoint() != null) {
+                    getPreGridController().updatePolygons();
+                    getPostGridController().getCurrentPoint()[getPoint()[0]][getPoint()[1]].setColor(Color.BLACK);
                     getPostGridController().repaint();
                 }
                 setMove(false);
@@ -263,11 +265,11 @@ public class FrameController extends JFrame implements ActionListener {
 
             }
             public void mousePressed(MouseEvent e){
-                getPoint() = getPreGridController().getgetPoint()(e.getgetPoint()());
+                setPoint(getPreGridController().getCurrentPoint(e.getPoint()));
                 if (getPoint() != null) {
                     setMove(true);
-                    border = getPreGridController().createPoly(getPoint()[0], getPoint()[1]);
-                    getPostGridController().getPoint()s[getPoint()[0]][getPoint()[1]].setColor(Color.RED);
+                    setBorder(getPreGridController().createPoly(getPoint()[0], getPoint()[1]));
+                    getPostGridController().getCurrentPoint()[getPoint()[0]][getPoint()[1]].setColor(Color.RED);
                     getPostGridController().revalidate();
                     getPostGridController().repaint();
                 }
@@ -276,13 +278,13 @@ public class FrameController extends JFrame implements ActionListener {
         });
 
         /* create a motion listener to track the mouse dragging the polygon */
-        preGridController.addMouseMotionListener(new MouseMotionListener() {
+        getPreGridController().addMouseMotionListener(new MouseMotionListener() {
             public void mouseDragged(MouseEvent e) {
-                if (move && border.contains(e.getgetPoint()())){
-                    preGridController.getP[getPoint()[0]][getPoint()[1]] = new getPoint()Controller(e.getX(), e.getY());
-                    preGridController.getP[getPoint()[0]][getPoint()[1]].setColor(Color.RED);                      // remove
-                    preGridController.repaint();
-                    preGridController.repaint();
+                if (isMove() && getBorder().contains(e.getPoint())){
+                    getPreGridController().getCurrentPoint()[getPoint()[0]][getPoint()[1]] = new PointController(e.getX(), e.getY());
+                    getPreGridController().getCurrentPoint()[getPoint()[0]][getPoint()[1]].setColor(Color.RED);                      // remove
+                    getPreGridController().repaint();
+                    getPreGridController().repaint();
                 }
             }
             public void mouseMoved(MouseEvent e) { }
@@ -353,6 +355,8 @@ public class FrameController extends JFrame implements ActionListener {
         bar.add(fileMenu);
     }
 
+    public void actionPerformed(ActionEvent e){}
+
     public GridController getPreGridController() {return preGridController;}
     public void setPreGridController(GridController preGridController) { this.preGridController = preGridController; }
 
@@ -366,16 +370,14 @@ public class FrameController extends JFrame implements ActionListener {
     }
     public void setMorphGridController(GridController morphGridController) { this.morphGridController = morphGridController; }
 
-    public SettingsController getSettingsController() {
-        return settingsController;
-    }
+    public SettingsController getSettingsController() { return settingsController; }
     public void setSettingsController(SettingsController settingsController) { this.settingsController = settingsController; }
 
     public Container getC(){return c;}
     public void setC(Container c){this.c = c;}
 
-    public int[] getgetPoint()(){return point;}
-    public void setgetPoint()(int[] getPoint()){this.point = getPoint();}
+    public int[] getPoint(){return point;}
+    public void setPoint(int[] point){this.point = point;}
 
     public Polygon getBorder() { return border; }
     public void setBorder(Polygon border) { this.border = border; }

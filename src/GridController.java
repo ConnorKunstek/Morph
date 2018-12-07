@@ -153,4 +153,31 @@ public class GridController extends JPanel{
 
         }
     }
+
+    public Polygon intializePolygon(int x, int y){
+        List<Double> xpoints = new ArrayList<>();
+        List<Double> ypoints = new ArrayList<>();
+
+        for (int i = 0; i < neighbors.length; i++){
+            x += neighbors[i][0];
+            y += neighbors[i][1];
+            if (!(x <= 1 || x >= size || y < 0 || y >= size)) {
+                xpoints.add(p[x][y].getModel().getX());
+                ypoints.add(p[x][y].getModel().getX());
+            }
+        }
+
+        int[][] holder = new int[2][xpoints.size()];
+
+        holder[0] = new int[xpoints.size()];
+        holder[1] = new int[ypoints.size()];
+
+        for (int i = 0; i < holder[0].length; i++){
+            holder[0][i] = xpoints.get(i).intValue();
+            holder[1][i] = ypoints.get(i).intValue();
+        }
+        Polygon temp = new Polygon(holder[0], holder[1], holder[0].length);
+
+        return temp;
+    }
 }
