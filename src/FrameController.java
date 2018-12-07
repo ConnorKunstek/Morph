@@ -198,58 +198,6 @@ public class FrameController extends JFrame implements ActionListener {
         animateFrame.setVisible(true);
     }
 
-//    public void actionPerformed(ActionEvent e){
-//
-//        if (e.getActionCommand().equals("Reset")) {
-//            getPreGridController().reset();
-//            getPostGridController().reset();
-//        }
-//
-//        else {
-//            String cmd = e.getActionCommand();
-//            if (cmd == "<•") getPreGridController().setIntensity(li -= 0.1);
-//            if (cmd == "•>") getPreGridController().setIntensity(li += 0.1);
-//            if (cmd == "•<") getPostGridController().setIntensity(ri -= 0.1);
-//            if (cmd == ">•") getPostGridController().setIntensity(ri += 0.1);
-//
-//            if (cmd == "5x5") {
-//                dispose();
-//                size = 5;
-//                Morph M2 = new Morph(size);
-//                //M2.setSize(new Dimension(850, 505));
-//                M2.setResizable(false);
-//                M2.addWindowListener(new WindowAdapter(){
-//                    public void windowClosing(WindowEvent e){System.exit(0);}
-//                });
-//
-//
-//            }
-//            if (cmd == "10x10") {
-//                dispose(); //resetEverything(5);
-//                size = 10;
-//                Morph M2 = new Morph(size);
-//                M2.setSize(new Dimension(950, 555));
-//                M2.setResizable(false);
-//                M2.addWindowListener(new WindowAdapter(){
-//                    public void windowClosing(WindowEvent e){System.exit(0);}
-//                });
-//            }
-//            if (cmd == "20x20") {
-//                dispose(); //resetEverything(5);
-//                size = 20;
-//                Morph M2 = new Morph(size);
-//                M2.setSize(new Dimension(1000, 580));
-//                M2.setResizable(false);
-//                M2.addWindowListener(new WindowAdapter(){
-//                    public void windowClosing(WindowEvent e){System.exit(0);}
-//                });
-//            }
-//
-//            getPreGridController().repaint();
-//            getPostGridController().repaint();
-//        }
-//
-//    }
 
 
     public void createMouseListeners() {
