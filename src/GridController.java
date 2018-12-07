@@ -308,7 +308,7 @@ public class GridController extends JPanel{
     public void setImages(String imgPath1, String imgPath2){
         try{
             pre = ImageIO.read(new File(imgPath1));
-            post = ImageIO.read(new File(imgPath1));
+            post = ImageIO.read(new File(imgPath2));
             super.removeAll();
             super.revalidate();
             super.repaint();
@@ -356,7 +356,7 @@ public class GridController extends JPanel{
         initializePolygons();
     }
 
-    public Polygon intializePolygon(int x, int y){
+    public Polygon createPolygon(int x, int y){
         List<Double> xpoints = new ArrayList<>();
         List<Double> ypoints = new ArrayList<>();
 
