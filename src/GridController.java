@@ -31,8 +31,8 @@ import javax.imageio.ImageIO;
 public class GridController extends JPanel{
     public BufferedImage image = null;
     public BufferedImage original = null;
-    public BufferedImage image1 = null;
-    public BufferedImage image2 = null;
+    public BufferedImage pre = null;
+    public BufferedImage post = null;
     public PolygonController poly[][][];               //triangles
     public PointController p[][];                   //points
     private AlphaComposite Alpha1;
@@ -135,24 +135,64 @@ public class GridController extends JPanel{
     }
 
 
-
+    /*
+     * @Function:       ()
+     * @Parameters:     Type:
+     * @Returns:        NA
+     * @Description:
+     */
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
-        if(image1 != null && image2 != null){
+        if(pre != null && post != null){
             try{
                 g2.setComposite(Alpha1);
                 g2.setComposite(Alpha2);
-                g2.drawImage(image1, 0,0,null);
-                g2.drawImage(image2, 0,0,null);
+                g2.drawImage(pre, 0,0,null);
+                g2.drawImage(post, 0,0,null);
             }catch( IllegalAccessError e){
                 System.out.println("ERROR: " + e);
             }
         }
-        else{
+        else {
+            g.drawImage(image,0,0,null);
+            for(int i = 0; i < this.size; i++) {
+                for (int j = 0; j < this.size; j++) {
+                    if(j+1 < this.size){
+                        g2.draw(new Line2D.Double(
+                                p[i][j].getModel().getX() + 5,
+                                p[i][j].getModel().getY() + 5,
+                                p[i][j+1].getModel().getX() + 5,
+                                p[i][j+1].getModel().getY() + 5
+                                )
+                        );
+                    }
+                    if(i+1 < this.size){
+                        g2.draw(new Line2D.Double(
+                                        p[i][j].getModel().getX() + 5,
+                                        p[i][j].getModel().getY() + 5,
+                                        p[i+1][j].getModel().getX() + 5,
+                                        p[i+1][j].getModel().getY() + 5
+                                )
+                        );
+                    }
+                    if((j+1 < this.size) && (i+1 < this.size)){
+                        g2.draw(new Line2D.Double(
+                                        p[i][j].getModel().getX() + 5,
+                                        p[i][j].getModel().getY() + 5,
+                                        p[i+1][j+1].getModel().getX() + 5,
+                                        p[i+1][j+1].getModel().getY() + 5
+                                )
+                        );
+                    }
 
+                    g2.setColor(p[i][j].getModel().getColor());
+                    g2.fill(p[i][j].getModel());
+                }
+            }
         }
     }
+
 
     public Polygon intializePolygon(int x, int y){
         List<Double> xpoints = new ArrayList<>();
