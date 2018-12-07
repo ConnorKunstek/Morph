@@ -115,8 +115,8 @@ public class GridController extends JPanel{
      */
     public void initializePolygons(){
         poly = new PolygonController[size - 1][size - 1][2]; //eliminates borders
-        for(int i = 0; i < this.size-1; i++) {
-            for (int j = 0; j < this.size-1; j++) {
+        for(int i = 0; i < this.size - 1; i++) {
+            for (int j = 0; j < this.size - 1; j++) {
                 poly[i][j][0] = new PolygonController(p[i][j],p[i+1][j],p[i+1][j+1]);
                 poly[i][j][1] = new PolygonController(p[i][j],p[i][j+1],p[i+1][j+1]);
 

@@ -27,7 +27,7 @@ public class Morph {
      * @Function: constructor()
      * @Parameters: None Type: N/a
      * @Returns: N/A
-     * @Description: Creates FrameController with default grid dimmension 10x10
+     * @Description: Creates FrameController with default grid dimension 10x10
      *
      */
 
@@ -39,7 +39,7 @@ public class Morph {
      * @Function: constructor()
      * @Parameters: Custom Mesh dimmension Type: String (later casted to int)
      * @Returns: N/A
-     * @Description: Takes custom mesh dimmension and creates FrameController
+     * @Description: Takes custom mesh dimension and creates FrameController
      *
      */
 

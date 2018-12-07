@@ -142,7 +142,6 @@ public class FrameController extends JFrame implements ActionListener {
             }
         });
 
-        /* image 2 loading */
         setChoosePost(new JMenuItem("Select Post-Image", KeyEvent.VK_T));
         getChoosePost().setAccelerator(KeyStroke.getKeyStroke('2', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
         getChoosePost().addActionListener(new ActionListener() {
@@ -171,8 +170,8 @@ public class FrameController extends JFrame implements ActionListener {
         set_20(new JMenuItem("20x20"));
 
 
-        getMenu().add(getPreFileChooser());
-        getMenu().add(getPostFileChooser());
+        getMenu().add(getChoosePre());
+        getMenu().add(getChoosePost());
         getMenu().add(get_5());
         getMenu().add(get_10());
         getMenu().add(get_20());
@@ -194,7 +193,7 @@ public class FrameController extends JFrame implements ActionListener {
         JFrame animateFrame = new JFrame("Morphing");
 
         animateFrame.add(getMorphGridController());
-        animateFrame.setSize(getMorphGridController().pre.getWidth()+10, getMorphGridController().pre.getHeight()+10);
+        animateFrame.setSize(getMorphGridController().pre.getWidth() + 20, getMorphGridController().pre.getHeight() + 20);
         animateFrame.setVisible(true);
     }
 
