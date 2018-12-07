@@ -45,7 +45,7 @@ public class FrameController extends JFrame implements ActionListener {
 
 //    private float li = 1, ri = 1;
 
-    private FrameController(int dim){
+    public FrameController(int dim){
 
         super("Morph");
         this.addWindowListener(new WindowAdapter(){public void windowClosing(WindowEvent e){System.exit(0);}});
@@ -252,9 +252,9 @@ public class FrameController extends JFrame implements ActionListener {
             public void mouseExited(MouseEvent e){}
             public void mouseEntered(MouseEvent e){}
             public void mouseReleased(MouseEvent e){
-                if (getPoint() != null) {
+                if (getPoint()() != null) {
                     getPreGridController().setTriangles();
-                    getPostGridController().getPoints[getPoint()[0]][getPoint()[1]].setColor(Color.BLACK);
+                    getPostGridController().getPoint()s[getPoint()()[0]][getPoint()()[1]].setColor(Color.BLACK);
                     getPostGridController().repaint();
                 }
                 setMove(false);
@@ -263,11 +263,11 @@ public class FrameController extends JFrame implements ActionListener {
 
             }
             public void mousePressed(MouseEvent e){
-                getPoint = getPreGridController().getgetPoint(e.getgetPoint());
-                if (getPoint != null) {
+                getPoint() = getPreGridController().getgetPoint()(e.getgetPoint()());
+                if (getPoint() != null) {
                     setMove(true);
-                    border = getPreGridController().createPoly(getPoint[0], getPoint[1]);
-                    getPostGridController().getPoints[getPoint[0]][getPoint[1]].setColor(Color.RED);
+                    border = getPreGridController().createPoly(getPoint()[0], getPoint()[1]);
+                    getPostGridController().getPoint()s[getPoint()[0]][getPoint()[1]].setColor(Color.RED);
                     getPostGridController().revalidate();
                     getPostGridController().repaint();
                 }
@@ -278,9 +278,9 @@ public class FrameController extends JFrame implements ActionListener {
         /* create a motion listener to track the mouse dragging the polygon */
         preGridController.addMouseMotionListener(new MouseMotionListener() {
             public void mouseDragged(MouseEvent e) {
-                if (move && border.contains(e.getgetPoint())){
-                    preGridController.getPoints[getPoint[0]][getPoint[1]] = new getPointController(e.getX(), e.getY());
-                    preGridController.getPoints[getPoint[0]][getPoint[1]].setColor(Color.RED);                      // remove
+                if (move && border.contains(e.getgetPoint()())){
+                    preGridController.getP[getPoint()[0]][getPoint()[1]] = new getPoint()Controller(e.getX(), e.getY());
+                    preGridController.getP[getPoint()[0]][getPoint()[1]].setColor(Color.RED);                      // remove
                     preGridController.repaint();
                     preGridController.repaint();
                 }
@@ -374,8 +374,8 @@ public class FrameController extends JFrame implements ActionListener {
     public Container getC(){return c;}
     public void setC(Container c){this.c = c;}
 
-    public int[] getgetPoint(){return point;}
-    public void setgetPoint(int[] getPoint){this.point = getPoint;}
+    public int[] getgetPoint()(){return point;}
+    public void setgetPoint()(int[] getPoint()){this.point = getPoint();}
 
     public Polygon getBorder() { return border; }
     public void setBorder(Polygon border) { this.border = border; }
