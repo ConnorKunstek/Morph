@@ -271,7 +271,6 @@ public class GridController extends JPanel{
                     preview.start();
                 }
                 else{
-                    System.out.println(incrementAmt);
                     increments += incrementAmt;
                     for(int i = 0; i < preI.poly.length; i++){
                         for(int j = 0; j < preI.poly[0].length; j++){
