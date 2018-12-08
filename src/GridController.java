@@ -115,8 +115,8 @@ public class GridController extends JPanel{
      */
     public void initializePolygons(){
         poly = new PolygonController[size - 1][size - 1][2]; //eliminates borders
-        for(int i = 0; i < this.size - 1; i++) {
-            for (int j = 0; j < this.size - 1; j++) {
+        for(int i = 0; i < this.size; i++) {
+            for (int j = 0; j < this.size; j++) {
                 poly[i][j][0] = new PolygonController(p[i][j],p[i+1][j],p[i+1][j+1]);
                 poly[i][j][1] = new PolygonController(p[i][j],p[i][j+1],p[i+1][j+1]);
 
@@ -357,21 +357,20 @@ public class GridController extends JPanel{
         initializePolygons();
     }
 
-    public Polygon createPolygon(int x, int y){
+    public Polygon createPolygon(int xVal, int yVal){
         List<Double> xpoints = new ArrayList<>();
         List<Double> ypoints = new ArrayList<>();
 
         for (int i = 0; i < neighbors.length; i++){
-            x += neighbors[i][0];
-            y += neighbors[i][1];
-            if (!(x <= 1 || x >= size || y < 0 || y >= size)) {
-                xpoints.add(p[x][y].getModel().getX());
-                ypoints.add(p[x][y].getModel().getY());
+            xVal += neighbors[i][0];
+            yVal += neighbors[i][1];
+            if (!(xVal < 0 || xVal >= size || yVal < 0 || yVal >= size)) {
+                xpoints.add(p[xVal][yVal].getModel().getX());
+                ypoints.add(p[xVal][yVal].getModel().getY());
             }
         }
 
         int[][] holder = new int[2][xpoints.size()];
-
         holder[0] = new int[xpoints.size()];
         holder[1] = new int[ypoints.size()];
 
