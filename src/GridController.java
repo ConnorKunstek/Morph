@@ -352,7 +352,7 @@ public class GridController extends JPanel{
      * @Description:    changees the intensity of the image
      */
     public void changeIntensity(float intensity){
-        RescaleOp operator = new RescaleOp(intensity, 0, null);
+        RescaleOp operator = new RescaleOp(intensity/10, 0, null);
         image = operator.filter(original,null);
         repaint();
     }
