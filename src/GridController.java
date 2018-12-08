@@ -334,6 +334,7 @@ public class GridController extends JPanel{
     public boolean getImage(String imgPath){
         try {
             this.image = ImageIO.read(new File(imgPath));
+            this.original = this.image;
             this.removeAll();
             this.revalidate();
             this.repaint();
