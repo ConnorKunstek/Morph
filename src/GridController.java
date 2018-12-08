@@ -56,10 +56,10 @@ public class GridController extends JPanel{
     };
 
     /*
-     * @Function:       ()
-     * @Parameters:     Type:
+     * @Function:       constructor()
+     * @Parameters:     Type: int
      * @Returns:        NA
-     * @Description:
+     * @Description:    constructor for GridController
      */
     public GridController(int s){
         setGridSize(s);
@@ -69,10 +69,10 @@ public class GridController extends JPanel{
     }
 
     /*
-     * @Function:       ()
-     * @Parameters:     Type:
+     * @Function:       setGridSize()
+     * @Parameters:     Type: int
      * @Returns:        NA
-     * @Description:
+     * @Description:    sets the preferred size of the grid based on the value passed
      */
     public void setGridSize(int s){
         if(s == 5){
@@ -81,7 +81,7 @@ public class GridController extends JPanel{
         }
         else if(s == 20){
             this.setSize(s);
-            super.setPreferredSize(new Dimension(500,500));
+            super.setPreferredSize(new Dimension(475,500));
         }
         else{
             this.setSize(10);
@@ -91,15 +91,15 @@ public class GridController extends JPanel{
     }
 
     /*
-     * @Function:       ()
-     * @Parameters:     Type:
+     * @Function:       initializePoints()
+     * @Parameters:     Type: int
      * @Returns:        NA
-     * @Description:
+     * @Description:    creates the points across the grid
      */
     public void initializePoints(int margin){
         p = new PointController[this.size][this.size];
         for(int i = 0; i < this.size; i++){
-            for(int j = 0; j <this.size; j++){
+            for(int j = 0; j < this.size; j++){
               int x = i * margin + 5;
               int y = j * margin + 5;
               p[i][j] = new PointController(x,y);
@@ -108,15 +108,15 @@ public class GridController extends JPanel{
     }
 
     /*
-     * @Function:       ()
+     * @Function:       initilizePolygons()
      * @Parameters:     Type:
      * @Returns:        NA
-     * @Description:
+     * @Description:    creates private variables for polygons in the grid on startup
      */
     public void initializePolygons(){
         poly = new PolygonController[size - 1][size - 1][2]; //eliminates borders
-        for(int i = 0; i < this.size; i++) {
-            for (int j = 0; j < this.size; j++) {
+        for(int i = 0; i < this.size - 1; i++) {
+            for (int j = 0; j < this.size - 1; j++) {
                 poly[i][j][0] = new PolygonController(p[i][j],p[i+1][j],p[i+1][j+1]);
                 poly[i][j][1] = new PolygonController(p[i][j],p[i][j+1],p[i+1][j+1]);
 
@@ -125,10 +125,10 @@ public class GridController extends JPanel{
     }
 
     /*
-     * @Function:       ()
+     * @Function:       updatePolygons()
      * @Parameters:     Type:
      * @Returns:        NA
-     * @Description:
+     * @Description:    updates the current polygons in the grids from changes by the user
      */
     public void updatePolygons(){
         for(int i = 0; i < this.size - 1 ; i++) {
@@ -140,10 +140,10 @@ public class GridController extends JPanel{
     }
 
     /*
-     * @Function:       ()
-     * @Parameters:     Type:
+     * @Function:       setSize()
+     * @Parameters:     Type: int
      * @Returns:        NA
-     * @Description:
+     * @Description:    sets the current size of the grid
      */
     public void setSize(int size) {
         this.size = size;
@@ -151,10 +151,10 @@ public class GridController extends JPanel{
 
 
     /*
-     * @Function:       ()
+     * @Function:       paints image()
      * @Parameters:     Type:
      * @Returns:        NA
-     * @Description:
+     * @Description:    paint component for drawing points and lines or images
      */
     public void paintComponent(Graphics g){
         super.paintComponent(g);
@@ -229,8 +229,8 @@ public class GridController extends JPanel{
     }
 
     /*
-     * @Function:       ()
-     * @Parameters:     Type:
+     * @Function:       animateSteo()
+     * @Parameters:     Type:   PointController Array
      * @Returns:        NA
      * @Description:
      */
@@ -255,7 +255,13 @@ public class GridController extends JPanel{
         }
         return done;
     }
-
+    /*
+     * @Function:       createAnimation()
+     * @Parameters:     Type: GridController (this)
+     * @Returns:        NA
+     * @Description:    Creates the warps to generate between each pre and post images from triangles generated on
+     * the board
+     */
     public void createAnimation(GridController preI, GridController postI, boolean export){
         ActionListener s = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -301,10 +307,10 @@ public class GridController extends JPanel{
     }
 
     /*
-     * @Function:       ()
-     * @Parameters:     Type:
+     * @Function:       setImages()
+     * @Parameters:     Type: String
      * @Returns:        NA
-     * @Description:
+     * @Description:    sets the pre and post images when loading custom paths
      */
     public void setImages(String imgPath1, String imgPath2){
         try{
@@ -320,10 +326,10 @@ public class GridController extends JPanel{
     }
 
     /*
-     * @Function:       ()
-     * @Parameters:     Type:
-     * @Returns:        NA
-     * @Description:
+     * @Function:       getImage()
+     * @Parameters:     Type: String
+     * @Returns:        boolean
+     * @Description:    checks and sets the current image buffer to chosen file
      */
     public boolean getImage(String imgPath){
         try {
@@ -339,17 +345,23 @@ public class GridController extends JPanel{
     }
 
     /*
-     * @Function:       ()
-     * @Parameters:     Type:
+     * @Function:       changeIntensity()
+     * @Parameters:     Type: float
      * @Returns:        NA
-     * @Description:
+     * @Description:    changees the intensity of the image
      */
     public void changeIntensity(float intensity){
         RescaleOp operator = new RescaleOp(intensity, 0, null);
-        this.image = operator.filter(this.original,null);
+        image = operator.filter(original,null);
         repaint();
     }
 
+    /*
+     * @Function:       resetGrid()
+     * @Parameters:     NA
+     * @Returns:        NA
+     * @Description:    resets the grid
+     */
     public void resetGrid(){
         int margin = 500/this.size;
         setGridSize(this.size);
@@ -358,6 +370,13 @@ public class GridController extends JPanel{
     }
 
     public Polygon createPolygon(int xVal, int yVal){
+    /*
+     * @Function:       createPolygon()
+     * @Parameters:     Type: int
+     * @Returns:        Type: Polygon
+     * @Description:    Creates temporary border for current selected point
+     */
+    public Polygon createPolygon(int x, int y){
         List<Double> xpoints = new ArrayList<>();
         List<Double> ypoints = new ArrayList<>();
 
