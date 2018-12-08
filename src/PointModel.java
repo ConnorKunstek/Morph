@@ -50,7 +50,7 @@ public class PointModel extends Ellipse2D.Double{
     public void setY(double y) {
         this.y = y;
     }
-    
+
     /**
      * @Function:       setColor()
      * @Parameters:     Type: Color
