@@ -162,8 +162,8 @@ public class GridController extends JPanel{
         if(pre != null && post != null){
             try{
                 g2.setComposite(this.Alpha1);
-                g2.setComposite(this.Alpha2);
                 g2.drawImage(pre, 0,0,null);
+                g2.setComposite(this.Alpha2);
                 g2.drawImage(post, 0,0,null);
             }catch( IllegalAccessError e){
                 System.out.println("ERROR: " + e);
@@ -173,6 +173,8 @@ public class GridController extends JPanel{
             g.drawImage(image,0,0,null);
             for(int i = 0; i < this.size; i++) {
                 for (int j = 0; j < this.size; j++) {
+
+                    //draws lines
                     if(j+1 < this.size){
                         g2.setColor(Color.BLACK);
                         g2.draw(new Line2D.Double(
@@ -201,7 +203,7 @@ public class GridController extends JPanel{
                                 )
                         );
                     }
-
+                    // files point
                     g2.setColor(p[i][j].getModel().getColor());
                     g2.fill(p[i][j].getModel());
                 }
