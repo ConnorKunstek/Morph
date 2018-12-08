@@ -215,7 +215,7 @@ public class GridController extends JPanel{
      * @Function:       getCurrentPoint()
      * @Parameters:     Type: Point
      * @Returns:        int array
-     * @Description:    Gets current point that contains the point inside private variable p
+     * @Description:    Gets current point that contains the point inside private variable p 
      */
     public int[] getCurrentPoint(Point cp){
         for(int i = 1; i < this.size - 1; i++){
