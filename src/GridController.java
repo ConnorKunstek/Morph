@@ -268,8 +268,8 @@ public class GridController extends JPanel{
                         for(int j = 0; j < preI.poly[0].length; j++){
                             MorptT.warpTriangle(preI.image, pre, preI.poly[i][j][0].getModel(), poly[i][j][0].getModel(),null,null);
                             MorptT.warpTriangle(preI.image, pre, preI.poly[i][j][1].getModel(), poly[i][j][1].getModel(),null,null);
-                            MorptT.warpTriangle(postI.image, post, preI.poly[i][j][0].getModel(), poly[i][j][0].getModel(),null,null);
-                            MorptT.warpTriangle(postI.image, post, preI.poly[i][j][1].getModel(), poly[i][j][1].getModel(),null,null);
+                            MorptT.warpTriangle(postI.image, post, postI.poly[i][j][0].getModel(), poly[i][j][0].getModel(),null,null);
+                            MorptT.warpTriangle(postI.image, post, postI.poly[i][j][1].getModel(), poly[i][j][1].getModel(),null,null);
 
                             pre.createGraphics();
                             if(increments >= 1){
