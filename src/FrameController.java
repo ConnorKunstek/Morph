@@ -235,7 +235,7 @@ public class FrameController extends JFrame implements ActionListener {
         getMorphGridController().setImages(getPreFileChooser().getSelectedFile().getPath(), getPostFileChooser().getSelectedFile().getPath());
         System.out.println(getSettingsController().getFrames());
         System.out.println(1/getSettingsController().getFrames());
-        getMorphGridController().createAnimation(getPreGridController(), getPostGridController(), 1/getSettingsController().getFrames(), false);
+        getMorphGridController().createAnimation(getPreGridController(), getPostGridController(), 1.0/getSettingsController().getFrames(), false);
         animateFrame.add(getMorphGridController());
         animateFrame.setSize(getMorphGridController().pre.getWidth() + 20, getMorphGridController().pre.getHeight() + 20);
         animateFrame.setVisible(true);
