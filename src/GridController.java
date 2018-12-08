@@ -233,7 +233,7 @@ public class GridController extends JPanel{
      * @Function:       animateSteo()
      * @Parameters:     Type:   PointController Array
      * @Returns:        NA
-     * @Description:    
+     * @Description:
      */
     public boolean animationStep(PointController bottom[][], PointController top[][], double time){
         boolean done = false;

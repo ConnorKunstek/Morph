@@ -11,7 +11,7 @@ public class PointController {
 
 
     /**
-     * @Function: ()
+     * @Function: constructor()
      * @Parameters: Type:
      * @Returns:
      * @Description:

@@ -85,11 +85,26 @@ public class PointModel extends Ellipse2D.Double{
         setY(y);
     }
 
+    /**
+     * @Function:       getX()
+     * @Parameters:     Type: double
+     * @Returns:        NA
+     * @Description:    overrides the traditional getX() function used in Point sub methods
+     *
+     */
     @Override
     public double getX() {
         return x;
     }
 
+
+    /**
+     * @Function:       getY()
+     * @Parameters:     Type: double
+     * @Returns:        NA
+     * @Description:    overrides the traditional getY() function used in Point sub methods
+     *
+     */
     @Override
     public double getY() {
         return y;
