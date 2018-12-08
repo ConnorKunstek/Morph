@@ -264,7 +264,7 @@ public class GridController extends JPanel{
      * @Description:    Creates the warps to generate between each pre and post images from triangles generated on
      * the board
      */
-    public void createAnimation(GridController preI, GridController postI, double incrementAmt, boolean export){
+    public void createAnimation(GridController preI, GridController postI, double incrementAmt){
         ActionListener s = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if(animationStep(preI.p, postI.p, increments)){
@@ -298,9 +298,6 @@ public class GridController extends JPanel{
                 repaint();
                 f++;
 
-                if(export){
-
-                }
             }
         };
 
