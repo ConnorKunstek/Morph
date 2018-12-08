@@ -2,13 +2,16 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
+import java.util.HashMap;
+import java.util.Hashtable;
 
 public class SettingsController extends JPanel{
 
     private JButton previewBut, startBut;
-    private JSlider framesSli, secondsSli;
-    private JLabel framesLabel, secondsLabel, totalFramesLabel, empty;
+    private JSlider framesSli, secondsSli, preSlider, postSlider;
+    private JLabel framesLabel, secondsLabel, totalFramesLabel, empty1, empty2, empty3;
     private int seconds, frames, frameNumber, totalFrames;
+    private double preInt, postInt;
     private boolean previewFlag;
 
 
@@ -56,18 +59,50 @@ public class SettingsController extends JPanel{
             }
         });
 
+        Hashtable<Integer, JLabel> labelTable = new Hashtable<Integer, JLabel>();
 
-        this.setLayout(new GridLayout(2,4, 20,10));
+        labelTable.put(5, new JLabel("0.5"));
+        labelTable.put(6, new JLabel("0.6"));
+        labelTable.put(7, new JLabel("0.7"));
+        labelTable.put(8, new JLabel("0.8"));
+        labelTable.put(9, new JLabel("0.9"));
+        labelTable.put(10, new JLabel("1.0"));
+        labelTable.put(11, new JLabel("1.1"));
+        labelTable.put(12, new JLabel("1.2"));
+        labelTable.put(13, new JLabel("1.3"));
+        labelTable.put(14, new JLabel("1.4"));
+        labelTable.put(15, new JLabel("1.5"));
+
+        setPreSlider(new JSlider(SwingConstants.HORIZONTAL,5,15,10));
+        getPreSlider().setLabelTable(labelTable);
+        getPreSlider().setMajorTickSpacing(1);
+        getPreSlider().setPaintTicks(true);
+        getPreSlider().setPaintLabels(true);
+        getPreSlider().setSnapToTicks(true);
+        setPreInt(getPreSlider().getValue());
+
+        setPostSlider(new JSlider(SwingConstants.HORIZONTAL,5,15,10));
+        getPostSlider().setLabelTable(labelTable);
+        getPostSlider().setMajorTickSpacing(1);
+        getPostSlider().setPaintTicks(true);
+        getPostSlider().setPaintLabels(true);
+        getPostSlider().setSnapToTicks(true);
+        setPostInt(getPostSlider().getValue());
+
+        this.setLayout(new GridLayout(3,3, 20,10));
+
+        this.add(getPreSlider());
+        this.add(previewBut);
+        this.add(getPostSlider());
 
         this.add(framesLabel);
         this.add(totalFramesLabel);
         this.add(secondsLabel);
-        this.add(previewBut);
 
         this.add(framesSli);
-        this.add(empty);
-        this.add(secondsSli);
         this.add(startBut);
+        this.add(secondsSli);
+
 
         this.setSize(1000, 200);
         this.setVisible(true);
@@ -130,12 +165,10 @@ public class SettingsController extends JPanel{
         this.totalFramesLabel = totalFramesLabel;
     }
 
-    public JLabel getEmpty() {
-        return empty;
-    }
-
     public void setEmpty(JLabel empty) {
-        this.empty = empty;
+        this.empty1 = empty;
+        this.empty2 = new JLabel();
+        this.empty3 = new JLabel();
     }
 
     public int getSeconds() {
@@ -176,5 +209,37 @@ public class SettingsController extends JPanel{
 
     public void setPreviewFlag(boolean previewFlag) {
         this.previewFlag = previewFlag;
+    }
+
+    public JSlider getPreSlider() {
+        return preSlider;
+    }
+
+    public void setPreSlider(JSlider preSlider) {
+        this.preSlider = preSlider;
+    }
+
+    public JSlider getPostSlider() {
+        return postSlider;
+    }
+
+    public void setPostSlider(JSlider postSlider) {
+        this.postSlider = postSlider;
+    }
+
+    public double getPreInt() {
+        return preInt;
+    }
+
+    public void setPreInt(double preInt) {
+        this.preInt = preInt;
+    }
+
+    public double getPostInt() {
+        return postInt;
+    }
+
+    public void setPostInt(double postInt) {
+        this.postInt = postInt;
     }
 }

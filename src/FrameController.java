@@ -113,6 +113,20 @@ public class FrameController extends JFrame implements ActionListener {
         getSettingsController().setMinimumSize(new Dimension(1000, 200));
         getSettingsController().setMaximumSize(new Dimension(1000, 200));
 
+        getSettingsController().getPreSlider().addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent e) {
+                settingsController.setPreInt(settingsController.getPreSlider().getValue());
+                getPreGridController().changeIntensity((float)settingsController.getPreInt());
+            }
+        });
+
+        getSettingsController().getPostSlider().addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent e) {
+                settingsController.setPostInt(settingsController.getPostSlider().getValue());
+                getPostGridController().changeIntensity((float)settingsController.getPostInt());
+            }
+        });
+
         d.gridx = 0;
         d.gridy = 1;
         d.insets = new Insets(10, 20, 20, 20);
@@ -134,7 +148,7 @@ public class FrameController extends JFrame implements ActionListener {
         setPreFileChooser(new JFileChooser());
         setPostFileChooser(new JFileChooser());
 
-        setFileFilter(new FileNameExtensionFilter("JPEG/JPG Images", "jpg", "jpeg"));
+        setFileFilter(new FileNameExtensionFilter("JPG", "jpeg", "jpg"));
         getPreFileChooser().setFileFilter(getFileFilter());
         getPostFileChooser().setFileFilter(getFileFilter());
 
@@ -142,7 +156,6 @@ public class FrameController extends JFrame implements ActionListener {
         setMenu(new JMenu("Options"));
 
         setChoosePre(new JMenuItem("Select Pre-Image"));
-        getChoosePre().setAccelerator(KeyStroke.getKeyStroke('1', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
         getChoosePre().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 int temp = getPreFileChooser().showOpenDialog(null);
@@ -153,7 +166,6 @@ public class FrameController extends JFrame implements ActionListener {
         });
 
         setChoosePost(new JMenuItem("Select Post-Image"));
-        getChoosePost().setAccelerator(KeyStroke.getKeyStroke('2', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
         getChoosePost().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 int returnVal = getPostFileChooser().showOpenDialog(null);
@@ -201,7 +213,6 @@ public class FrameController extends JFrame implements ActionListener {
                 init(20);
             }
         });
-
 
         getMenu().add(getChoosePre());
         getMenu().add(getChoosePost());
@@ -267,6 +278,7 @@ public class FrameController extends JFrame implements ActionListener {
                     getPostGridController().repaint();
                 }
             }
+
             public void mouseMoved(MouseEvent e) { }
         });
     }
