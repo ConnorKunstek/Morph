@@ -46,7 +46,6 @@ public class GridController extends JPanel{
     private double increments;
     private int f = 0;
     private int size;
-    //border radius used to determine if point is inside the grid
     private int[][] neighbors ={
             {-1,-1},
             {1,0},
@@ -335,7 +334,6 @@ public class GridController extends JPanel{
     public boolean getImage(String imgPath){
         try {
             this.image = ImageIO.read(new File(imgPath));
-            this.original = this.image;
             this.removeAll();
             this.revalidate();
             this.repaint();
@@ -377,21 +375,20 @@ public class GridController extends JPanel{
      * @Returns:        Type: Polygon
      * @Description:    Creates temporary border for current selected point
      */
-    public Polygon createPolygon(int x, int y){
+    public Polygon createPolygon(int xVal, int yVal){
         List<Double> xpoints = new ArrayList<>();
         List<Double> ypoints = new ArrayList<>();
 
         for (int i = 0; i < neighbors.length; i++){
-            x += neighbors[i][0];
-            y += neighbors[i][1];
-            if (!(x <= 1 || x >= size || y < 0 || y >= size)) {
-                xpoints.add(p[x][y].getModel().getX());
-                ypoints.add(p[x][y].getModel().getY());
+            xVal += neighbors[i][0];
+            yVal += neighbors[i][1];
+            if (!(xVal < 0 || xVal >= size || yVal < 0 || yVal >= size)) {
+                xpoints.add(p[xVal][yVal].getModel().getX());
+                ypoints.add(p[xVal][yVal].getModel().getY());
             }
         }
 
         int[][] holder = new int[2][xpoints.size()];
-
         holder[0] = new int[xpoints.size()];
         holder[1] = new int[ypoints.size()];
 

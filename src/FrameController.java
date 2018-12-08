@@ -230,13 +230,10 @@ public class FrameController extends JFrame implements ActionListener {
     }
 
     public void start(){
+        JFrame animateFrame = new JFrame("Morphing");
         setMorphGridController(new GridController(getDim()));
-
         getMorphGridController().setImages(getPreFileChooser().getSelectedFile().getPath(), getPostFileChooser().getSelectedFile().getPath());
         getMorphGridController().createAnimation(getPreGridController(), getPostGridController(), false);
-
-        JFrame animateFrame = new JFrame("Morphing");
-
         animateFrame.add(getMorphGridController());
         animateFrame.setSize(getMorphGridController().pre.getWidth() + 20, getMorphGridController().pre.getHeight() + 20);
         animateFrame.setVisible(true);
@@ -248,13 +245,13 @@ public class FrameController extends JFrame implements ActionListener {
             public void mouseExited(MouseEvent e){}
             public void mouseEntered(MouseEvent e){}
             public void mouseReleased(MouseEvent e){
+                setMove(false);
+                setPoint(null);
                 if(getPoint() != null) {
                     a.updatePolygons();
                     b.p[getPoint()[0]][getPoint()[1]].getModel().setColor(Color.BLACK);
                     b.repaint();
                 }
-                setMove(false);
-                setPoint(null);
             }
 
             public void mousePressed(MouseEvent e){
@@ -272,8 +269,6 @@ public class FrameController extends JFrame implements ActionListener {
 
         a.addMouseMotionListener(new MouseMotionListener() {
             public void mouseDragged(MouseEvent e) {
-                System.out.println("isMoving: " +isMove() );
-                System.out.println("border: " +getBorder().contains(e.getPoint()));
                 if(isMove() && getBorder().contains(e.getPoint())){
                     a.p[getPoint()[0]][getPoint()[1]] = new PointController(e.getX(), e.getY());
                     b.p[getPoint()[0]][getPoint()[1]].getModel().setColor(Color.RED);
