@@ -33,8 +33,8 @@ public class GridController extends JPanel{
     public BufferedImage original = null;
     public BufferedImage pre = null;
     public BufferedImage post = null;
-    public PolygonController poly[][][];               //triangles
-    public PointController p[][];                   //points
+    public PolygonController poly[][][];
+    public PointController p[][];
     private AlphaComposite Alpha1;
     private AlphaComposite Alpha2;
 
@@ -367,6 +367,7 @@ public class GridController extends JPanel{
         setGridSize(this.size);
         initializePoints(margin);
         initializePolygons();
+        repaint();
     }
 
     /*

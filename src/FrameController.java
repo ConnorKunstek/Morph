@@ -43,15 +43,17 @@ public class FrameController extends JFrame implements ActionListener {
     private SettingsController settingsController;
 
 
-//    private float li = 1, ri = 1;
-
+    /**
+     * @Class: GridController()
+     * @Description: Creates grid for the application
+     */
     public FrameController(int dim){
 
         super("Morph");
         this.addWindowListener(new WindowAdapter(){public void windowClosing(WindowEvent e){System.exit(0);}});
 
 
-        this.setSettingsController(new SettingsController(false));
+        this.setSettingsController(new SettingsController());
         this.setC(new Container());
 
         c = getContentPane();
@@ -61,7 +63,12 @@ public class FrameController extends JFrame implements ActionListener {
         init(dim);
     }
 
-
+    /*
+     * @Function:       init()
+     * @Parameters:     Type: int (this)
+     * @Returns:        NA
+     * @Description:    Initializes all the components on the frame that are subject to change
+     */
     public void init(int dim){
 
         this.setDim(dim);
@@ -144,6 +151,12 @@ public class FrameController extends JFrame implements ActionListener {
         listeners(getPostGridController(), getPreGridController());
     }
 
+    /*
+     * @Function:       menu()
+     * @Parameters:     NA
+     * @Returns:        NA
+     * @Description:    creates and adds the menu that allows for image and grid size selection
+     */
     private void menu(){
 
         setPreFileChooser(new JFileChooser());
@@ -181,12 +194,12 @@ public class FrameController extends JFrame implements ActionListener {
                 start();
             }
         });
-
-        getSettingsController().getPreviewBut().addActionListener(new ActionListener() {
+        getSettingsController().getResetBut().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                preview();
+                reset();
             }
         });
+
 
         set_5(new JMenuItem("5x5"));
 
@@ -225,10 +238,12 @@ public class FrameController extends JFrame implements ActionListener {
         super.setJMenuBar(getJMenuBar());
     }
 
-    public void preview(){
-
-    }
-
+    /*
+     * @Function:       start()
+     * @Parameters:     NA
+     * @Returns:        NA
+     * @Description:    Creates a separate window to run the morph in
+     */
     public void start(){
         JFrame animateFrame = new JFrame("Morphing");
         setMorphGridController(new GridController(getDim()));
@@ -239,6 +254,23 @@ public class FrameController extends JFrame implements ActionListener {
         animateFrame.setVisible(true);
     }
 
+    /*
+     * @Function:       reset()
+     * @Parameters:     NA
+     * @Returns:        NA
+     * @Description:    resets freame
+     */
+    public void reset(){
+        getPreGridController().resetGrid();
+        getPostGridController().resetGrid();
+    }
+
+    /*
+     * @Function:       start()
+     * @Parameters:     Type: GridController Type: GridController
+     * @Returns:        NA
+     * @Description:    Creates the click and motion listeners
+     */
     public void listeners(GridController a, GridController b) {
 
         a.addMouseListener(new MouseListener(){
@@ -283,17 +315,16 @@ public class FrameController extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent e){}
 
+
+    ////////////////////////////////////////////GETTERS AND SETTERS////////////////////////////////////////////////////
+
     public GridController getPreGridController() {return preGridController;}
     public void setPreGridController(GridController preGridController) { this.preGridController = preGridController; }
 
-    public GridController getPostGridController() {
-        return postGridController;
-    }
+    public GridController getPostGridController() { return postGridController; }
     public void setPostGridController(GridController postGridController) { this.postGridController = postGridController; }
 
-    public GridController getMorphGridController() {
-        return morphGridController;
-    }
+    public GridController getMorphGridController() { return morphGridController; }
     public void setMorphGridController(GridController morphGridController) { this.morphGridController = morphGridController; }
 
     public SettingsController getSettingsController() { return settingsController; }
