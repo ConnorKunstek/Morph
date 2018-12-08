@@ -47,12 +47,12 @@ public class GridController extends JPanel{
     private int f = 0;
     private int size;
     private int[][] neighbors ={
-            {-1,-1},                //top-right
-            {-1,0},                 //left
-            {0,-1},                 //top
-            {1,0},                  //right
-            {0,1},                  //bottom
-            {1,1}                   //bottom-right
+            {-1,-1},
+            {1,0},
+            {1,1},
+            {0,1},
+            {-1,0},
+            {-1,-1}
     };
 
     /*
@@ -366,7 +366,7 @@ public class GridController extends JPanel{
             y += neighbors[i][1];
             if (!(x <= 1 || x >= size || y < 0 || y >= size)) {
                 xpoints.add(p[x][y].getModel().getX());
-                ypoints.add(p[x][y].getModel().getX());
+                ypoints.add(p[x][y].getModel().getY());
             }
         }
 

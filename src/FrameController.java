@@ -260,6 +260,8 @@ public class FrameController extends JFrame implements ActionListener {
 
         getPreGridController().addMouseMotionListener(new MouseMotionListener() {
             public void mouseDragged(MouseEvent e) {
+                System.out.println("isMoving: " +isMove() );
+                System.out.println("border: " +getBorder().contains(e.getPoint()));
                 if(isMove() && getBorder().contains(e.getPoint())){
                     getPreGridController().p[getPoint()[0]][getPoint()[1]] = new PointController(e.getX(), e.getY());
                     getPostGridController().p[getPoint()[0]][getPoint()[1]].getModel().setColor(Color.RED);
