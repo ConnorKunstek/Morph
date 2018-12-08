@@ -212,10 +212,10 @@ public class GridController extends JPanel{
     }
 
     /*
-     * @Function:       ()
-     * @Parameters:     Type:
-     * @Returns:        NA
-     * @Description:
+     * @Function:       getCurrentPoint()
+     * @Parameters:     Type: Point
+     * @Returns:        int array
+     * @Description:    Gets current point that contains the point inside private variable p
      */
     public int[] getCurrentPoint(Point cp){
         for(int i = 1; i < this.size - 1; i++){
@@ -264,7 +264,7 @@ public class GridController extends JPanel{
      * @Description:    Creates the warps to generate between each pre and post images from triangles generated on
      * the board
      */
-    public void createAnimation(GridController preI, GridController postI, double incrementAmt, boolean export){
+    public void createAnimation(GridController preI, GridController postI, double incrementAmt){
         ActionListener s = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if(animationStep(preI.p, postI.p, increments)){
@@ -298,9 +298,6 @@ public class GridController extends JPanel{
                 repaint();
                 f++;
 
-                if(export){
-
-                }
             }
         };
 
