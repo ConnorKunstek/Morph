@@ -140,7 +140,8 @@ public class FrameController extends JFrame implements ActionListener {
         this.setSize(1060, 760);
         this.setVisible(true);
 
-        createMouseListeners();
+        listeners(getPreGridController(), getPostGridController());
+        listeners(getPostGridController(), getPreGridController());
     }
 
     private void menu(){
@@ -241,43 +242,43 @@ public class FrameController extends JFrame implements ActionListener {
         animateFrame.setVisible(true);
     }
 
-    public void createMouseListeners() {
+    public void listeners(GridController a, GridController b) {
 
-        getPreGridController().addMouseListener(new MouseListener(){
+        a.addMouseListener(new MouseListener(){
             public void mouseExited(MouseEvent e){}
             public void mouseEntered(MouseEvent e){}
             public void mouseReleased(MouseEvent e){
                 if(getPoint() != null) {
-                    getPreGridController().updatePolygons();
-                    getPostGridController().p[getPoint()[0]][getPoint()[1]].getModel().setColor(Color.BLACK);
-                    getPostGridController().repaint();
+                    a.updatePolygons();
+                    b.p[getPoint()[0]][getPoint()[1]].getModel().setColor(Color.BLACK);
+                    b.repaint();
                 }
                 setMove(false);
                 setPoint(null);
             }
 
             public void mousePressed(MouseEvent e){
-                setPoint(getPreGridController().getCurrentPoint(e.getPoint()));
+                setPoint(a.getCurrentPoint(e.getPoint()));
                 if(getPoint() != null) {
                     setMove(true);
-                    setBorder(getPreGridController().createPolygon(getPoint()[0], getPoint()[1]));
-                    getPostGridController().p[getPoint()[0]][getPoint()[1]].getModel().setColor(Color.RED);
-                    getPostGridController().revalidate();
-                    getPostGridController().repaint();
+                    setBorder(a.createPolygon(getPoint()[0], getPoint()[1]));
+                    b.p[getPoint()[0]][getPoint()[1]].getModel().setColor(Color.RED);
+                    b.revalidate();
+                    b.repaint();
                 }
             }
             public void mouseClicked(MouseEvent e){}
         });
 
-        getPreGridController().addMouseMotionListener(new MouseMotionListener() {
+        a.addMouseMotionListener(new MouseMotionListener() {
             public void mouseDragged(MouseEvent e) {
                 System.out.println("isMoving: " +isMove() );
                 System.out.println("border: " +getBorder().contains(e.getPoint()));
                 if(isMove() && getBorder().contains(e.getPoint())){
-                    getPreGridController().p[getPoint()[0]][getPoint()[1]] = new PointController(e.getX(), e.getY());
-                    getPostGridController().p[getPoint()[0]][getPoint()[1]].getModel().setColor(Color.RED);
-                    getPreGridController().repaint();
-                    getPostGridController().repaint();
+                    a.p[getPoint()[0]][getPoint()[1]] = new PointController(e.getX(), e.getY());
+                    b.p[getPoint()[0]][getPoint()[1]].getModel().setColor(Color.RED);
+                    a.repaint();
+                    b.repaint();
                 }
             }
 
