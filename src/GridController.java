@@ -161,7 +161,7 @@ public class GridController extends JPanel{
         Graphics2D g2 = (Graphics2D)g;
         if(pre != null && post != null){
             try{
-                g2.setComposite(this.Alpha1);
+                g2.setComposite(Alpha1);
                 g2.drawImage(pre, 0,0,null);
                 g2.setComposite(this.Alpha2);
                 g2.drawImage(post, 0,0,null);
