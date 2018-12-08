@@ -2,45 +2,56 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
-import java.util.HashMap;
 import java.util.Hashtable;
 
 public class SettingsController extends JPanel{
 
-    private JButton previewBut, startBut;
+    private JButton startBut, resetBut;
     private JSlider framesSli, secondsSli, preSlider, postSlider;
-    private JLabel framesLabel, secondsLabel, totalFramesLabel, empty1, empty2, empty3;
-    private int seconds, frames, frameNumber, totalFrames;
+    private JLabel framesLabel, secondsLabel, totalFramesLabel, empty;
+    private int seconds, frames, totalFrames;
     private double preInt, postInt;
-    private boolean previewFlag;
 
 
-    public SettingsController(boolean previewFlag){
+    /**
+     * @Class:          SettingsController()
+     * @Description:    Creates settings panel at bottom of frame
+     *                  Used for changing intensities, frames, seconds, and starting
+     */
+
+    public SettingsController(){
         super();
 
-        setPreviewBut(new JButton("Preview"));
+        //start button
         setStartBut(new JButton("Start"));
+        setResetBut(new JButton("Reset"));
+
+        //frames slider
         setFramesSli(new JSlider(SwingConstants.HORIZONTAL,30,120,30));
         getFramesSli().setMinorTickSpacing(10);
         getFramesSli().setMajorTickSpacing(30);
         getFramesSli().setPaintTicks(true);
         getFramesSli().setPaintLabels(true);
         getFramesSli().setSnapToTicks(true);
+
+        //seconds slider
         setSecondsSli(new JSlider(SwingConstants.HORIZONTAL,0,5,2));
         getSecondsSli().setMajorTickSpacing(1);
         getSecondsSli().setPaintTicks(true);
         getSecondsSli().setPaintLabels(true);
         getSecondsSli().setSnapToTicks(true);
+
+        //values
         setSeconds(getSecondsSli().getValue());  // seconds = 2
         setFrames(getFramesSli().getValue()); // frames = 30
         setTotalFrames(getFrames() / getSeconds());
 
+        //labels
         setSecondsLabel(new JLabel("Seconds: " + getSeconds()));
         setFramesLabel(new JLabel("Frames: " + getFrames()));
         setTotalFramesLabel(new JLabel("Frames Per Second (FPS): " + getTotalFrames()));
-        setEmpty(new JLabel());
 
-
+        //slider listener
         getSecondsSli().addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
                 setSeconds(getSecondsSli().getValue());
@@ -54,6 +65,7 @@ public class SettingsController extends JPanel{
             }
         });
 
+        //slider listener
         getFramesSli().addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
                 getFramesLabel().setText("Frames: " + getFramesSli().getValue());
@@ -63,7 +75,8 @@ public class SettingsController extends JPanel{
             }
         });
 
-        Hashtable<Integer, JLabel> labelTable = new Hashtable<Integer, JLabel>();
+        //in order to allow JSlider ticks to disple decimals
+        Hashtable<Integer, JLabel> labelTable = new Hashtable<>();
 
         labelTable.put(5, new JLabel("0.5"));
         labelTable.put(6, new JLabel("0.6"));
@@ -77,6 +90,7 @@ public class SettingsController extends JPanel{
         labelTable.put(14, new JLabel("1.4"));
         labelTable.put(15, new JLabel("1.5"));
 
+        //Pre image intensity slider
         setPreSlider(new JSlider(SwingConstants.HORIZONTAL,5,15,10));
         getPreSlider().setLabelTable(labelTable);
         getPreSlider().setMajorTickSpacing(1);
@@ -85,6 +99,7 @@ public class SettingsController extends JPanel{
         getPreSlider().setSnapToTicks(true);
         setPreInt(getPreSlider().getValue());
 
+        //post image intensity slider
         setPostSlider(new JSlider(SwingConstants.HORIZONTAL,5,15,10));
         getPostSlider().setLabelTable(labelTable);
         getPostSlider().setMajorTickSpacing(1);
@@ -93,157 +108,67 @@ public class SettingsController extends JPanel{
         getPostSlider().setSnapToTicks(true);
         setPostInt(getPostSlider().getValue());
 
+        //layout
         this.setLayout(new GridLayout(3,3, 20,10));
 
         this.add(getPreSlider());
-        this.add(previewBut);
+        this.add(getResetBut());
         this.add(getPostSlider());
 
-        this.add(framesLabel);
-        this.add(totalFramesLabel);
-        this.add(secondsLabel);
+        this.add(getFramesLabel());
+        this.add(getTotalFramesLabel());
+        this.add(getSecondsLabel());
 
-        this.add(framesSli);
-        this.add(startBut);
-        this.add(secondsSli);
-
+        this.add(getFramesSli());
+        this.add(getStartBut());
+        this.add(getSecondsSli());
 
         this.setSize(1000, 200);
         this.setVisible(true);
 
     }
 
-    public JButton getPreviewBut() {
-        return previewBut;
-    }
+    ////////////////////////////////////////////GETTERS AND SETTERS////////////////////////////////////////////////////
 
-    public void setPreviewBut(JButton previewBut) {
-        this.previewBut = previewBut;
-    }
+    public JButton getStartBut() { return startBut; }
+    public void setStartBut(JButton startBut) { this.startBut = startBut; }
 
-    public JButton getStartBut() {
-        return startBut;
-    }
+    public JSlider getFramesSli() {return framesSli; }
+    public void setFramesSli(JSlider framesSli) { this.framesSli = framesSli; }
 
-    public void setStartBut(JButton startBut) {
-        this.startBut = startBut;
-    }
+    public JSlider getSecondsSli() { return secondsSli; }
+    public void setSecondsSli(JSlider secondsSli) { this.secondsSli = secondsSli; }
 
-    public JSlider getFramesSli() {
-        return framesSli;
-    }
+    public JLabel getFramesLabel() {return framesLabel; }
+    public void setFramesLabel(JLabel framesLabel) { this.framesLabel = framesLabel; }
 
-    public void setFramesSli(JSlider framesSli) {
-        this.framesSli = framesSli;
-    }
+    public JLabel getSecondsLabel() { return secondsLabel; }
+    public void setSecondsLabel(JLabel secondsLabel) { this.secondsLabel = secondsLabel; }
 
-    public JSlider getSecondsSli() {
-        return secondsSli;
-    }
+    public JLabel getTotalFramesLabel() { return totalFramesLabel; }
+    public void setTotalFramesLabel(JLabel totalFramesLabel) { this.totalFramesLabel = totalFramesLabel; }
 
-    public void setSecondsSli(JSlider secondsSli) {
-        this.secondsSli = secondsSli;
-    }
+    public int getSeconds() { return seconds; }
+    public void setSeconds(int seconds) { this.seconds = seconds; }
 
-    public JLabel getFramesLabel() {
-        return framesLabel;
-    }
+    public int getFrames() { return frames; }
+    public void setFrames(int frames) { this.frames = frames; }
 
-    public void setFramesLabel(JLabel framesLabel) {
-        this.framesLabel = framesLabel;
-    }
+    public int getTotalFrames() { return totalFrames; }
+    public void setTotalFrames(int totalFrames) { this.totalFrames = totalFrames; }
 
-    public JLabel getSecondsLabel() {
-        return secondsLabel;
-    }
+    public JSlider getPreSlider() { return preSlider; }
+    public void setPreSlider(JSlider preSlider) { this.preSlider = preSlider; }
 
-    public void setSecondsLabel(JLabel secondsLabel) {
-        this.secondsLabel = secondsLabel;
-    }
+    public JSlider getPostSlider() { return postSlider; }
+    public void setPostSlider(JSlider postSlider) { this.postSlider = postSlider; }
 
-    public JLabel getTotalFramesLabel() {
-        return totalFramesLabel;
-    }
+    public double getPreInt() { return preInt; }
+    public void setPreInt(double preInt) { this.preInt = preInt; }
 
-    public void setTotalFramesLabel(JLabel totalFramesLabel) {
-        this.totalFramesLabel = totalFramesLabel;
-    }
+    public double getPostInt() { return postInt; }
+    public void setPostInt(double postInt) { this.postInt = postInt; }
 
-    public void setEmpty(JLabel empty) {
-        this.empty1 = empty;
-        this.empty2 = new JLabel();
-        this.empty3 = new JLabel();
-    }
-
-    public int getSeconds() {
-        return seconds;
-    }
-
-    public void setSeconds(int seconds) {
-        this.seconds = seconds;
-    }
-
-    public int getFrames() {
-        return frames;
-    }
-
-    public void setFrames(int frames) {
-        this.frames = frames;
-    }
-
-    public int getFrameNumber() {
-        return frameNumber;
-    }
-
-    public void setFrameNumber(int frameNumber) {
-        this.frameNumber = frameNumber;
-    }
-
-    public int getTotalFrames() {
-        return totalFrames;
-    }
-
-    public void setTotalFrames(int totalFrames) {
-        this.totalFrames = totalFrames;
-    }
-
-    public boolean isPreviewFlag() {
-        return previewFlag;
-    }
-
-    public void setPreviewFlag(boolean previewFlag) {
-        this.previewFlag = previewFlag;
-    }
-
-    public JSlider getPreSlider() {
-        return preSlider;
-    }
-
-    public void setPreSlider(JSlider preSlider) {
-        this.preSlider = preSlider;
-    }
-
-    public JSlider getPostSlider() {
-        return postSlider;
-    }
-
-    public void setPostSlider(JSlider postSlider) {
-        this.postSlider = postSlider;
-    }
-
-    public double getPreInt() {
-        return preInt;
-    }
-
-    public void setPreInt(double preInt) {
-        this.preInt = preInt;
-    }
-
-    public double getPostInt() {
-        return postInt;
-    }
-
-    public void setPostInt(double postInt) {
-        this.postInt = postInt;
-    }
+    public JButton getResetBut() { return resetBut;}
+    public void setResetBut(JButton resetBut) { this.resetBut = resetBut;}
 }
