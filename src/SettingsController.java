@@ -32,12 +32,12 @@ public class SettingsController extends JPanel{
         getSecondsSli().setPaintLabels(true);
         getSecondsSli().setSnapToTicks(true);
         setSeconds(getSecondsSli().getValue());  // seconds = 2
-        setFrames(getFramesSli().getValue()); // fps = 30
-        setTotalFrames(getSeconds() * getFrames());
+        setFrames(getFramesSli().getValue()); // frames = 30
+        setTotalFrames(getFrames() / getSeconds());
 
         setSecondsLabel(new JLabel("Seconds: " + getSeconds()));
-        setFramesLabel(new JLabel("Frames per second: " + getFrames()));
-        setTotalFramesLabel(new JLabel("Total Frames: " + getTotalFrames()));
+        setFramesLabel(new JLabel("Frames: " + getFrames()));
+        setTotalFramesLabel(new JLabel("Frames Per Second (FPS): " + getTotalFrames()));
         setEmpty(new JLabel());
 
 
@@ -45,17 +45,21 @@ public class SettingsController extends JPanel{
             public void stateChanged(ChangeEvent e) {
                 setSeconds(getSecondsSli().getValue());
                 getSecondsLabel().setText("Seconds: " + getSeconds());
-                setTotalFrames(getFrames() * getSeconds());
-                getTotalFramesLabel().setText("Total Frames: " + getTotalFrames());
+                if(getSeconds() == 0){
+                    setTotalFrames(0);
+                }else {
+                    setTotalFrames(getFrames() / getSeconds());
+                }
+                getTotalFramesLabel().setText("Frames Per Second (FPS): " + getTotalFrames());
             }
         });
 
         getFramesSli().addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
-                getFramesLabel().setText("Frames per Second: " + getFramesSli().getValue());
+                getFramesLabel().setText("Frames: " + getFramesSli().getValue());
                 setFrames(getFramesSli().getValue());
-                setTotalFrames(getFrames() * getSeconds());
-                getTotalFramesLabel().setText("Total Frames: " + getTotalFrames());
+                setTotalFrames(getFrames() / getSeconds());
+                getTotalFramesLabel().setText("Frames Per Second (FPS): " + getTotalFrames());
             }
         });
 

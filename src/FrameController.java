@@ -233,7 +233,9 @@ public class FrameController extends JFrame implements ActionListener {
         JFrame animateFrame = new JFrame("Morphing");
         setMorphGridController(new GridController(getDim()));
         getMorphGridController().setImages(getPreFileChooser().getSelectedFile().getPath(), getPostFileChooser().getSelectedFile().getPath());
-        getMorphGridController().createAnimation(getPreGridController(), getPostGridController(), false);
+        System.out.println(getSettingsController().getFrames());
+        System.out.println(1/getSettingsController().getFrames());
+        getMorphGridController().createAnimation(getPreGridController(), getPostGridController(), 1/getSettingsController().getFrames(), false);
         animateFrame.add(getMorphGridController());
         animateFrame.setSize(getMorphGridController().pre.getWidth() + 20, getMorphGridController().pre.getHeight() + 20);
         animateFrame.setVisible(true);
@@ -245,13 +247,13 @@ public class FrameController extends JFrame implements ActionListener {
             public void mouseExited(MouseEvent e){}
             public void mouseEntered(MouseEvent e){}
             public void mouseReleased(MouseEvent e){
-                setMove(false);
-                setPoint(null);
                 if(getPoint() != null) {
                     a.updatePolygons();
                     b.p[getPoint()[0]][getPoint()[1]].getModel().setColor(Color.BLACK);
                     b.repaint();
                 }
+                setMove(false);
+                setPoint(null);
             }
 
             public void mousePressed(MouseEvent e){

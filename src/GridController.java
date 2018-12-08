@@ -262,14 +262,15 @@ public class GridController extends JPanel{
      * @Description:    Creates the warps to generate between each pre and post images from triangles generated on
      * the board
      */
-    public void createAnimation(GridController preI, GridController postI, boolean export){
+    public void createAnimation(GridController preI, GridController postI, float incrementAmt, boolean export){
         ActionListener s = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if(animationStep(preI.p, postI.p, increments)){
                     preview.start();
                 }
                 else{
-                    increments += 0.006666667;
+                    System.out.println(incrementAmt);
+                    increments += incrementAmt;
                     for(int i = 0; i < preI.poly.length; i++){
                         for(int j = 0; j < preI.poly[0].length; j++){
                             MorptT.warpTriangle(preI.image, pre, preI.poly[i][j][0].getModel(), poly[i][j][0].getModel(),null,null);
