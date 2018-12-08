@@ -369,14 +369,13 @@ public class GridController extends JPanel{
         initializePolygons();
     }
 
-    public Polygon createPolygon(int xVal, int yVal){
     /*
      * @Function:       createPolygon()
      * @Parameters:     Type: int
      * @Returns:        Type: Polygon
      * @Description:    Creates temporary border for current selected point
      */
-    public Polygon createPolygon(int x, int y){
+    public Polygon createPolygon(int xVal, int yVal){
         List<Double> xpoints = new ArrayList<>();
         List<Double> ypoints = new ArrayList<>();
 
