@@ -52,7 +52,7 @@ public class SettingsController extends JPanel{
                 getFramesLabel().setText("Frames per Second: " + getFramesSli().getValue());
                 setFrames(getFramesSli().getValue());
                 setTotalFrames(getFrames() * getSeconds());
-                getFramesLabel().setText("Total Frames: " + getTotalFrames());
+                getTotalFramesLabel().setText("Total Frames: " + getTotalFrames());
             }
         });
 

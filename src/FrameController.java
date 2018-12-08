@@ -50,22 +50,30 @@ public class FrameController extends JFrame implements ActionListener {
         super("Morph");
         this.addWindowListener(new WindowAdapter(){public void windowClosing(WindowEvent e){System.exit(0);}});
 
-        this.setDim(dim);
-        this.setPreGridController(new GridController(dim));
-        this.setPostGridController(new GridController(dim));
-        this.setMorphGridController(new GridController(dim));
+
         this.setSettingsController(new SettingsController(false));
         this.setC(new Container());
 
         c = getContentPane();
+
+        this.menu();
+
+        init(dim);
+    }
+
+
+    public void init(int dim){
+
+        this.setDim(dim);
+        this.setPreGridController(new GridController(dim));
+        this.setPostGridController(new GridController(dim));
+        this.setMorphGridController(new GridController(dim));
 
         getPreGridController().setOpaque(true);
         getPreGridController().setBackground(Color.ORANGE);
         getPostGridController().setOpaque(true);
         getPostGridController().setBackground(Color.BLUE);
 
-        this.createMenu();
-        this.buildMenu();
 
         this.setLayout(new GridBagLayout());
         GridBagConstraints d = new GridBagConstraints();
@@ -117,9 +125,11 @@ public class FrameController extends JFrame implements ActionListener {
 
         this.setSize(1060, 760);
         this.setVisible(true);
+
+        createMouseListeners();
     }
 
-    private void createMenu(){
+    private void menu(){
 
         setPreFileChooser(new JFileChooser());
         setPostFileChooser(new JFileChooser());
@@ -131,7 +141,7 @@ public class FrameController extends JFrame implements ActionListener {
         setJMenuBar(new JMenuBar());
         setMenu(new JMenu("Options"));
 
-        setChoosePre(new JMenuItem("Select Pre-Image", KeyEvent.VK_T));
+        setChoosePre(new JMenuItem("Select Pre-Image"));
         getChoosePre().setAccelerator(KeyStroke.getKeyStroke('1', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
         getChoosePre().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -142,7 +152,7 @@ public class FrameController extends JFrame implements ActionListener {
             }
         });
 
-        setChoosePost(new JMenuItem("Select Post-Image", KeyEvent.VK_T));
+        setChoosePost(new JMenuItem("Select Post-Image"));
         getChoosePost().setAccelerator(KeyStroke.getKeyStroke('2', Toolkit.getDefaultToolkit ().getMenuShortcutKeyMask()));
         getChoosePost().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -166,8 +176,31 @@ public class FrameController extends JFrame implements ActionListener {
         });
 
         set_5(new JMenuItem("5x5"));
+
+        get_5().addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                getC().removeAll();
+                init(5);
+            }
+        });
+
         set_10(new JMenuItem("10x10"));
+
+        get_10().addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                getC().removeAll();
+                init(10);
+            }
+        });
+
         set_20(new JMenuItem("20x20"));
+
+        get_20().addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                getC().removeAll();
+                init(20);
+            }
+        });
 
 
         getMenu().add(getChoosePre());
@@ -197,27 +230,24 @@ public class FrameController extends JFrame implements ActionListener {
         animateFrame.setVisible(true);
     }
 
-
-
     public void createMouseListeners() {
 
         getPreGridController().addMouseListener(new MouseListener(){
             public void mouseExited(MouseEvent e){}
             public void mouseEntered(MouseEvent e){}
             public void mouseReleased(MouseEvent e){
-                if (getPoint() != null) {
+                if(getPoint() != null) {
                     getPreGridController().updatePolygons();
                     getPostGridController().p[getPoint()[0]][getPoint()[1]].getModel().setColor(Color.BLACK);
                     getPostGridController().repaint();
                 }
                 setMove(false);
                 setPoint(null);
-
-
             }
+
             public void mousePressed(MouseEvent e){
                 setPoint(getPreGridController().getCurrentPoint(e.getPoint()));
-                if (getPoint() != null) {
+                if(getPoint() != null) {
                     setMove(true);
                     setBorder(getPreGridController().createPolygon(getPoint()[0], getPoint()[1]));
                     getPostGridController().p[getPoint()[0]][getPoint()[1]].getModel().setColor(Color.RED);
@@ -228,82 +258,17 @@ public class FrameController extends JFrame implements ActionListener {
             public void mouseClicked(MouseEvent e){}
         });
 
-        /* create a motion listener to track the mouse dragging the polygon */
         getPreGridController().addMouseMotionListener(new MouseMotionListener() {
             public void mouseDragged(MouseEvent e) {
-                if (isMove() && getBorder().contains(e.getPoint())){
+                if(isMove() && getBorder().contains(e.getPoint())){
                     getPreGridController().p[getPoint()[0]][getPoint()[1]] = new PointController(e.getX(), e.getY());
-                    getPreGridController().p[getPoint()[0]][getPoint()[1]].getModel().setColor(Color.RED);                      // remove
+                    getPostGridController().p[getPoint()[0]][getPoint()[1]].getModel().setColor(Color.RED);
                     getPreGridController().repaint();
-                    getPreGridController().repaint();
+                    getPostGridController().repaint();
                 }
             }
             public void mouseMoved(MouseEvent e) { }
         });
-    }
-
-    /**
-     * @Function: ()
-     * @Parameters: Type:
-     * @Returns: N/A
-     * @Description:
-     *
-     */
-
-    public void buildMenu(){
-
-        final JFileChooser fc = new JFileChooser(".");
-        JMenuBar bar = new JMenuBar();
-        this.setJMenuBar (bar);
-        JMenu fileMenu = new JMenu ("File");
-        JMenuItem fileopenPre = new JMenuItem ("Open PreImage");
-        JMenuItem fileopenPost = new JMenuItem ("Open PreImage");
-        JMenuItem fileexit = new JMenuItem ("Exit");
-
-        fileopenPre.addActionListener(new ActionListener() {
-            public void actionPerformed (ActionEvent e) {
-                //need to add file path
-//                        int returnVal = fc.showOpenDialog(this.image);
-//                        if (returnVal == JFileChooser.APPROVE_OPTION) {
-//                            File file = fc.getSelectedFile();
-//                            try {
-//                                image = ImageIO.read(file);
-//                            } catch (IOException e1){};
-//
-//                            view.setImage(image);
-//                            view.showImage();
-//                        }
-            }
-        });
-
-        fileopenPost.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                //need to add file path
-//                        int returnVal = fc.showOpenDialog(this.image);
-//                        if (returnVal == JFileChooser.APPROVE_OPTION) {
-//                            File file = fc.getSelectedFile();
-//                            try {
-//                                image = ImageIO.read(file);
-//                            } catch (IOException e1){};
-//
-//                            view.setImage(image);
-//                            view.showImage();
-//                        }
-            }
-
-        });
-        fileexit.addActionListener(
-                new ActionListener () {
-                    public void actionPerformed (ActionEvent e) {
-                        System.exit(0);
-                    }
-                }
-        );
-
-        fileMenu.add(fileopenPre);
-        fileMenu.add(fileopenPost);
-        fileMenu.add(fileexit);
-        bar.add(fileMenu);
     }
 
     public void actionPerformed(ActionEvent e){}
